@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d2d5d5",
+              "error-container": "#f74b6d",
+              "secondary-container": "#c5d0ff",
+              "inverse-primary": "#ff562c",
+              "surface-container": "#e7e8e8",
+              "inverse-on-surface": "#9c9d9d",
+              "error": "#b41340",
+              "on-tertiary": "#e1ff88",
+              "on-tertiary-fixed": "#3a4a00",
+              "inverse-surface": "#0c0f0f",
+              "secondary-fixed": "#c5d0ff",
+              "surface-variant": "#dbdddd",
+              "on-surface-variant": "#5a5c5c",
+              "on-primary": "#ffefec",
+              "background": "#f6f6f6",
+              "surface-container-highest": "#dbdddd",
+              "tertiary-fixed": "#cafd00",
+              "secondary-fixed-dim": "#b3c1ff",
+              "on-background": "#2d2f2f",
+              "primary": "#af2700",
+              "tertiary-container": "#cafd00",
+              "on-secondary-fixed-variant": "#0042c9",
+              "outline-variant": "#acadad",
+              "tertiary": "#4e6300",
+              "on-tertiary-container": "#4a5e00",
+              "primary-dim": "#9a2100",
+              "surface-bright": "#f6f6f6",
+              "outline": "#757777",
+              "tertiary-fixed-dim": "#beee00",
+              "on-secondary": "#f2f1ff",
+              "primary-container": "#ff7856",
+              "surface-container-low": "#f0f1f1",
+              "on-secondary-fixed": "#002a88",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-surface": "#2d2f2f",
+              "tertiary-dim": "#435600",
+              "on-primary-fixed": "#000000",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#490b00",
+              "secondary": "#004be2",
+              "on-tertiary-fixed-variant": "#526900",
+              "secondary-dim": "#0041c7",
+              "primary-fixed-dim": "#ff5c34",
+              "on-secondary-container": "#003ab4",
+              "surface-container-high": "#e1e3e3",
+              "on-error": "#ffefef",
+              "surface-tint": "#af2700",
+              "error-dim": "#a70138",
+              "on-error-container": "#510017",
+              "surface": "#f6f6f6",
+              "primary-fixed": "#ff7856"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .active-card {
+            background-color: #cafd00 !important;
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar from Shared Components JSON -->
+<header class="bg-[#f6f6f6] dark:bg-zinc-900 flex justify-between items-center px-6 py-4 w-full docked full-width top-0 border-b-4 border-zinc-900 dark:border-white z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-900 dark:text-white text-3xl cursor-pointer hover:bg-[#cafd00] transition-all p-1 rounded-lg" data-icon="menu">menu</span>
+<h1 class="text-2xl font-black tracking-tighter text-zinc-900 dark:text-white uppercase font-['Space_Grotesk']">COMMONS</h1>
+</div>
+<div class="flex items-center gap-4">
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center p-6 max-w-6xl mx-auto w-full">
+<!-- Animated Editorial Header -->
+<div class="w-full mb-12 text-center md:text-left relative">
+<span class="font-headline font-bold text-primary uppercase tracking-[0.2em] text-sm mb-2 block">Identity Setup</span>
+<h2 class="font-headline font-black text-6xl md:text-8xl text-on-surface uppercase leading-[0.85] tracking-tighter">
+                SELECT YOUR <br/> <span class="text-primary italic pr-4">PATH</span>
+</h2>
+<!-- Decorative Rubber Hose Element (Visual Only) -->
+<div class="hidden lg:block absolute -top-10 -right-10 w-48 h-48 opacity-20 rotate-12">
+<img alt="" class="w-full h-full object-contain" data-alt="vintage 1930s rubber hose animation character style illustration of a gloved hand pointing towards the options" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjVSyuJo2ZSE_ZRrESImTo2C0HFcGpXOaCuESi_xM5KvBdbq8iK0CEZTFcNUHFNkcze8KWidlIhD2aj777CL1lpcl8XAkcRdaz-xlUE9Gqrd67Ao4_yO2cJn4Uy5-juKnIlO8BqYIWjpe5EiFLd4ExpxaF2X-iCmYQND_SRAoiANrCXMjGn7jZq0On_8J2lziglt9GqEjExXVRHkUjILbhBZJH3UrKLKvIWDHd1Eo9W46PHMB1J8O_FKTejqclfqVBXdXIf4dXXI8"/>
+</div>
+</div>
+<!-- Role Options Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-16">
+<!-- Student Card -->
+<div class="group relative bg-surface-container-lowest border-4 border-zinc-900 p-8 rounded-xl neo-shadow transition-all hover:active-card cursor-pointer overflow-hidden h-[400px] flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-5xl text-primary group-hover:text-zinc-900" data-icon="menu_book">menu_book</span>
+<span class="bg-zinc-900 text-white font-headline text-xs px-3 py-1 rounded-full uppercase tracking-widest">Type 01</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline font-black text-4xl uppercase mb-2 group-hover:text-zinc-900">Student</h3>
+<p class="text-on-surface-variant font-medium text-lg leading-tight group-hover:text-zinc-800">For discovering events and joining squads.</p>
+</div>
+<!-- Rubber Hose Character Graphic Overlay -->
+<div class="absolute -right-4 -top-4 w-40 h-40 opacity-10 group-hover:opacity-100 transition-opacity">
+<img alt="" class="w-full h-full object-contain" data-alt="minimalist rubber hose style cartoon character carrying a giant stack of books with noodle arms and pie eyes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwRIoCxZaaR8uyovXMqXgsoXYQDAWNHQwv3p0Nfu9kxsT2gmxHMOMdZcDi2xJ473qgSRZfrdJr4vsjWgVLGIR5d7lNxjuPmSLy7jJNLcJa6Qk8mh-K4Ue3KvOeHLQlWpoieNZaEXCP02CskzXB9Q9fnOnqC_P5jdU6uYVRXZoneDS-bTT9sGWK0iY_5RTZfRddJrD-KMzjWiLrPVMfCEtBKaYLFh1VrROBbhIZ9wP1dgZQvPLEVJwuijCOEQh-ja0anqfP5Dp1KRI"/>
+</div>
+</div>
+<!-- Club Card -->
+<div class="group relative bg-surface-container-lowest border-4 border-zinc-900 p-8 rounded-xl neo-shadow transition-all hover:active-card cursor-pointer overflow-hidden h-[400px] flex flex-col scale-105 z-10">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-5xl text-primary group-hover:text-zinc-900" data-icon="campaign">campaign</span>
+<span class="bg-zinc-900 text-white font-headline text-xs px-3 py-1 rounded-full uppercase tracking-widest">Type 02</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline font-black text-4xl uppercase mb-2 group-hover:text-zinc-900">Club</h3>
+<p class="text-on-surface-variant font-medium text-lg leading-tight group-hover:text-zinc-800">For managing members and hosting events.</p>
+</div>
+<div class="absolute -right-6 bottom-10 w-44 h-44 opacity-10 group-hover:opacity-100 transition-opacity">
+<img alt="" class="w-full h-full object-contain" data-alt="funky 1930s style rubber hose character holding a megaphone with radiating sound waves in bold black and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbI9LGmWDhxh_R0vo4jy18XwLz9VDBmAFjt96V-KoD1yGYsCuIwiFLV0SA6YJOc2lalgQ1rvnjEvbd0ydi8g7D_P6d9xfcsWVST3dH58vA1neDZoJcIWP2g3gl-ju09SvvnR6C8YDKD_qFthZQuhvRXIrrJWjDsPJZzPZDoL-LuBJNuDf6ZbaMdsvRQIiNDpEEeJhwJAzqGONEIS7mfzDj9dTf1flMPT75MqjGy5J8gwoyil9rXhrIsWFLWvbxpW29gpo1k709kcs"/>
+</div>
+</div>
+<!-- Coordinator Card -->
+<div class="group relative bg-surface-container-lowest border-4 border-zinc-900 p-8 rounded-xl neo-shadow transition-all hover:active-card cursor-pointer overflow-hidden h-[400px] flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-5xl text-primary group-hover:text-zinc-900" data-icon="assignment">assignment</span>
+<span class="bg-zinc-900 text-white font-headline text-xs px-3 py-1 rounded-full uppercase tracking-widest">Type 03</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline font-black text-4xl uppercase mb-2 group-hover:text-zinc-900">Coordinator</h3>
+<p class="text-on-surface-variant font-medium text-lg leading-tight group-hover:text-zinc-800">For approving events and campus broadcasts.</p>
+</div>
+<div class="absolute -left-10 -bottom-10 w-48 h-48 opacity-10 group-hover:opacity-100 transition-opacity rotate-12">
+<img alt="" class="w-full h-full object-contain" data-alt="vintage animation character checking a long clipboard with a pencil noodle arms and large cartoon gloves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0F_L7PRITSHl8qC99EfJCevboNfwLJhuS_5jSVe6ORbnhKlt61m-ql9hsDKYdmbmqXCu7O0ZjsPJr7dGiC9Mkgj7kjvO4NoQRHZpt98TtlWwkwgno9nKR61egBy___Uwop4PCPe5j4O-6yCXPNg2y9_Nk7eW0zjIlX8XZ2hJtkNZdUMb2Lc2OJ-4kwMAhgdpcmWTFKI1WAXBdtp-vVdfT8Yt0Y0c9L9RR1bOHKgIq7VY3LtmuGYMh2huXYumXd6rOTkvTb3h00T8"/>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="w-full max-w-md mx-auto flex flex-col items-center gap-6">
+<button class="group w-full bg-primary text-white font-headline font-black text-2xl py-6 rounded-full border-4 border-zinc-900 neo-shadow-sm hover:translate-y-1 hover:neo-shadow-sm active:translate-y-2 active:shadow-none transition-all flex items-center justify-center gap-4 uppercase tracking-tighter">
+                CONTINUE
+                <span class="material-symbols-outlined text-3xl group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<p class="text-on-surface-variant text-center font-medium">
+                Not sure? <a class="text-primary font-bold underline decoration-2 underline-offset-4 hover:bg-tertiary-fixed transition-colors px-1" href="#">Learn more about roles</a>
+</p>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden opacity-5">
+<div class="absolute top-[10%] left-[5%] text-[20vw] font-black uppercase font-headline rotate-12 select-none">COMMONS</div>
+<div class="absolute bottom-[10%] right-[5%] text-[15vw] font-black uppercase font-headline -rotate-6 select-none text-primary">SELECT</div>
+</div>
+</body></html>

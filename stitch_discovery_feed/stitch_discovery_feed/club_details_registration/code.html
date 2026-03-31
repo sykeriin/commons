@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#e1e3e3",
+              "tertiary-fixed-dim": "#beee00",
+              "secondary-fixed-dim": "#b3c1ff",
+              "surface-dim": "#d2d5d5",
+              "secondary-container": "#c5d0ff",
+              "primary-dim": "#9a2100",
+              "on-secondary-fixed-variant": "#0042c9",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-primary-fixed": "#000000",
+              "inverse-primary": "#ff562c",
+              "error-container": "#f74b6d",
+              "inverse-on-surface": "#9c9d9d",
+              "on-surface": "#2d2f2f",
+              "background": "#f6f6f6",
+              "surface-variant": "#dbdddd",
+              "surface-tint": "#af2700",
+              "secondary": "#004be2",
+              "on-secondary": "#f2f1ff",
+              "primary-fixed-dim": "#ff5c34",
+              "on-tertiary-container": "#4a5e00",
+              "surface-container-low": "#f0f1f1",
+              "tertiary-fixed": "#cafd00",
+              "primary-fixed": "#ff7856",
+              "tertiary": "#4e6300",
+              "primary": "#af2700",
+              "on-secondary-container": "#003ab4",
+              "on-tertiary": "#e1ff88",
+              "primary-container": "#ff7856",
+              "tertiary-dim": "#435600",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffefef",
+              "error": "#b41340",
+              "on-tertiary-fixed-variant": "#526900",
+              "outline-variant": "#acadad",
+              "error-dim": "#a70138",
+              "on-surface-variant": "#5a5c5c",
+              "on-tertiary-fixed": "#3a4a00",
+              "surface-container-highest": "#dbdddd",
+              "outline": "#757777",
+              "on-error-container": "#510017",
+              "secondary-fixed": "#c5d0ff",
+              "surface-container": "#e7e8e8",
+              "inverse-surface": "#0c0f0f",
+              "tertiary-container": "#cafd00",
+              "on-primary-container": "#490b00",
+              "on-background": "#2d2f2f",
+              "surface": "#f6f6f6",
+              "on-secondary-fixed": "#002a88",
+              "on-primary": "#ffefec",
+              "surface-bright": "#f6f6f6",
+              "secondary-dim": "#0041c7"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .rubber-hose-illustration {
+            filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.1));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-[#f6f6f6] dark:bg-zinc-900 border-b-4 border-black dark:border-white docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-black">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Stylized graphic avatar of a user with bold black outlines and a minimal red background circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbGubgMiDd3cs61gXDLguCChxD2ZJ3-BWKfo-ioDn9U-bdoRzAjMFgv0UTSU58n1gOnpt9uWDsTE7T071ZQFMQnfF2ibIVjCwFH9Ih7aBxCr8SM6qWXObdsQjiyGJGrOwjV_yjPGG6oyfzlx-EONSHfwpOVHa9H26PyRbjRQHR177GIiGWl7mV0obf6T8ehFNPZrSyh8X4mTyuybVU_NayvMRKncqKOAItuYGWw5tHluarrhM63LnMrHojIbmCvhKdm_8reSjXNUI"/>
+</div>
+<h1 class="text-3xl font-black text-black dark:text-white italic font-['Space_Grotesk'] tracking-tighter uppercase">COMMONS</h1>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-black dark:text-white hover:skew-x-2 transition-transform active:scale-95 duration-100" data-icon="settings">settings</button>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 py-12 max-w-5xl relative">
+<!-- Floating Illustrations -->
+<div class="absolute -top-10 -left-12 hidden lg:block rubber-hose-illustration -rotate-12 z-0">
+<img alt="Rubber Hose Hand with Pencil" class="w-48 h-48 opacity-20" data-alt="Whimsical 1930s rubber hose style white gloved hand holding a giant red pencil with thick black outlines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLdwokkBh1d_cu4s0DHJA4EUMokIt4G1ijGw8OM6a5ESh9Eddo5cgA4Iu3nJkzNzTA5FFlmEG-63vSYQtpEHf3lOMAy4zXD5ANUkDR3rXDYrNC4iv17N6GUfylL9ouMGHj5_fpDJyyiCBNWBWhoSKG3pRN6j-GLYnIAdJ3cLciVpBx4qMqHspq1XsbCRUByarti4CHVq5hdpdKd35hHkVf0mYRw0MjTCsNVRJeZInrRmlRkYrgbCH1nkuFim_-MuYX_5vCrglg52Q"/>
+</div>
+<div class="absolute -bottom-10 -right-12 hidden lg:block rubber-hose-illustration rotate-12 z-0">
+<img alt="Rubber Hose Hand with Notebook" class="w-48 h-48 opacity-20" data-alt="Retro rubber hose animation style gloved hand reaching for a spiral notebook with bold graphic styling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyW8gpLYkUBiiKgZtBVCrekCCZsBlUmTb7x-jE341-asYH3wBliskg3YT6p3meQbuo_zVwE42CDinZFxnxGaCRMi1SAmeZGv2DtnBEahYcJ_bilYaI03fTZtb7bOelw-k6Sx-c7BOBV23QUvTANKTqOIF3nJd3woV4p0xc-4cyB8hTxEED-XMU8HzUXohYovX_OH1E2XXI92jgA3mv5KCwVn6XLNVwLgUmuIVjhCaRDHecLr3OAiFuClnGE4fK7ExkI9pjh4yG9gs"/>
+</div>
+<section class="relative z-10">
+<div class="mb-12">
+<h2 class="font-headline font-bold text-6xl md:text-8xl tracking-tighter uppercase text-on-surface mb-2">CLUB DOSSIER</h2>
+<div class="h-2 w-32 bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Left Column: Primary Details -->
+<div class="md:col-span-8 grid grid-cols-1 gap-6">
+<!-- Bento Box: Name & Category -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border-4 border-black neo-shadow">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant">CLUB NAME</label>
+<input class="bg-transparent border-b-4 border-black p-2 text-xl font-headline font-bold focus:outline-none focus:border-primary transition-colors placeholder:text-surface-variant" placeholder="ENTER TITLE..." type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant">CATEGORY</label>
+<div class="relative">
+<select class="appearance-none w-full bg-transparent border-b-4 border-black p-2 text-xl font-headline font-bold focus:outline-none focus:border-primary cursor-pointer">
+<option>CULTURAL</option>
+<option>ATHLETIC</option>
+<option>ACADEMIC</option>
+<option>CREATIVE</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 bottom-3 pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Box: Mission Statement -->
+<div class="bg-surface-container-low p-8 rounded-xl border-4 border-black neo-shadow">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant">MISSION STATEMENT</label>
+<span class="material-symbols-outlined text-primary" data-icon="edit_note">edit_note</span>
+</div>
+<textarea class="bg-surface-container-lowest border-4 border-black rounded-xl p-4 text-lg font-medium focus:outline-none focus:border-primary transition-colors resize-none placeholder:text-surface-variant" placeholder="WHAT IS YOUR PURPOSE?" rows="4"></textarea>
+</div>
+</div>
+</div>
+<!-- Right Column: Mascot & Action -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<!-- Bento Box: Mascot Upload -->
+<div class="bg-primary text-on-primary p-8 rounded-xl border-4 border-black neo-shadow flex flex-col items-center justify-center text-center gap-4 group cursor-pointer hover:bg-primary-dim transition-colors h-full min-h-[300px]">
+<div class="w-24 h-24 bg-on-primary rounded-full flex items-center justify-center border-4 border-black mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="upload">upload</span>
+</div>
+<div>
+<p class="font-headline font-bold text-xl uppercase leading-tight">CLUB MASCOT</p>
+<p class="font-body text-xs font-bold opacity-80 uppercase tracking-tighter mt-1">PNG OR SVG ONLY</p>
+</div>
+<input class="hidden" type="file"/>
+</div>
+<!-- Next Action Button -->
+<button class="bg-on-primary-fixed text-white font-headline font-black text-2xl py-6 rounded-full border-4 border-black neo-shadow hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center gap-3 group">
+                        NEXT STEP
+                        <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-12 flex flex-col md:flex-row justify-between items-center border-t-4 border-black pt-6 gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary rounded-full animate-pulse"></span>
+<p class="font-headline font-bold text-sm uppercase">ESTABLISHING CONNECTION...</p>
+</div>
+<p class="font-headline font-bold text-sm uppercase tracking-widest">© 2026 SYKERIIN COPYRIGHT</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Suppressed due to transactional focus, but kept empty spacer for layout if needed) -->
+<div class="h-24 md:hidden"></div>
+<footer class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t-4 border-black p-4 z-50">
+<button class="w-full bg-primary text-on-primary font-headline font-black text-xl py-4 rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all">
+            NEXT STEP
+        </button>
+</footer>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Robotics Elite | Club Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#4e6300",
+                        "surface-container-highest": "#dbdddd",
+                        "tertiary-dim": "#435600",
+                        "on-secondary-container": "#003ab4",
+                        "secondary-container": "#c5d0ff",
+                        "on-surface-variant": "#5a5c5c",
+                        "on-secondary-fixed": "#002a88",
+                        "on-error-container": "#510017",
+                        "primary-fixed-dim": "#ff5c34",
+                        "background": "#f6f6f6",
+                        "tertiary-fixed-dim": "#beee00",
+                        "secondary-dim": "#0041c7",
+                        "on-primary-container": "#490b00",
+                        "secondary-fixed": "#c5d0ff",
+                        "error": "#b41340",
+                        "surface": "#f6f6f6",
+                        "surface-container-low": "#f0f1f1",
+                        "primary": "#af2700",
+                        "inverse-surface": "#0c0f0f",
+                        "surface-dim": "#d2d5d5",
+                        "on-tertiary-fixed-variant": "#526900",
+                        "on-primary": "#ffefec",
+                        "error-container": "#f74b6d",
+                        "on-tertiary": "#e1ff88",
+                        "inverse-primary": "#ff562c",
+                        "error-dim": "#a70138",
+                        "tertiary-container": "#cafd00",
+                        "primary-dim": "#9a2100",
+                        "surface-bright": "#f6f6f6",
+                        "inverse-on-surface": "#9c9d9d",
+                        "secondary-fixed-dim": "#b3c1ff",
+                        "on-error": "#ffefef",
+                        "on-secondary-fixed-variant": "#0042c9",
+                        "surface-container-high": "#e1e3e3",
+                        "on-background": "#2d2f2f",
+                        "on-secondary": "#f2f1ff",
+                        "on-tertiary-fixed": "#3a4a00",
+                        "surface-tint": "#af2700",
+                        "on-primary-fixed": "#000000",
+                        "surface-container": "#e7e8e8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#dbdddd",
+                        "primary-fixed": "#ff7856",
+                        "secondary": "#004be2",
+                        "on-tertiary-container": "#4a5e00",
+                        "on-surface": "#2d2f2f",
+                        "on-primary-fixed-variant": "#5a0f00",
+                        "tertiary-fixed": "#cafd00",
+                        "outline-variant": "#acadad",
+                        "outline": "#757777",
+                        "primary-container": "#ff7856",
+                        "brand-orange": "#FF3D00"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .brutal-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .brutal-shadow-large {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        .animate-bounce-short {
+            animation: bounce-short 1s ease-in-out infinite;
+        }
+        @keyframes bounce-short {
+            0%, 100% { transform: translateY(-8px) scale(1.1); }
+            50% { transform: translateY(-12px) scale(1.1); }
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<!-- Updated TopAppBar from COMPONENTS_79 -->
+<header class="w-full sticky top-0 z-50 border-b-4 border-black dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-900 dark:text-white text-2xl cursor-pointer hover:scale-105 hover:rotate-1 transition-transform active:scale-95 duration-150 ease-in-out">menu</span>
+<h1 class="text-3xl font-['Space_Grotesk'] font-black italic tracking-tighter text-[#FF3D00] uppercase">KINETIC</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8 font-['Space_Grotesk'] font-bold tracking-tight text-xl uppercase">
+<a class="text-zinc-500 hover:text-[#FF3D00] hover:scale-105 hover:rotate-1 transition-transform active:scale-95 duration-150" href="#">Home</a>
+<a class="text-[#FF3D00] hover:scale-105 hover:rotate-1 transition-transform active:scale-95 duration-150" href="#">Clubs</a>
+<a class="text-zinc-500 hover:text-[#FF3D00] hover:scale-105 hover:rotate-1 transition-transform active:scale-95 duration-150" href="#">Events</a>
+</nav>
+<span class="material-symbols-outlined text-zinc-900 dark:text-white text-2xl cursor-pointer hover:scale-105 hover:rotate-1 transition-transform active:scale-95 duration-150 ease-in-out">notifications</span>
+</div>
+</div>
+</header>
+<main class="pt-12 pb-40 px-6 max-w-7xl mx-auto">
+<!-- Club Header Section -->
+<section class="relative mb-12">
+<div class="flex flex-col md:flex-row items-center md:items-end gap-8">
+<!-- Mascot & Profile Image -->
+<div class="relative">
+<div class="w-48 h-48 md:w-64 md:h-64 bg-primary rounded-full border-4 border-black overflow-hidden brutal-shadow-large flex items-center justify-center relative z-10">
+<img alt="Club Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqRdonM4fj6GciZeqzpnF7njrjQtwtbDynSR1wwGx845p42MNQk1M3Zoxvrvit6eVjoddJK00B55jyrtU5-2hQsZucDKH6PbAr8t3yUjrHc0fafR7HngRLwcwT6JUEEFSahyq318YFiSrpUAEO6P0F63fmeM4bR1sfm8o3xmPprjMtxCm67t2HeXP0ZtkzIRa8k3F7ov6YRDcUt7FUZO9-slqSbDLu8UyNxpb0YH8utNup4HKe4NnZm4gmlyp903kn9BOulKx9raA"/>
+</div>
+<div class="absolute -top-10 -right-10 w-32 h-32 z-20 hidden lg:block rotate-12">
+<img alt="Mascot Element" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk81-mSUf5RaH8nsjQuGOL-65zOnCIgydWILdjKSq6OcvkF6qmwZNUvj_byw-6U67dgowpQbBhvXMtH6dp_TQ6qsPYGZuaHJGjv5z1ubRTbaMuSx1Z5DZr2iIVowdrlHBKOba5eivLqD8QsUm_gm37h8wfz9VRQ7HpiZ9_D5EfAzOuYjZ_hyFYUmbkWI1DiUG5rSY5jT0vFiMoe5Grb4cJ9qfG2LgZdYN0zT5tqHY0SC9gSc_XtgQP3Wwv_QJtGmUDJnk1FvdokkY"/>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="mb-4 inline-block bg-secondary text-white px-4 py-1 rounded-full font-headline font-extrabold uppercase tracking-widest text-sm border-2 border-black">
+                        PRO CLUB
+                    </div>
+<h2 class="font-headline font-black text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter uppercase mb-6 text-black">
+                        ROBOTICS<br/>ELITE
+                    </h2>
+</div>
+</div>
+</section>
+<!-- MANAGEMENT HUB SECTION -->
+<section class="mb-12">
+<div class="bg-surface-container-high p-8 rounded-xl border-4 border-black brutal-shadow-large">
+<h3 class="font-headline font-black text-2xl uppercase tracking-tighter mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">settings_suggest</span>
+                    MANAGEMENT HUB
+                </h3>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+<button class="bg-brand-orange text-white font-headline font-black text-2xl uppercase px-8 py-6 rounded-xl border-4 border-black brutal-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-4xl group-hover:rotate-12 transition-transform">add_circle</span>
+                        HOST NEW EVENT
+                    </button>
+<button class="bg-secondary text-white font-headline font-black text-2xl uppercase px-8 py-6 rounded-xl border-4 border-black brutal-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform">campaign</span>
+                        CAMPUS BROADCAST
+                    </button>
+<button class="bg-secondary text-white font-headline font-black text-2xl uppercase px-8 py-6 rounded-xl border-4 border-black brutal-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform">group</span>
+                        MANAGE MEMBERS
+                    </button>
+</div>
+</div>
+</section>
+<!-- Stats & Schedule Bento Grid -->
+<div class="bento-grid mb-12">
+<div class="col-span-12 md:col-span-3 bg-tertiary-container p-8 rounded-xl border-4 border-black brutal-shadow-large flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl mb-8">groups</span>
+<div>
+<div class="text-5xl font-headline font-black mb-1">124</div>
+<div class="font-headline font-bold uppercase tracking-widest text-xs">Total Members</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-3 bg-secondary-container p-8 rounded-xl border-4 border-black brutal-shadow-large flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl mb-8">rocket_launch</span>
+<div>
+<div class="text-5xl font-headline font-black mb-1">42</div>
+<div class="font-headline font-bold uppercase tracking-widest text-xs">Events Hosted</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 bg-surface-container-lowest p-8 rounded-xl border-4 border-black brutal-shadow-large relative overflow-hidden">
+<div class="relative z-10 h-full flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div class="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Next Up</div>
+<div class="font-headline font-bold uppercase text-sm">Oct 24, 2024</div>
+</div>
+<h3 class="font-headline font-black text-4xl uppercase leading-none mb-4">Regional Bot-Clash Qualifiers</h3>
+<p class="text-on-surface-variant font-medium mb-8 max-w-sm">The biggest internal competition of the semester. Bring your A-game and your spare servos.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-black bg-surface-variant"></div>
+<div class="w-10 h-10 rounded-full border-2 border-black bg-primary"></div>
+<div class="w-10 h-10 rounded-full border-2 border-black bg-secondary"></div>
+<div class="w-10 h-10 rounded-full border-2 border-black bg-white flex items-center justify-center text-xs font-bold">+18</div>
+</div>
+<span class="material-symbols-outlined text-3xl">arrow_forward</span>
+</div>
+</div>
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary opacity-10 rounded-full"></div>
+</div>
+</div>
+<!-- Past Events Section -->
+<section class="mb-20">
+<div class="flex justify-between items-end mb-8">
+<h2 class="font-headline font-black text-4xl uppercase tracking-tighter">Hall of Fame</h2>
+<a class="font-headline font-bold uppercase text-primary text-sm hover:underline" href="#">View All History</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface p-2 rounded-xl border-4 border-black brutal-shadow group hover:-translate-y-1 transition-transform">
+<div class="aspect-video rounded-lg overflow-hidden border-2 border-black mb-4">
+<img alt="Past Event" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWDVrB9tzAjsi-Gk1jQBDu-4xNuK1YhaZKD_fyNpxgqK4eKuA7NuVtYHAWbbNq0ldHDeoEvXrdAkbiK3Wbug-ydZHrhuYnJeV0ske4kh38LY04nCbZku3ykHV1yvvZGERc35U47hIRyvtHYnDqJr1ARxIUvnfGYIYfBqS9pkWYu_gCZBN7LwSWGJrAizbtg5ePXa4I7msuSX79sZMDVO7CiLiVqS8cLwupjoFvTvuX3iass6WGQxGK0BOkRWyHJzG8a1HZB4FBeMk"/>
+</div>
+<div class="px-2 pb-4">
+<div class="text-xs font-bold text-on-surface-variant mb-1 uppercase">Sept 12 • 86 Attended</div>
+<h4 class="font-headline font-bold text-xl uppercase leading-tight">AI Micro-Bot Workshop</h4>
+</div>
+</div>
+<div class="bg-surface p-2 rounded-xl border-4 border-black brutal-shadow group hover:-translate-y-1 transition-transform">
+<div class="aspect-video rounded-lg overflow-hidden border-2 border-black mb-4">
+<img alt="Past Event" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCccFCGggOqwAHFWFeol9jbOxXoKpBW8F7XH0MG3sVl29OK4hJjnywP8NEcmhURIlace2kd7nQDBRsERaqDMo4kuzLP8PMYyGKNbAhgt0Yq07VyLJRZwxPrixchmaKh2KzMB_5sc0lQfFNMPfrFogX3xT79oTVx_hD9gdi2Ip_N5DPuJQca9d7povW8S7W-kK80TVkAomfaeDtjbv0usRmC6BYLU2mqxOVG0ejKybhEBS3ZqqyR0CV8whjHr3pYCtMvwxRFpoWUmX4"/>
+</div>
+<div class="px-2 pb-4">
+<div class="text-xs font-bold text-on-surface-variant mb-1 uppercase">Aug 30 • 112 Attended</div>
+<h4 class="font-headline font-bold text-xl uppercase leading-tight">Summer Spark Hackathon</h4>
+</div>
+</div>
+<div class="bg-surface p-2 rounded-xl border-4 border-black brutal-shadow group hover:-translate-y-1 transition-transform">
+<div class="aspect-video rounded-lg overflow-hidden border-2 border-black mb-4">
+<img alt="Past Event" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIbITY8-QeeVG3k4nz2bqbWn76DxKOHYXsMCepH6lv6ALcvpVPuWv8ZemvND5hgG2sWCgCwYJkcTENNUHObWLo_VdRrybKnOQpA-kmX30fFtkcDSbP8tZX9EtKmDf_ckFMuSF0-ZzfRThLvLlt4AxJsIQqPkgQmdsOdBtj274ByYSXmKnNXWHrw6RNdjq0z4oC8s2Pk3jDhKVFgvGnFbm3SR-74F2D4JXHZXukqgVN0jnxmSE-ZilYKvqfpAInaQWNJDc8_8GkRwU"/>
+</div>
+<div class="px-2 pb-4">
+<div class="text-xs font-bold text-on-surface-variant mb-1 uppercase">July 15 • 45 Attended</div>
+<h4 class="font-headline font-bold text-xl uppercase leading-tight">Logic &amp; Latency Seminar</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Vibe Check Gallery -->
+<section class="mb-20">
+<h2 class="font-headline font-black text-6xl uppercase tracking-tighter mb-12 text-center">VIBE CHECK</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:auto-rows-[250px]">
+<div class="rounded-xl border-4 border-black overflow-hidden brutal-shadow md:row-span-2">
+<img alt="Gallery 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTEuHvctgOuXRffllEp9crCVADBtNbfXiuGUKii7NjRtfVWvsABpLN-8WzhEp7yonLSHa2nwYtLPnYsJ6MvcKuoMR1zegrGnZHJNUoP69ebioRd28OjQIYhDN35tMTNH3-eeKlFdwL8nTaXbO1fOvptSw-904rTsxNZeEIs6GizoDTOISggU1hcmJX2mEF9uyDkOnk-q14MQuK1OTwG-GAYHVGqXzXDHDB0rYjLQWf8Mi0BSHIkdzTy7-SKHImddSYQOJNn_L4zp0"/>
+</div>
+<div class="rounded-xl border-4 border-black overflow-hidden brutal-shadow">
+<img alt="Gallery 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHT5lhtebeYCCo12L-lVHVPpzMKGp6362UCaVVwlknH0XnSib2_V_htEkhbyfyEiq9yQ89cd-1ARpCyanTAEqoEbLZh2JExDodcz7SFZd7_VJdu0i6HUorki-z52Luve83MXcQZ_S7nz02dE9dL1Mjp9hD7z_FneHxKwtG3lUVAzcg4meIicIVCDoTh4TSQu6WeJ4pPfPFntZWKlTsqX0aivO_ZcltbJWYw9m3yqwfRsolbn5jpXVTPc8S6xUR2kHYzNaVtRrCboI"/>
+</div>
+<div class="rounded-xl border-4 border-black overflow-hidden brutal-shadow md:col-span-2">
+<img alt="Gallery 3" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRh9scidbrS5q-61rk9o4pvnR520XHXiAImRG2fox1RlI6_DYqCUqdsyP36FpO7i8i42PXKa06-859_IB8weaIQRiglx7nnac1fkuOwcBS-8nizfZYY_fnyO_lHi22pRm1ovHJY9eBsAMg1TTlIdL0ynaw5Q9D9-uRv2NqlkndvExz-51HSO7BNKV2avhk3H8vXh3RoVwkkDaMbRrqcnUenaAZ5HjDmj1cQwd9zZpMK9vrpddkUh_0HAGscbb5Wd94SMz1muG8d44"/>
+</div>
+<div class="rounded-xl border-4 border-black overflow-hidden brutal-shadow">
+<img alt="Gallery 4" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt3mt4fUBigpbMwOB1TdCVPzn1bSCjwOtnNEFg4DCcwNSMbMADjyAtgI7malBYk6v-ja--kmF5npm4e0A4e4Fc0_VxkQ4voXwolCytrOw2BCvieQfHD3LVypJoqq6p_H5g5ylRekesVhVJttVKK_KUeOcwbWjOgad2qZ45JEPNyyXIsLhhTrVtCspFS6nrh9uDQzbLfdjBXRjoVXfBBv2SvtBfr82vxt07YRXLGDvIdJMCkTRNLDJho2vi-hH2cKHGkROpIzjWs2Q"/>
+</div>
+<div class="rounded-xl border-4 border-black overflow-hidden brutal-shadow bg-brand-orange flex items-center justify-center p-6 text-center">
+<h3 class="font-headline font-black text-3xl text-white leading-none">JOIN THE CHAOS</h3>
+</div>
+<div class="rounded-xl border-4 border-black overflow-hidden brutal-shadow">
+<img alt="Gallery 5" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmZUprVhyNaMBAQY6f2mobCmCCrdOoN8T_pIVTZZhN6c98hKpH5kd5uy5JEwo-IplOmoa2JfWSuwH0oTvViDKWs7cQp29AxIgXIJqOMkN7-Qj4H0d4aWPLyNDh8OF-VYlSMIgsz1-TMRTbuPgZxBly5HOPUn_n_yhE58wGt-X90ZB5eaBXXvQKaEjSrwMP_NmvKVYomq0hGuF4Eh4pjkJGw5N4oiP5gjupA1k6JB8OFAEVtlakcEvndj6vp3knAm35EhZ_mp9LOvQ"/>
+</div>
+</div>
+</section>
+</main>
+<footer class="py-12 px-6 border-t-4 border-black dark:border-white bg-[#f6f6f6] dark:bg-neutral-900 mb-32">
+<div class="max-w-7xl mx-auto flex justify-center items-center">
+<p class="font-headline font-black text-xl tracking-tighter uppercase italic text-black dark:text-white">
+                © 2026 SYKERIIN
+            </p>
+</div>
+</footer>
+<!-- Updated BottomNavBar from COMPONENTS_79 -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 mx-auto w-[92%] max-w-lg bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-full border-4 border-black dark:border-zinc-800 shadow-[0_20px_40px_rgba(45,47,47,0.08)]">
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-[#FF3D00] hover:scale-110 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-[#FF3D00] hover:scale-110 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">explore</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-widest mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-[#FF3D00] hover:scale-110 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">account_circle</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-[#FF3D00] hover:scale-110 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">event</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-widest mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full px-4 py-2 scale-110 -rotate-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase tracking-widest mt-1">Clubs</span>
+</a>
+</nav>
+</body></html>

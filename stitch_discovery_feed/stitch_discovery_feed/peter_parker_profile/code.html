@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COMMONS | Student Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#757777",
+                        "secondary": "#004be2",
+                        "on-secondary-container": "#003ab4",
+                        "surface-container": "#e7e8e8",
+                        "inverse-primary": "#ff562c",
+                        "on-primary": "#ffefec",
+                        "primary-dim": "#9a2100",
+                        "on-secondary": "#f2f1ff",
+                        "surface-container-highest": "#dbdddd",
+                        "on-secondary-fixed": "#002a88",
+                        "on-tertiary": "#e1ff88",
+                        "on-primary-fixed": "#000000",
+                        "inverse-surface": "#0c0f0f",
+                        "secondary-container": "#c5d0ff",
+                        "tertiary-fixed-dim": "#beee00",
+                        "tertiary": "#4e6300",
+                        "on-primary-container": "#490b00",
+                        "background": "#f6f6f6",
+                        "on-tertiary-fixed": "#3a4a00",
+                        "tertiary-fixed": "#cafd00",
+                        "primary-fixed": "#ff7856",
+                        "outline-variant": "#acadad",
+                        "surface-container-low": "#f0f1f1",
+                        "on-tertiary-fixed-variant": "#526900",
+                        "surface": "#f6f6f6",
+                        "tertiary-dim": "#435600",
+                        "error": "#b41340",
+                        "on-primary-fixed-variant": "#5a0f00",
+                        "on-surface-variant": "#5a5c5c",
+                        "primary-fixed-dim": "#ff5c34",
+                        "tertiary-container": "#cafd00",
+                        "on-tertiary-container": "#4a5e00",
+                        "on-background": "#2d2f2f",
+                        "surface-dim": "#d2d5d5",
+                        "surface-variant": "#dbdddd",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#f74b6d",
+                        "surface-tint": "#af2700",
+                        "inverse-on-surface": "#9c9d9d",
+                        "secondary-dim": "#0041c7",
+                        "primary": "#af2700",
+                        "on-secondary-fixed-variant": "#0042c9",
+                        "secondary-fixed-dim": "#b3c1ff",
+                        "primary-container": "#ff7856",
+                        "on-error": "#ffefef",
+                        "surface-container-high": "#e1e3e3",
+                        "on-error-container": "#510017",
+                        "on-surface": "#2d2f2f",
+                        "secondary-fixed": "#c5d0ff",
+                        "surface-bright": "#f6f6f6",
+                        "error-dim": "#a70138"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(45, 47, 47, 1);
+        }
+        .bento-card {
+            border: 4px solid #2d2f2f;
+            box-shadow: 6px 6px 0px 0px rgba(45, 47, 47, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-white pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full h-20 px-6 flex justify-between items-center bg-[#f6f6f6] dark:bg-neutral-900 border-b-4 border-[#2d2f2f] dark:border-white shadow-[4px_4px_0px_0px_rgba(45,47,47,1)]">
+<button class="hover:scale-110 hover:rotate-2 transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined text-[#2d2f2f] dark:text-white text-2xl" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Space_Grotesk'] font-black tracking-tighter uppercase text-2xl text-[#2d2f2f] dark:text-white">COMMONS</h1>
+<button class="hover:scale-110 hover:rotate-2 transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined text-[#2d2f2f] dark:text-white text-2xl" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="mt-28 px-6 max-w-4xl mx-auto">
+<!-- Profile Header Section -->
+<section class="flex flex-col items-center text-center mb-12">
+<div class="relative mb-6">
+<!-- Circular Avatar -->
+<div class="w-48 h-48 rounded-full border-4 border-[#2d2f2f] bg-secondary-container overflow-hidden neo-shadow">
+<img alt="Peter Parker Profile" class="w-full h-full object-cover" data-alt="rubber hose style animation character with large gloved hands and a playful expression over a lavender background" src="https://lh3.googleusercontent.com/aida/ADBb0ugZbzq0c4AmdfuIKiqHjiq5daem0MQ1o9Dn0WAKXmy6dTzKIG89sfGo29oknlIMLLnHlperMBvcn6U0V-WOGWM9HtUoaeDxm1m57PCmk0TmAUJXC8OS0P7iEfDFuNqXbzy6Rpa7OpugcBQ1zTNsL-JsNkn3HY5y-lrlGdH9eln92M748VyS6F0KlyDGI06D9iRQgZYI4JBRF_i9BjPQirk-0pFQC1-lCblXOfeEJYKxPZWrcmWG5flsMf62pWJ618x7kYm1wFhNVg"/>
+</div>
+<!-- Decorative Rubber Hose Element (Abstract) -->
+<div class="absolute -bottom-4 -right-4 w-16 h-16 bg-tertiary-container rounded-full border-4 border-[#2d2f2f] flex items-center justify-center neo-shadow">
+<span class="material-symbols-outlined text-[#2d2f2f]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<h2 class="font-headline font-black text-6xl md:text-7xl text-on-surface tracking-tighter mb-2">Peter Parker</h2>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+<!-- My Squads (Lavender) -->
+<div class="md:col-span-3 bg-[#c5d0ff] bento-card rounded-xl p-6 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-8">
+<h3 class="font-headline font-bold text-2xl uppercase tracking-tight">MY CLUBS</h3>
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-white/50 p-3 rounded-full border-2 border-[#2d2f2f]">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center border-2 border-[#2d2f2f]">
+<span class="material-symbols-outlined text-white text-sm" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<span class="font-bold uppercase text-xs tracking-wider">Robotics Collective</span>
+</div>
+<div class="flex items-center gap-4 bg-white/50 p-3 rounded-full border-2 border-[#2d2f2f]">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center border-2 border-[#2d2f2f]">
+<span class="material-symbols-outlined text-white text-sm" data-icon="settings_accessibility">settings_accessibility</span>
+</div>
+<span class="font-bold uppercase text-xs tracking-wider">Dance Workshop</span>
+</div>
+</div>
+</div>
+<!-- Kinetic Badges (Mint) -->
+<div class="md:col-span-3 bg-[#beee00] bento-card rounded-xl p-6 flex flex-col justify-between"><div class="flex justify-between items-start mb-8"><h3 class="font-headline font-bold text-2xl uppercase tracking-tight">Tags</h3><span class="material-symbols-outlined" data-icon="sell">sell</span></div><div class="flex flex-wrap gap-2"><span class="bg-white/50 border-2 border-[#2d2f2f] px-4 py-1 rounded-full font-black text-xs tracking-wider uppercase">#PHOTOGRAPHY</span><span class="bg-white/50 border-2 border-[#2d2f2f] px-4 py-1 rounded-full font-black text-xs tracking-wider uppercase">#SCIENCE</span><span class="bg-white/50 border-2 border-[#2d2f2f] px-4 py-1 rounded-full font-black text-xs tracking-wider uppercase">#AVENGERS</span></div></div>
+<!-- Recent Activity (Pale Yellow/Neutral) -->
+<div class="md:col-span-6 bg-[#fff9c4] bento-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-bold text-2xl uppercase tracking-tight">Recent Activity</h3>
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-primary border-2 border-[#2d2f2f]"></div>
+<div class="w-3 h-3 rounded-full bg-secondary border-2 border-[#2d2f2f]"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Activity 1 -->
+<div class="flex items-center gap-4 bg-white/60 p-4 rounded-xl border-2 border-[#2d2f2f] hover:bg-white transition-colors">
+<div class="w-20 h-16 bg-surface-container rounded-lg border-2 border-[#2d2f2f] overflow-hidden flex-shrink-0">
+<img alt="Salsa Night" class="w-full h-full object-cover" data-alt="vibrant neon lights reflecting on a dance floor with blurred silhouettes of people dancing salsa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcyVup6quphmBLC0Quq8I9s8ZFjFHDip21fqc-_kw0l9ABkRo0jVId1AaVCuHjgLTmFmgYbGIY_bbKg6UAzZ1CIwDmaN-U6kDBAY57wS0iwhYhBOvpCX87s5-oCuFs5FHcpzaXjS9C5Lc5zjS6nIEe8KnSaJuCr4n-tmhBYb_r61XkDUwxvvZPW-vrM7eN1kRP2oJ1OvPHCi1kaaQjzznuI9HEb0wJpt5G1qCAq5AweLEe4RnQRUB-SGp1xzRpfzBbJHZb01Nbbrg"/>
+</div>
+<div>
+<p class="font-black text-xs uppercase text-primary">Attended</p>
+<h4 class="font-headline font-bold text-lg">Salsa Night</h4>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">Central Plaza • 2h ago</p>
+</div>
+</div>
+<!-- Activity 2 -->
+<div class="flex items-center gap-4 bg-white/60 p-4 rounded-xl border-2 border-[#2d2f2f] hover:bg-white transition-colors">
+<div class="w-20 h-16 bg-surface-container rounded-lg border-2 border-[#2d2f2f] overflow-hidden flex-shrink-0">
+<img alt="Tech Expo" class="w-full h-full object-cover" data-alt="modern tech exhibition hall with holographic displays and futuristic gadgets on white pedestals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrpzArq7FyCzKU5Dqa0hnEjUjVCgsMQw46bsDjVgDyIbg03ZNyXdFjSsVD6OhtGKGPMp0nzxC5yP4DsIBGyqDs2noqn0Q3W6YqevVovdPmosALEUrE1TU8QbuhcRhXXmMZFZlxFEp434h68-YJdPX1FqxPd2WmBYvMTHAKlwfK6NdTKHeSh0jojv1kHTWME0ao2n6FjWUWXRTItrEjaOTsi2f39rNOqlTR9wBWKZ6Bn7hnW11uF4dOpE5RhsSiCjWDziNgtVB1qwU"/>
+</div>
+<div>
+<p class="font-black text-xs uppercase text-secondary">RSVP'd</p>
+<h4 class="font-headline font-bold text-lg">Tech Expo</h4>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">Engineering Wing • Tomorrow</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Standardized Footer -->
+<footer class="mt-20 mb-12 text-center">
+<p class="font-headline font-black text-xs tracking-widest text-on-surface-variant uppercase">© 2026 SYKERIIN. ALL RIGHTS RESERVED.</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center h-20 px-4">
+<div class="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-xl fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md rounded-full border-4 border-[#2d2f2f] dark:border-white shadow-[0_20px_40px_rgba(45,47,47,0.15)] flex justify-around items-center h-20 px-4">
+<a class="flex flex-col items-center justify-center text-[#2d2f2f] dark:text-neutral-400 px-2 hover:text-[#FF3D00] transition-colors active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2d2f2f] dark:text-neutral-400 px-2 hover:text-[#FF3D00] transition-colors active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="explore">explore</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Discover</span>
+</a>
+<!-- Active Item -->
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full px-4 py-2 scale-110 -rotate-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-0.5">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2d2f2f] dark:text-neutral-400 px-2 hover:text-[#FF3D00] transition-colors active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="event">event</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#2d2f2f] dark:text-neutral-400 px-2 hover:text-[#FF3D00] transition-colors active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="groups">groups</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Clubs</span>
+</a>
+</div>
+</nav>
+</body></html>

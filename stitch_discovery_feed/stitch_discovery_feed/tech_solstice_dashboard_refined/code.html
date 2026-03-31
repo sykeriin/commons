@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COMMONS | Event Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "tertiary-fixed": "#cafd00",
+                "surface": "#f6f6f6",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-container": "#490b00",
+                "secondary-fixed-dim": "#b3c1ff",
+                "tertiary-dim": "#435600",
+                "outline-variant": "#acadad",
+                "secondary-fixed": "#c5d0ff",
+                "on-primary": "#ffefec",
+                "surface-variant": "#dbdddd",
+                "surface-container-high": "#e1e3e3",
+                "on-primary-fixed-variant": "#5a0f00",
+                "on-error-container": "#510017",
+                "tertiary": "#4e6300",
+                "on-surface-variant": "#5a5c5c",
+                "surface-container-highest": "#dbdddd",
+                "on-secondary-fixed-variant": "#0042c9",
+                "primary-container": "#ff7856",
+                "surface-container": "#e7e8e8",
+                "surface-container-low": "#f0f1f1",
+                "on-secondary": "#f2f1ff",
+                "secondary-container": "#c5d0ff",
+                "primary-fixed": "#ff7856",
+                "inverse-surface": "#0c0f0f",
+                "on-background": "#2d2f2f",
+                "on-secondary-container": "#003ab4",
+                "error": "#b41340",
+                "tertiary-container": "#cafd00",
+                "outline": "#757777",
+                "inverse-primary": "#ff562c",
+                "tertiary-fixed-dim": "#beee00",
+                "primary-dim": "#9a2100",
+                "on-error": "#ffefef",
+                "secondary": "#004be2",
+                "surface-tint": "#af2700",
+                "on-tertiary-fixed": "#3a4a00",
+                "error-dim": "#a70138",
+                "on-secondary-fixed": "#002a88",
+                "on-primary-fixed": "#000000",
+                "background": "#f6f6f6",
+                "primary": "#af2700",
+                "secondary-dim": "#0041c7",
+                "inverse-on-surface": "#9c9d9d",
+                "error-container": "#f74b6d",
+                "surface-bright": "#f6f6f6",
+                "primary-fixed-dim": "#ff5c34",
+                "on-tertiary-container": "#4a5e00",
+                "on-surface": "#2d2f2f",
+                "surface-dim": "#d2d5d5",
+                "on-tertiary": "#e1ff88",
+                "on-tertiary-fixed-variant": "#526900"
+              },
+              fontFamily: {
+                "headline": ["Space Grotesk"],
+                "body": ["Manrope"],
+                "label": ["Manrope"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .rubber-hose-shadow {
+            filter: drop-shadow(4px 4px 0px rgba(0,0,0,1));
+        }
+        .clay-morphism {
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.4), inset -2px -2px 5px rgba(0,0,0,0.05);
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface pb-48">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-zinc-950 border-b-4 border-zinc-900 dark:border-zinc-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] fixed top-0 z-50 flex justify-between items-center w-full px-6 h-20">
+<div class="cursor-pointer active:skew-x-6 transition-all hover:scale-110 transition-transform duration-200">
+<span class="material-symbols-outlined text-zinc-900 dark:text-zinc-50 text-3xl">menu</span>
+</div>
+<div class="text-3xl font-black italic tracking-tighter text-zinc-900 dark:text-zinc-50 font-['Space_Grotesk']">
+            COMMONS
+        </div>
+<div class="cursor-pointer active:skew-x-6 transition-all hover:scale-110 transition-transform duration-200">
+<span class="material-symbols-outlined text-zinc-900 dark:text-zinc-50 text-3xl">notifications</span>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-28 space-y-12">
+<!-- Search Section -->
+<section class="relative">
+<div class="flex flex-col md:flex-row items-end gap-6">
+<div class="flex-1 w-full">
+<h2 class="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-4 leading-none">
+                        Find Your <br/><span class="text-primary italic">Vibe</span>
+</h2>
+<div class="relative w-full max-w-2xl group">
+<input class="w-full bg-surface-container-lowest border-b-4 border-black text-2xl font-bold py-6 pl-4 pr-16 focus:outline-none placeholder:text-outline focus:border-primary transition-colors" placeholder="Search events, workshops, or energy..." type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:scale-90 transition-all">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+</div>
+</div>
+<div class="hidden lg:block absolute -right-10 -top-10 w-64 h-64 pointer-events-none">
+<img alt="Rubber hose style animated dancer" class="w-full h-full object-contain transform rotate-12 rubber-hose-shadow" data-alt="whimsical rubber hose style illustration of a dancing character with noodle arms and oversized white gloves against a bold red background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpaeBO2hsMjasXZRrQrYPF4KO4obE8h3ZI2OZSWc5Tn-LohQkyEFvJJs_250l0y_K2nsQdtybjLEIrlRb1fYnT7GbG3AQTXcYQZbVQ1PBn4-Sc3g1vZODdii92aoTBoKdiPfc5za-57BNLNgySrDsZfZiFXNsLE67IWj6A2TALfBOexHHXh9Uq5DMSLFO769kwagRtGtfMSTTLn9DSWjhdSaUq538JDJFGFzpKi2a7vsW136Jb9S6L9VcoLbPnaUqgZ84MhXQbo-0"/>
+</div>
+</div>
+</section>
+<!-- Trending Now -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h3 class="text-3xl font-black uppercase tracking-tight">Trending Now</h3>
+<div class="flex gap-2">
+<button class="p-2 border-2 border-black rounded-full hover:bg-black hover:text-white transition-all"><span class="material-symbols-outlined">arrow_back</span></button>
+<button class="p-2 border-2 border-black rounded-full hover:bg-black hover:text-white transition-all"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="flex overflow-x-auto gap-6 pb-8 no-scrollbar -mx-6 px-6">
+<!-- Large Card 1 -->
+<div class="min-w-[85vw] md:min-w-[600px] h-[450px] bg-black rounded-xl overflow-hidden relative group shrink-0 border-4 border-black shadow-[8px_8px_0px_0px_rgba(175,39,0,1)]">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="futuristic neon data lines and circuits representing a tech solstice event" src="https://lh3.googleusercontent.com/aida/ADBb0uiGwzk2y6VK5WzJ-MvXuMJXLO7SyKQbmFGLQkNMsE8G-cUZkAJ-RdyTSWtN4tCQyFS83rmhDGB9VXlMLo4Ne8vE4XxwhcXfoEHzgx_BmaHP5jg1cuKVL6F_jg5GCBAqeBPiGK2W7tuJpJpvRyVE69D9rUpOgQC24dQBgHiUpaK5v8GP2eVNziAan7qdq4V9JAbMIDv-UVHOYjBdAtbPob_TVVRJ9ns23b5hL6gUtHfV_m8X94q-BdB-nt-_XAbeyZOeaR9ran08-g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent p-8 flex flex-col justify-end">
+<span class="bg-tertiary-container text-on-tertiary-container px-4 py-1 rounded-full text-xs font-black uppercase w-fit mb-4">Registration Open</span>
+<h4 class="text-5xl font-black text-white uppercase leading-none mb-2">TECH SOLSTICE</h4>
+<div class="flex items-center gap-4 text-white/80 font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary">calendar_today</span> MARCH 26-29</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary">location_on</span> MIT BENGALURU</span>
+</div>
+</div>
+</div>
+<!-- Large Card 2 -->
+<div class="min-w-[85vw] md:min-w-[600px] h-[450px] bg-secondary rounded-xl overflow-hidden relative group shrink-0 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,75,226,0.3)]">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="abstract digital art installation with flowing geometric shapes and vibrant blue and purple lighting effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsre6XEKWb7oKYeD0eMCS9fHmbhSPDTPtdm-y57Hd1AUzSBDAbYJZy1-2fAkavLEF2Eq-Ewjn7PJH2kS_c1nhfnFPudBVll1fQeEBS4Lt_C0avQAul495ldVrJicn_foYB5oJkwuPtbfZsFpOuh3H0bqH3Ih-5WRCAx09YvJWxv4wAfYgR0K9f2_UQ8j9mdfHq5SLkgzpzs1EBUOj5wILk4ye-6ZqFWHhaR75ikmk9DIzwnwwZTUDXNdJBae4lk0DbJbzxZC3jnMA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent p-8 flex flex-col justify-end">
+<span class="bg-white text-secondary px-4 py-1 rounded-full text-xs font-black uppercase w-fit mb-4">Trending</span>
+<h4 class="text-5xl font-black text-white uppercase leading-none mb-2">Cyber Art Expo</h4>
+<div class="flex items-center gap-4 text-white/80 font-bold">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-tertiary-container">calendar_today</span> Nov 02</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-tertiary-container">location_on</span> Void Gallery</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- March Monthly Calendar Section (Rubber-Brut Style) -->
+<section class="mt-8">
+<div class="flex items-center justify-between mb-6">
+<h4 class="text-3xl font-black uppercase tracking-tight">March 2024</h4>
+<div class="flex gap-2">
+<button class="p-2 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all"><span class="material-symbols-outlined font-black">chevron_left</span></button>
+<button class="p-2 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all"><span class="material-symbols-outlined font-black">chevron_right</span></button>
+</div>
+</div>
+<div class="bg-white border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+<div class="grid grid-cols-7 text-center font-black uppercase text-xs tracking-widest bg-black text-white py-3 border-b-4 border-black">
+<div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+</div>
+<div class="grid grid-cols-7">
+<!-- Prev month fillers -->
+<div class="aspect-square border-r-4 border-b-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">25</div>
+<div class="aspect-square border-r-4 border-b-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">26</div>
+<div class="aspect-square border-r-4 border-b-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">27</div>
+<div class="aspect-square border-r-4 border-b-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">28</div>
+<div class="aspect-square border-r-4 border-b-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">29</div>
+<!-- March Days -->
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">1</div>
+<div class="aspect-square border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">2</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">3</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">4</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">5</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">6</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">7</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">8</div>
+<div class="aspect-square border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">9</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">10</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">11</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">12</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">13</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">14</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">15</div>
+<div class="aspect-square border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">16</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">17</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">18</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">19</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">20</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">21</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">22</div>
+<div class="aspect-square border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">23</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">24</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">25</div>
+<!-- High-Contrast Red Highlight for current date -->
+<div class="aspect-square border-r-4 border-b-4 border-black bg-primary text-white flex flex-col items-center justify-center font-headline text-3xl font-black relative overflow-hidden group">
+                        26
+                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black bg-tertiary-container hover:bg-secondary-container transition-colors cursor-pointer">27</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black bg-tertiary-container hover:bg-secondary-container transition-colors cursor-pointer">28</div>
+<div class="aspect-square border-r-4 border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black bg-tertiary-container hover:bg-secondary-container transition-colors cursor-pointer">29</div>
+<div class="aspect-square border-b-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">30</div>
+<div class="aspect-square border-r-4 border-black flex flex-col items-center justify-center font-headline text-2xl font-black hover:bg-tertiary-container transition-colors cursor-pointer">31</div>
+<!-- Next month fillers -->
+<div class="aspect-square border-r-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">1</div>
+<div class="aspect-square border-r-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">2</div>
+<div class="aspect-square border-r-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">3</div>
+<div class="aspect-square border-r-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">4</div>
+<div class="aspect-square border-r-4 border-black bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">5</div>
+<div class="aspect-square bg-surface-variant/30 flex items-center justify-center font-headline text-lg font-bold opacity-30">6</div>
+</div>
+</div>
+</section>
+<!-- Category Bento Grid -->
+<section>
+<h3 class="text-3xl font-black uppercase tracking-tight mb-8">Explore Categories</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px]">
+<!-- Large Bento Item: Arts -->
+<div class="md:col-span-2 md:row-span-2 bg-white border-4 border-black rounded-xl p-8 flex flex-col justify-between hover:-rotate-1 transition-transform cursor-pointer relative overflow-hidden group">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-6xl text-primary mb-4" style="font-variation-settings: 'FILL' 1;">palette</span>
+<h4 class="text-4xl font-black uppercase leading-tight">Art <br/>Exhibits</h4>
+<p class="text-on-surface-variant font-bold max-w-[200px] mt-4">Discover the local creative underground.</p>
+</div>
+<div class="absolute bottom-[-20px] right-[-20px] w-48 h-48 opacity-20 group-hover:opacity-100 transition-opacity">
+<img alt="Art palette icon" data-alt="stylized 3D paint palette with vibrant colored dots on a clean white surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpwJCNhngvr-Ie0AiMmgajb7fGD82OpXRiUTlLw16spvT1wYZnttDgqakYFO15yJpcAu7zasRcK3sfWh7-76Irf8r7bk-I4pjcN-6XYXzFuxM6MoklkuhNEevhQNQq7gfN5CDhByoCFbdmgfs97CwbamIHB5rxrLECh4qm3CH3qld7rTXMObckPVO3jbonclK9fwheMn_sCdNnwwdFx1NXeja7cwedt9UIWC_mXmEijaVbsLNIHbVDv-pdPlfsyS4hNhcw46WDlsQ"/>
+</div>
+<button class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center self-end shadow-[4px_4px_0px_0px_rgba(175,39,0,1)]">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Bento Item: Academic -->
+<div class="md:col-span-2 bg-secondary-container border-4 border-black rounded-xl p-6 flex items-center justify-between hover:scale-[1.02] transition-transform cursor-pointer">
+<div class="flex flex-col">
+<h4 class="text-2xl font-black uppercase">Academic Workshops</h4>
+<p class="font-bold text-on-secondary-container">Level up your skills.</p>
+</div>
+<span class="material-symbols-outlined text-5xl text-secondary">school</span>
+</div>
+<!-- Bento Item: Sports -->
+<div class="bg-tertiary-container border-4 border-black rounded-xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer">
+<h4 class="text-xl font-black uppercase">Sports Trials</h4>
+<span class="material-symbols-outlined text-4xl text-on-tertiary-container self-end">fitness_center</span>
+</div>
+<!-- Bento Item: Social -->
+<div class="bg-primary border-4 border-black rounded-xl p-6 flex flex-col justify-between text-white hover:scale-[1.02] transition-transform cursor-pointer">
+<h4 class="text-xl font-black uppercase">Mixers &amp; Socials</h4>
+<span class="material-symbols-outlined text-4xl self-end" style="font-variation-settings: 'FILL' 1;">celebration</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-white w-[95%] max-w-lg rounded-full border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center h-20 px-2">
+<div class="flex-1 flex flex-col items-center justify-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Home</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">explore</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Discover</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">person</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Profile</span>
+</div>
+<!-- Active Tab: Events -->
+<div class="flex-1 flex flex-col items-center justify-center gap-1 cursor-pointer">
+<div class="bg-[#FF3D00] w-14 h-14 rounded-full flex flex-col items-center justify-center border-2 border-black -mt-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="text-[8px] font-black uppercase tracking-tighter text-white">Events</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center gap-1 cursor-pointer group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">groups</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Clubs</span>
+</div>
+</nav>
+</body></html>

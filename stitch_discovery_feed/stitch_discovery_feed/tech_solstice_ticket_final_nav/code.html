@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space_Grotesk:wght@300..700&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#cafd00",
+              "surface": "#f6f6f6",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#490b00",
+              "secondary-fixed-dim": "#b3c1ff",
+              "tertiary-dim": "#435600",
+              "outline-variant": "#acadad",
+              "secondary-fixed": "#c5d0ff",
+              "on-primary": "#ffefec",
+              "surface-variant": "#dbdddd",
+              "surface-container-high": "#e1e3e3",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-error-container": "#510017",
+              "tertiary": "#4e6300",
+              "on-surface-variant": "#5a5c5c",
+              "surface-container-highest": "#dbdddd",
+              "on-secondary-fixed-variant": "#0042c9",
+              "primary-container": "#ff7856",
+              "surface-container": "#e7e8e8",
+              "surface-container-low": "#f0f1f1",
+              "on-secondary": "#f2f1ff",
+              "secondary-container": "#c5d0ff",
+              "primary-fixed": "#ff7856",
+              "inverse-surface": "#0c0f0f",
+              "on-background": "#2d2f2f",
+              "on-secondary-container": "#003ab4",
+              "error": "#b41340",
+              "tertiary-container": "#cafd00",
+              "outline": "#757777",
+              "inverse-primary": "#ff562c",
+              "tertiary-fixed-dim": "#beee00",
+              "primary-dim": "#9a2100",
+              "on-error": "#ffefef",
+              "secondary": "#004be2",
+              "surface-tint": "#af2700",
+              "on-tertiary-fixed": "#3a4a00",
+              "error-dim": "#a70138",
+              "on-secondary-fixed": "#002a88",
+              "on-primary-fixed": "#000000",
+              "background": "#f6f6f6",
+              "primary": "#af2700",
+              "secondary-dim": "#0041c7",
+              "inverse-on-surface": "#9c9d9d",
+              "error-container": "#f74b6d",
+              "surface-bright": "#f6f6f6",
+              "primary-fixed-dim": "#ff5c34",
+              "on-tertiary-container": "#4a5e00",
+              "on-surface": "#2d2f2f",
+              "surface-dim": "#d2d5d5",
+              "on-tertiary": "#e1ff88",
+              "on-tertiary-fixed-variant": "#526900"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            keyframes: {
+              'bounce-short': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-4px)' }
+              }
+            },
+            animation: {
+              'bounce-short': 'bounce-short 0.5s ease-in-out'
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .rubber-hose-character {
+        filter: drop-shadow(4px 4px 0px #000);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary selection:text-white overflow-x-hidden">
+<header class="bg-white dark:bg-zinc-950 border-b-4 border-zinc-900 dark:border-zinc-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] fixed top-0 z-50 flex justify-between items-center w-full px-6 h-20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-transform duration-200 cursor-pointer active:skew-x-6">menu</span>
+</div>
+<h1 class="text-3xl font-black italic tracking-tighter text-zinc-900 dark:text-zinc-50 font-['Space_Grotesk']">COMMONS</h1>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-zinc-500 dark:text-zinc-400 hover:scale-110 transition-transform duration-200 cursor-pointer active:skew-x-6">notifications</span>
+</div>
+</header>
+<main class="max-w-xl mx-auto px-6 pt-24 pb-32">
+<!-- Hero Editorial Section -->
+<section class="mb-12 relative">
+<div class="absolute -top-6 -right-4 w-32 h-32 z-0 opacity-20 rotate-12">
+<img alt="Abstract wave" data-alt="vibrant neon red and black abstract wave pattern with grainy vintage halftone texture and rubber hose curves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Rvv7bEZPvTEoS74y02osqY3kRc5n2BsBFWwnBehOjtnnmRvhA4btkuAu8dmPLdT9nB_lixNRMQNMcOHP6XjGopCpCMTKFc_-dKZWLGRvFQPNd53Gc3B-A0HMVoXgntRWG517hHYv6Sr3sh3OtBb2LlizylGWdzTwiUwrWneKPdPcqBRLILvm6CDbU98viD1LIeabSRk2L5joRRo18nxpQTbLYz7GG3NRsWfCpsu3zRagMV8aIUEA37-4hiCG3SpeCk0lnC-4Mv0"/>
+</div>
+<div class="relative z-10">
+<span class="bg-tertiary-container text-on-tertiary-container px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] inline-block mb-4">
+                CONFIRMED ACCESS
+            </span>
+<h2 class="font-headline text-6xl font-black text-black leading-[0.9] tracking-tighter uppercase mb-2">
+                TECH <br/> SOLSTICE <br/> <span class="text-primary italic">CONCLAVE</span>
+</h2>
+<div class="flex items-baseline gap-2">
+<p class="font-headline text-xl font-bold italic text-on-surface-variant">2026 COLLECTOR'S EDITION</p>
+</div>
+</div>
+</section>
+<!-- Ticket Bento Grid -->
+<div class="grid grid-cols-6 gap-4">
+<!-- Main Ticket Card -->
+<div class="col-span-6 bg-white border-4 border-black rounded-3xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative">
+<div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-4 border-dashed border-surface-variant z-10"></div>
+<div class="p-8 pb-12 relative overflow-hidden bg-primary text-white">
+<div class="z-20 w-full">
+<div class="flex justify-between items-start mb-12">
+<div>
+<p class="font-headline text-5xl font-black tracking-tighter leading-none mb-1">PASS</p>
+<p class="font-headline text-7xl font-black leading-none italic">#042</p>
+</div>
+<div class="bg-black text-white px-3 py-1 rounded-full flex items-center gap-1 border-2 border-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Verified</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-xs font-black uppercase tracking-[0.2em] opacity-80">Tier</p>
+<p class="font-headline text-3xl font-bold uppercase leading-none">GENERAL ADMISSION</p>
+</div>
+</div>
+</div>
+<div class="p-8 pt-12 bg-white">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-1/2 aspect-square bg-surface-container border-4 border-black rounded-2xl p-4 flex items-center justify-center relative group">
+<div class="w-full h-full border-2 border-black/10 rounded-lg flex items-center justify-center">
+<img alt="QR Code" class="w-40 h-40" data-alt="stylized high-contrast black and white qr code with artistic pixel patterns and a central red festival logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg2XdkytZq4fi1DHBmy3EKcBhaQUCpqtIy3-Ibg9KHJChxVZptYnyW4YfLshL3u6qId5pznWVm3qr7xYUN8T9Oa7pw18EKc4AzJIejkvjehQsl8VRskQvrJ5-d4Nsei3ZBPBhjscqKyljBpVvSwhLloMW4OMosY8XGp_yMI719kThO9OI7pjXFLVb36a4ssWfWPY-yg_58d6vd3RrwSZpQorIOLITofuHVjPByhLJ8BFpg3mU1wtq1SjWeLEL5v-IIzTvmlf9kHE4"/>
+</div>
+<div class="absolute -bottom-3 -right-3 bg-tertiary-fixed text-black px-4 py-1 border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            SCAN AT GATE
+                        </div>
+</div>
+<div class="w-full md:w-1/2 space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-[10px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Date</label>
+<p class="font-headline font-bold text-lg">MAR 26-29, 2026</p>
+</div>
+<div>
+<label class="block text-[10px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Entry</label>
+<p class="font-headline font-bold text-lg">09:00</p>
+</div>
+<div class="col-span-2">
+<label class="block text-[10px] font-black text-on-surface-variant uppercase tracking-widest mb-1">Location</label>
+<p class="font-headline font-bold text-lg">MIT BENGALURU</p>
+</div>
+</div>
+<div class="pt-4 border-t-2 border-black/5">
+<div class="flex justify-between items-center text-xs font-bold text-on-surface-variant mb-2">
+<span>OWNER</span>
+<span>ORDER ID: #RT-9981</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-2 border-black overflow-hidden">
+<img alt="User" data-alt="portrait of a young person in urban streetwear with neon red lighting and moody cinematic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKzcHXjcgpgVns9yFqm9Vift7j-YevYmsNqu_1kSvR1q3x6dQiT-ikHKytzu7i_8KJU1Eb6RZUvMfL-xaploq6TvZAfxdaf27_7UimTIZBnNJJBPRhsy5RzEX155Q9-3eeWZhe8DGgcX7jLatQZmmqYLlS8uw51eLhDmmUgwsuUaj7FY22AUwOH27kQyWoSIZsesBiPNDZAjEuEVEJlEyu7Nh7h7r3A7xliCepQoQg_9D5mls8TscQLtbTJWl5hNkdxTpFLyzjpBE"/>
+</div>
+<p class="font-headline font-black text-xl">ALEX RIVERA</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Bento: Perks -->
+<div class="col-span-3 bg-secondary-container border-4 border-black rounded-3xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl text-secondary">local_activity</span>
+<div>
+<p class="font-headline text-2xl font-black leading-none uppercase mb-1">DRINK <br/>TOKEN</p>
+<p class="text-[10px] font-bold text-on-secondary-container uppercase">1x Included</p>
+</div>
+</div>
+<!-- Side Bento: Map -->
+<div class="col-span-3 bg-tertiary-container border-4 border-black rounded-3xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl text-on-tertiary-container">map</span>
+<div>
+<p class="font-headline text-2xl font-black leading-none uppercase mb-1">LIVE <br/>MAP</p>
+<p class="text-[10px] font-bold text-on-tertiary-container uppercase">MIT CAMPUS</p>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-12 flex flex-col gap-4">
+<button class="group w-full bg-black text-white rounded-full py-6 flex items-center justify-center gap-4 border-4 border-black hover:bg-primary-dim transition-all active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform">wallet</span>
+<span class="font-headline text-2xl font-black uppercase tracking-tighter">SAVE TO WALLET</span>
+</button>
+<button class="w-full bg-white text-black rounded-full py-4 border-4 border-black font-headline font-bold uppercase hover:bg-surface-container-low transition-all">
+            TRANSFER TICKET
+        </button>
+</div>
+<!-- Footnote -->
+<p class="text-center mt-8 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-8">
+        This is a verified digital asset. Do not share your QR code with anyone before entry. 
+        Terms and conditions apply. COMMONS © 2026
+    </p>
+</main>
+<!-- BottomNavBar from COMPONENTS_198 -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center h-24 w-[90%] max-w-lg rounded-full border-[6px] border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] px-4">
+<a class="flex flex-col items-center justify-center text-black px-2 transition-all hover:scale-110" href="#">
+<span class="material-symbols-outlined text-3xl mb-1">home</span>
+<span class="font-['Space_Grotesk'] text-[11px] font-black uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black px-2 transition-all hover:scale-110" href="#">
+<span class="material-symbols-outlined text-3xl mb-1">explore</span>
+<span class="font-['Space_Grotesk'] text-[11px] font-black uppercase tracking-tighter">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black px-2 transition-all hover:scale-110" href="#">
+<span class="material-symbols-outlined text-3xl mb-1">person</span>
+<span class="font-['Space_Grotesk'] text-[11px] font-black uppercase tracking-tighter">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full w-20 h-20 border-[6px] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] scale-110 transition-all hover:scale-115" href="#">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-['Space_Grotesk'] text-[11px] font-black uppercase tracking-tighter">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black px-2 transition-all hover:scale-110" href="#">
+<span class="material-symbols-outlined text-3xl mb-1">groups</span>
+<span class="font-['Space_Grotesk'] text-[11px] font-black uppercase tracking-tighter">Clubs</span>
+</a>
+</nav>
+</body></html>

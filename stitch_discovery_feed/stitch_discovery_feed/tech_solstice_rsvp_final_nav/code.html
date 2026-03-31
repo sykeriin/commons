@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech Solstice | RSVP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#cafd00",
+              "surface": "#f6f6f6",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#490b00",
+              "secondary-fixed-dim": "#b3c1ff",
+              "tertiary-dim": "#435600",
+              "outline-variant": "#acadad",
+              "secondary-fixed": "#c5d0ff",
+              "on-primary": "#ffefec",
+              "surface-variant": "#dbdddd",
+              "surface-container-high": "#e1e3e3",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-error-container": "#510017",
+              "tertiary": "#4e6300",
+              "on-surface-variant": "#5a5c5c",
+              "surface-container-highest": "#dbdddd",
+              "on-secondary-fixed-variant": "#0042c9",
+              "primary-container": "#ff7856",
+              "surface-container": "#e7e8e8",
+              "surface-container-low": "#f0f1f1",
+              "on-secondary": "#f2f1ff",
+              "secondary-container": "#c5d0ff",
+              "primary-fixed": "#ff7856",
+              "inverse-surface": "#0c0f0f",
+              "on-background": "#2d2f2f",
+              "on-secondary-container": "#003ab4",
+              "error": "#b41340",
+              "tertiary-container": "#cafd00",
+              "outline": "#757777",
+              "inverse-primary": "#ff562c",
+              "tertiary-fixed-dim": "#beee00",
+              "primary-dim": "#9a2100",
+              "on-error": "#ffefef",
+              "secondary": "#004be2",
+              "surface-tint": "#af2700",
+              "on-tertiary-fixed": "#3a4a00",
+              "error-dim": "#a70138",
+              "on-secondary-fixed": "#002a88",
+              "on-primary-fixed": "#000000",
+              "background": "#f6f6f6",
+              "primary": "#af2700",
+              "secondary-dim": "#0041c7",
+              "inverse-on-surface": "#9c9d9d",
+              "error-container": "#f74b6d",
+              "surface-bright": "#f6f6f6",
+              "primary-fixed-dim": "#ff5c34",
+              "on-tertiary-container": "#4a5e00",
+              "on-surface": "#2d2f2f",
+              "surface-dim": "#d2d5d5",
+              "on-tertiary": "#e1ff88",
+              "on-tertiary-fixed-variant": "#526900"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .rubber-hose-dance {
+        filter: drop-shadow(4px 4px 0px #000);
+      }
+      .bento-shadow {
+        box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+      }
+      @keyframes bounce-short {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+      }
+      .animate-bounce-short {
+        animation: bounce-short 0.3s ease-in-out;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden">
+<!-- TopAppBar from {{DATA:COMPONENTS:COMPONENTS_198}} -->
+<header class="bg-white dark:bg-zinc-900 border-b-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center">
+<button class="cursor-pointer hover:skew-x-2 transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined text-black dark:text-white text-3xl">menu</span>
+</button>
+</div>
+<div class="font-['Space_Grotesk'] font-black text-2xl italic tracking-tighter text-black dark:text-white uppercase">
+                COMMONS
+            </div>
+<div class="flex items-center">
+<button class="cursor-pointer hover:skew-x-2 transition-transform active:scale-95 duration-100">
+<span class="material-symbols-outlined text-[#FF3D00] text-3xl">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 md:px-8 py-24 pb-32">
+<!-- Hero Section -->
+<section class="relative mb-16 overflow-visible">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Text Content -->
+<div class="lg:col-span-7 z-10">
+<span class="inline-block bg-tertiary-container text-on-tertiary-container font-headline font-bold px-4 py-1 rounded-full border-2 border-black mb-6 uppercase tracking-widest text-sm transform -rotate-2">
+                        ANNUAL TECH FEST OF MIT BENGALURU
+                    </span>
+<h1 class="font-headline font-black text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter text-black uppercase mb-8">
+                        Tech <br/> <span class="text-primary italic">Solstice</span>
+</h1>
+</div>
+<!-- Kinetic Visual -->
+<div class="lg:col-span-5 relative h-[400px] lg:h-[600px] bg-secondary rounded-3xl border-4 border-black bento-shadow overflow-hidden">
+<img alt="Tech Festival Crowd" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply" data-alt="A high-contrast energetic music festival crowd with vibrant red and blue stage lighting and laser beams cutting through smoke." src="https://lh3.googleusercontent.com/aida/ADBb0uiy8XJ6WgZLb0hUe-zJLrDBkMAIh4N8EEvxyMoHQCN3CDVAnXZRuFYA_GBkz1nDb4h5JDdqdOpqbFgA_ILJNZ-STeFvSYF2PPCAoAcFQFKsHbt1cMTLQ4c2M_nUEVObi4WD6ed9GkUKZCWAczviQALppqeJGbVBdH39mSH8TaqIw6wcnIAzchJWiRc1OXsqHJ7Srp5Qf28Gj7FF7MK_97zu0eEt_gYLZN0lPjtsn8bpRzKDdFG1GAFra8MPzgoSkvBEsWEO1GjbjA"/>
+<!-- Rubber Hose Dancers Overlays -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative w-full h-full">
+<div class="absolute bottom-10 left-10 transform -rotate-12 bg-white border-4 border-black p-4 rounded-2xl rubber-hose-dance">
+<span class="material-symbols-outlined text-8xl text-black" style="font-variation-settings: 'FILL' 1;">directions_run</span>
+</div>
+<div class="absolute top-20 right-10 transform rotate-12 bg-primary border-4 border-black p-6 rounded-full rubber-hose-dance">
+<span class="material-symbols-outlined text-9xl text-white" style="font-variation-settings: 'FILL' 1;">laptop</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Info Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+<!-- Date & Time -->
+<div class="bg-surface-container-lowest border-4 border-black p-8 rounded-3xl bento-shadow flex flex-col justify-between aspect-square md:aspect-auto">
+<div>
+<span class="material-symbols-outlined text-primary text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<h3 class="font-headline font-extrabold text-3xl uppercase">Date</h3>
+</div>
+<div>
+<p class="text-5xl font-headline font-black tracking-tighter">MAR 26-29</p>
+<p class="font-label font-bold text-on-surface-variant">Thursday - Sunday, 2026</p>
+</div>
+</div>
+<!-- Location -->
+<div class="bg-white border-4 border-black p-8 rounded-3xl bento-shadow flex flex-col justify-between aspect-square md:aspect-auto transform md:-translate-y-4">
+<div>
+<span class="material-symbols-outlined text-secondary text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<h3 class="font-headline font-extrabold text-3xl uppercase">Venue</h3>
+</div>
+<div>
+<p class="text-4xl font-headline font-black tracking-tighter uppercase italic">MIT Bengaluru</p>
+<p class="font-label font-bold text-on-surface-variant">Yelahanka, Karnataka</p>
+</div>
+</div>
+<!-- Countdown -->
+<div class="bg-tertiary-container border-4 border-black p-8 rounded-3xl bento-shadow flex flex-col justify-between aspect-square md:aspect-auto">
+<div>
+<span class="material-symbols-outlined text-on-tertiary-container text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<h3 class="font-headline font-extrabold text-3xl uppercase">Starts In</h3>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="text-center">
+<p class="text-3xl font-headline font-black">120</p>
+<p class="text-[10px] uppercase font-bold">Days</p>
+</div>
+<div class="text-center">
+<p class="text-3xl font-headline font-black">12</p>
+<p class="text-[10px] uppercase font-bold">Hrs</p>
+</div>
+<div class="text-center">
+<p class="text-3xl font-headline font-black">30</p>
+<p class="text-[10px] uppercase font-bold">Min</p>
+</div>
+</div>
+</div>
+</div>
+<!-- RSVP Action Area -->
+<section class="bg-black text-white p-12 rounded-[40px] border-4 border-primary bento-shadow text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-headline font-black text-5xl md:text-7xl mb-6 leading-none">JOIN THE <br/> <span class="text-primary italic">INNOVATION</span></h2>
+<p class="font-body text-xl text-surface-variant mb-10 max-w-lg mx-auto">
+                    Limited registrations for India's premier student-led technology festival. Experience the future of engineering.
+                </p>
+<div class="flex flex-col items-center gap-6">
+<button class="group relative px-12 py-6 bg-primary text-white font-headline font-black text-2xl uppercase rounded-full border-4 border-black hover:bg-primary-dim transition-all active:scale-95 shadow-[8px_8px_0px_0px_#ffffff]">
+                        RESERVE MY PASS
+                    </button>
+<p class="text-sm font-label text-surface-variant tracking-widest uppercase opacity-60">
+                        Registration ends Feb 28 • Special rates for MIT Students
+                    </p>
+</div>
+</div>
+</section>
+<!-- Ticket Types -->
+<div class="mt-24">
+<h3 class="font-headline font-black text-4xl mb-12 uppercase tracking-tighter italic">Experience Levels</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-surface-container-low p-8 rounded-3xl border-2 border-outline-variant hover:border-black transition-colors group">
+<div class="flex justify-between items-start mb-12">
+<span class="text-4xl font-headline font-black opacity-20 group-hover:opacity-100 transition-opacity">01</span>
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 0;">confirmation_number</span>
+</div>
+<h4 class="font-headline font-extrabold text-2xl mb-2">Participant</h4>
+<p class="text-on-surface-variant font-body">Access to all standard workshops, keynote sessions, and hackathon arenas.</p>
+</div>
+<div class="bg-secondary p-8 rounded-3xl border-4 border-black text-white bento-shadow">
+<div class="flex justify-between items-start mb-12">
+<span class="text-4xl font-headline font-black">02</span>
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h4 class="font-headline font-extrabold text-2xl mb-2">Pro Pass</h4>
+<p class="text-white/80 font-body">Exclusive masterclasses, tech kit, and guaranteed seating for the grand finale concert.</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-3xl border-2 border-outline-variant hover:border-black transition-colors group">
+<div class="flex justify-between items-start mb-12">
+<span class="text-4xl font-headline font-black opacity-20 group-hover:opacity-100 transition-opacity">03</span>
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 0;">bolt</span>
+</div>
+<h4 class="font-headline font-extrabold text-2xl mb-2">Elite Delegate</h4>
+<p class="text-on-surface-variant font-body">VIP networking lounge, lunch with industry mentors, and premium swag bag.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar from {{DATA:COMPONENTS:COMPONENTS_198}} -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-full border-4 border-black dark:border-white shadow-[0_20px_40px_rgba(45,47,47,0.15)] flex justify-around items-center z-50 h-24 px-2">
+<a class="flex flex-col items-center justify-center text-black px-4 opacity-100 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl font-bold">home</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-black uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black px-4 opacity-100 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl font-bold">explore</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-black uppercase mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black px-4 opacity-100 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl font-bold">person</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-black uppercase mt-1">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full w-20 h-20 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-2" href="#">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-black uppercase mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black px-4 opacity-100 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl font-bold">groups</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-black uppercase mt-1">Clubs</span>
+</a>
+</nav>
+</body></html>

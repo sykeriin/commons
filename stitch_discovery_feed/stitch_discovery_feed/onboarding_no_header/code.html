@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#dbdddd",
+              "secondary-fixed-dim": "#b3c1ff",
+              "on-error": "#ffefef",
+              "on-tertiary-fixed-variant": "#526900",
+              "surface-bright": "#f6f6f6",
+              "secondary": "#004be2",
+              "primary-fixed-dim": "#ff5c34",
+              "inverse-surface": "#0c0f0f",
+              "on-surface": "#000000",
+              "surface-tint": "#af2700",
+              "error-dim": "#a70138",
+              "surface-container": "#e7e8e8",
+              "tertiary-fixed": "#cafd00",
+              "inverse-on-surface": "#9c9d9d",
+              "secondary-dim": "#0041c7",
+              "outline-variant": "#acadad",
+              "on-secondary-container": "#003ab4",
+              "on-surface-variant": "#444444",
+              "inverse-primary": "#ff562c",
+              "on-primary-fixed": "#000000",
+              "surface-variant": "#dbdddd",
+              "on-tertiary-fixed": "#3a4a00",
+              "on-secondary-fixed": "#002a88",
+              "on-error-container": "#510017",
+              "on-tertiary": "#e1ff88",
+              "secondary-fixed": "#c5d0ff",
+              "primary-fixed": "#ff7856",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f0f1f1",
+              "primary-dim": "#9a2100",
+              "on-secondary-fixed-variant": "#0042c9",
+              "tertiary-fixed-dim": "#beee00",
+              "tertiary-dim": "#435600",
+              "surface": "#f8f8f8",
+              "on-primary-container": "#ffffff",
+              "tertiary-container": "#cafd00",
+              "on-tertiary-container": "#000000",
+              "outline": "#000000",
+              "error-container": "#f74b6d",
+              "on-primary": "#ffffff",
+              "background": "#f8f8f8",
+              "primary-container": "#ff3b00",
+              "surface-container-high": "#e1e3e3",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-secondary": "#ffffff",
+              "primary": "#ff3b00",
+              "surface-dim": "#d2d5d5",
+              "tertiary": "#4e6300",
+              "on-background": "#000000",
+              "secondary-container": "#5577ff",
+              "error": "#b41340"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+        .bento-item-large {
+            grid-column: span 2;
+        }
+        .rubber-brut-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .rubber-brut-shadow-large {
+            box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+        }
+        .brutalist-border {
+            border: 3px solid #000;
+        }
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: subtle-float 4s ease-in-out infinite;
+        }
+        .skew-left { transform: rotate(-1.5deg); }
+        .skew-right { transform: rotate(1.5deg); }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- Standardized Top Bar -->
+<main class="min-h-screen flex flex-col p-6 max-w-2xl mx-auto pb-48 pt-8">
+<!-- Hero Section -->
+<section class="relative w-full aspect-square flex items-center justify-center mb-12">
+<!-- Abstract Shapes -->
+<div class="absolute -top-4 -left-4 w-32 h-32 bg-tertiary-container brutalist-border rounded-full opacity-20 animate-pulse"></div>
+<div class="absolute -bottom-8 -right-8 w-48 h-48 bg-primary brutalist-border rotate-12 opacity-10"></div>
+<!-- Character Illustration -->
+<div class="relative z-10 w-full h-full flex items-center justify-center animate-float">
+<div class="relative">
+<div class="absolute -inset-4 bg-on-surface/5 rounded-full blur-2xl"></div>
+<img alt="Dynamic rubber hose character" class="max-h-[340px] object-contain drop-shadow-[12px_12px_0px_rgba(0,0,0,1)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0V0cApi84DwEM3ud9LgSA3kDCjW2_Fs_-ZDCmopQEfP6ZOxI2znHZEGbdMJQHCBgJsbUVfJzbLG0AD2QaTOP9J7RH1s3VPk4NjWg7oQgF-YUBMMk4Yc52KjnNcl8WbGMqxbI2SWcQvgemP6giRB4gI5ghW0RwLc83BRnETXNPx9Zhz9kTvIrDsk3188e_ZCfUeR8p-gfl5H9znaJr3v0iTvROyQrJtxbl0dtsO_j8n4IrxcnlcsH0xzT0BxrmcFo8Y0TG88RhwQk"/>
+</div>
+</div>
+</section>
+<!-- Header Content -->
+<header class="mb-10 text-center">
+<h1 class="font-headline font-black text-6xl md:text-8xl tracking-tighter uppercase leading-[0.85] text-on-surface mb-6">
+            PICK YOUR <br/>
+<span class="text-primary italic inline-block transform -rotate-1">COMMONS</span>
+</h1>
+<p class="text-on-surface font-semibold text-lg max-w-sm mx-auto opacity-80 leading-snug">
+            Ignite your campus vibe. Choose your core squads to kick things off.
+        </p>
+</header>
+<!-- Bento Grid -->
+<div class="bento-grid mb-12">
+<!-- Athletics -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl brutalist-border rubber-brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer group skew-left">
+<div class="w-14 h-14 rounded-full bg-primary brutalist-border flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">sports_soccer</span>
+</div>
+<h3 class="font-headline font-bold text-2xl uppercase tracking-tight">Athletics</h3>
+<p class="text-sm font-medium text-on-surface-variant">Game days &amp; fitness</p>
+</div>
+<!-- Vibes -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl brutalist-border rubber-brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer group skew-right">
+<div class="w-14 h-14 rounded-full bg-secondary-container brutalist-border flex items-center justify-center mb-6 group-hover:-rotate-12 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl">music_note</span>
+</div>
+<h3 class="font-headline font-bold text-2xl uppercase tracking-tight">Vibes</h3>
+<p class="text-sm font-medium text-on-surface-variant">Gigs &amp; playlists</p>
+</div>
+<!-- Innovation (Large) -->
+<div class="bento-item-large bg-surface-container-lowest p-8 rounded-2xl brutalist-border rubber-brut-shadow flex items-center gap-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer group">
+<div class="w-20 h-20 rounded-2xl bg-tertiary-container brutalist-border flex items-center justify-center shrink-0 group-hover:scale-110 rotate-3 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">lightbulb</span>
+</div>
+<div>
+<h3 class="font-headline font-black text-3xl uppercase tracking-tight">Innovation</h3>
+<p class="text-lg font-medium text-on-surface-variant">Workshops, labs, and big ideas</p>
+</div>
+</div>
+<!-- Socials -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl brutalist-border rubber-brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer group skew-right">
+<div class="w-14 h-14 rounded-full bg-on-surface brutalist-border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-surface text-3xl">groups</span>
+</div>
+<h3 class="font-headline font-bold text-2xl uppercase tracking-tight">Socials</h3>
+<p class="text-sm font-medium text-on-surface-variant">Hangouts &amp; clubs</p>
+</div>
+<!-- Creative -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl brutalist-border rubber-brut-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer group skew-left">
+<div class="w-14 h-14 rounded-full bg-error-container brutalist-border flex items-center justify-center mb-6 group-hover:rotate-45 transition-transform">
+<span class="material-symbols-outlined text-on-error-container text-3xl">palette</span>
+</div>
+<h3 class="font-headline font-bold text-2xl uppercase tracking-tight">Creative</h3>
+<p class="text-sm font-medium text-on-surface-variant">Design &amp; performance</p>
+</div>
+</div>
+</main>
+<!-- High-Impact Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-surface via-surface/95 to-transparent pt-16 z-40">
+<div class="max-w-2xl mx-auto mb-6 mt-8">
+<button class="w-full bg-primary text-white font-headline font-black text-2xl uppercase py-6 rounded-2xl brutalist-border rubber-brut-shadow-large active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-4 group">
+            START DISCOVERING
+            <span class="material-symbols-outlined text-3xl group-hover:translate-x-3 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Standardized 5-item Bottom Navigation -->
+</div>
+<!-- Decorative Kinetic Background Elements -->
+<div class="fixed top-1/4 -right-12 w-48 h-48 bg-secondary opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed bottom-1/4 -left-12 w-64 h-64 bg-primary opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-[0.03] pointer-events-none"></div>
+</body></html>

@@ -1,0 +1,82 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user profile in the campus community.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique identifier for the user." },
+        "displayName": { "type": "string", "description": "The user's full name." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "photoURL": { "type": "string", "format": "uri", "description": "The user's profile picture URL." },
+        "major": { "type": "string", "description": "The user's academic major." },
+        "graduationYear": { "type": "string", "description": "The user's expected graduation year." },
+        "karma": { "type": "number", "description": "The user's community engagement points." },
+        "hasSelectedCommons": { "type": "boolean", "description": "Whether the user has completed the onboarding commons selection." }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "Club": {
+      "title": "Club",
+      "description": "A campus club or organization.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique identifier for the club." },
+        "name": { "type": "string", "description": "The name of the club." },
+        "description": { "type": "string", "description": "A brief description of the club's purpose." },
+        "category": { "type": "string", "description": "The club's category (e.g., Tech, Creative)." },
+        "logoURL": { "type": "string", "format": "uri", "description": "The URL of the club's logo." },
+        "ownerUid": { "type": "string", "description": "The UID of the user who created the club." },
+        "memberCount": { "type": "number", "description": "The total number of members in the club." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the club was created." }
+      },
+      "required": ["id", "name", "description", "category", "ownerUid", "createdAt"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "A campus event organized by a club.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique identifier for the event." },
+        "name": { "type": "string", "description": "The name of the event." },
+        "description": { "type": "string", "description": "A brief description of the event." },
+        "date": { "type": "string", "format": "date", "description": "The date of the event." },
+        "time": { "type": "string", "description": "The time of the event." },
+        "location": { "type": "string", "description": "The location of the event." },
+        "clubId": { "type": "string", "description": "The ID of the club organizing the event." },
+        "attendeeCount": { "type": "number", "description": "The total number of attendees for the event." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the event was created." }
+      },
+      "required": ["id", "name", "description", "date", "time", "location", "clubId", "createdAt"]
+    },
+    "Member": {
+      "title": "Member",
+      "description": "A membership record for a user in a club.",
+      "type": "object",
+      "properties": {
+        "clubId": { "type": "string", "description": "The ID of the club." },
+        "userUid": { "type": "string", "description": "The UID of the user." },
+        "role": { "type": "string", "enum": ["member", "admin", "owner"], "description": "The user's role in the club." }
+      },
+      "required": ["clubId", "userUid", "role"]
+    },
+    "RSVP": {
+      "title": "RSVP",
+      "description": "An RSVP record for a user for an event.",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "The ID of the event." },
+        "userUid": { "type": "string", "description": "The UID of the user." },
+        "status": { "type": "string", "enum": ["attending", "maybe", "declined"], "description": "The user's RSVP status." }
+      },
+      "required": ["eventId", "userUid", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": { "schema": "User", "description": "User profiles." },
+    "/clubs/{clubId}": { "schema": "Club", "description": "Campus clubs." },
+    "/events/{eventId}": { "schema": "Event", "description": "Campus events." },
+    "/clubs/{clubId}/members/{userUid}": { "schema": "Member", "description": "Club memberships." },
+    "/events/{eventId}/rsvps/{userUid}": { "schema": "RSVP", "description": "Event RSVPs." }
+  }
+}

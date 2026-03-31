@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #af2700;
+  --color-primary-dim: #9a2100;
+  --color-primary-container: #ff7856;
+  --color-on-primary: #ffefec;
+  
+  --color-secondary: #004be2;
+  --color-secondary-dim: #0041c7;
+  --color-secondary-container: #c5d0ff;
+  --color-on-secondary: #f2f1ff;
+
+  --color-tertiary: #4e6300;
+  --color-tertiary-container: #cafd00;
+  --color-on-tertiary: #e1ff88;
+  --color-tertiary-fixed: #cafd00;
+
+  --color-background: #f6f6f6;
+  --color-surface: #f6f6f6;
+  --color-on-surface: #2d2f2f;
+  --color-on-surface-variant: #5a5c5c;
+  
+  --color-surface-container-low: #f0f1f1;
+  --color-surface-container: #e7e8e8;
+  --color-surface-container-high: #e1e3e3;
+  --color-surface-container-highest: #dbdddd;
+  --color-surface-container-lowest: #ffffff;
+
+  /* Neo-Brutalist Ink */
+  --color-ink: #2d2f2f;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--color-background);
+  }
+
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-tertiary-container selection:text-on-tertiary;
+    background-image:
+      radial-gradient(circle at top left, rgba(255, 120, 86, 0.14), transparent 24%),
+      radial-gradient(circle at 85% 15%, rgba(0, 75, 226, 0.12), transparent 18%),
+      linear-gradient(180deg, #ffffff 0%, #f6f6f6 32%, #f0f1f1 100%);
+    min-height: 100vh;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    @apply outline-none;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(90, 92, 92, 0.72);
+  }
+}
+
+@layer utilities {
+  .screen-shell {
+    @apply min-h-screen px-4 pt-24 pb-28 md:px-6;
+  }
+  .editorial-frame {
+    @apply relative overflow-hidden rounded-[2rem] border-[3px] border-ink bg-surface-container-lowest;
+    box-shadow: 7px 7px 0px 0px var(--color-ink);
+  }
+  .editorial-chip {
+    @apply inline-flex items-center rounded-full border-[2px] border-ink px-3 py-1 font-headline text-[10px] font-black uppercase tracking-[0.22em];
+  }
+  .editorial-input {
+    @apply w-full rounded-[1.25rem] border-[3px] border-ink bg-surface-container-lowest px-4 py-3 font-body text-sm font-bold text-on-surface transition-all placeholder:text-on-surface-variant/70 focus:translate-x-[1px] focus:translate-y-[1px];
+    box-shadow: 4px 4px 0px 0px var(--color-ink);
+  }
+  .editorial-panel {
+    @apply rounded-[1.75rem] border-[3px] border-ink bg-surface-container-lowest;
+    box-shadow: 6px 6px 0px 0px var(--color-ink);
+  }
+  .interactive-grid {
+    background-image:
+      linear-gradient(rgba(45, 47, 47, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 47, 47, 0.06) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .floating-orb {
+    position: absolute;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 0 var(--color-ink);
+  }
+  .sticker-badge {
+    @apply inline-flex items-center rounded-full border-[3px] border-ink px-3 py-1 font-headline text-xs font-black uppercase tracking-[0.16em];
+    box-shadow: 4px 4px 0px 0px var(--color-ink);
+  }
+  .neo-shadow {
+    box-shadow: 8px 8px 0px 0px var(--color-ink);
+  }
+  .neo-shadow-sm {
+    box-shadow: 4px 4px 0px 0px var(--color-ink);
+  }
+  .neo-shadow-lg {
+    box-shadow: 12px 12px 0px 0px var(--color-ink);
+  }
+  .rubber-hose-curve {
+    border-radius: 60% 40% 70% 30% / 40% 50% 60% 70%;
+  }
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--color-primary);
+    white-space: nowrap;
+  }
+  .ticker-content {
+    display: inline-block;
+    animation: scroll 80s linear infinite;
+  }
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: radial-gradient(rgba(45, 47, 47, 0.45) 0.7px, transparent 0.7px);
+    background-size: 12px 12px;
+    mix-blend-mode: multiply;
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

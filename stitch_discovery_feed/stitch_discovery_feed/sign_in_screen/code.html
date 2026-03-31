@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#dbdddd",
+              "on-background": "#2d2f2f",
+              "tertiary-dim": "#435600",
+              "surface-container-high": "#e1e3e3",
+              "error-container": "#f74b6d",
+              "secondary": "#004be2",
+              "on-primary-fixed": "#000000",
+              "secondary-fixed-dim": "#b3c1ff",
+              "tertiary": "#4e6300",
+              "on-primary": "#ffefec",
+              "inverse-primary": "#ff562c",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#4a5e00",
+              "on-surface-variant": "#5a5c5c",
+              "inverse-on-surface": "#9c9d9d",
+              "on-primary-container": "#490b00",
+              "primary": "#af2700",
+              "on-secondary": "#f2f1ff",
+              "on-error-container": "#510017",
+              "primary-container": "#ff7856",
+              "surface-tint": "#af2700",
+              "on-secondary-fixed-variant": "#0042c9",
+              "surface-container": "#e7e8e8",
+              "secondary-fixed": "#c5d0ff",
+              "surface-dim": "#d2d5d5",
+              "secondary-dim": "#0041c7",
+              "error": "#b41340",
+              "outline": "#757777",
+              "on-tertiary-fixed": "#3a4a00",
+              "on-surface": "#2d2f2f",
+              "surface-bright": "#f6f6f6",
+              "background": "#f6f6f6",
+              "surface": "#f6f6f6",
+              "on-tertiary": "#e1ff88",
+              "outline-variant": "#acadad",
+              "on-secondary-fixed": "#002a88",
+              "inverse-surface": "#0c0f0f",
+              "primary-fixed-dim": "#ff5c34",
+              "error-dim": "#a70138",
+              "on-secondary-container": "#003ab4",
+              "on-tertiary-fixed-variant": "#526900",
+              "secondary-container": "#c5d0ff",
+              "surface-container-low": "#f0f1f1",
+              "surface-container-highest": "#dbdddd",
+              "on-primary-fixed-variant": "#5a0f00",
+              "primary-fixed": "#ff7856",
+              "primary-dim": "#9a2100",
+              "tertiary-fixed-dim": "#beee00",
+              "on-error": "#ffefef",
+              "tertiary-fixed": "#cafd00",
+              "tertiary-container": "#cafd00"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .rubber-hose-shadow {
+        box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+      }
+      .input-neo {
+        border: 4px solid black;
+        box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar Shell (Suppressed Nav, Show Minimal) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-white dark:bg-zinc-900 border-b-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+<div class="flex items-center gap-4">
+<button class="hover:scale-105 transition-transform active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-600 dark:text-orange-500 text-2xl" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold uppercase tracking-tighter text-orange-600 dark:text-orange-500 text-lg">COMMONS</h1>
+</div>
+<div class="text-sm font-black italic text-orange-600 dark:text-orange-500">SIGN IN</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-4 pt-24 pb-12 overflow-hidden">
+<div class="relative max-w-4xl w-full grid md:grid-cols-2 gap-8 items-center">
+<!-- Left Side: Illustration & Branding -->
+<div class="hidden md:flex flex-col items-start relative p-8">
+<!-- Rubber Hose Character Overlapping Grid -->
+<div class="absolute -top-12 -left-8 w-64 h-64 z-10">
+<img alt="Rubber hose style character" class="w-full h-full object-contain transform -rotate-12" data-alt="whimsical 1930s rubber hose animation character with pie-cut eyes peeking over a giant red academic book, bold black outlines, high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDydvC_wCS1XKlkB1e7KgerwkXP93WaBGC68zKZ4HQ2ZXwfmveL-JBXn2R4byNDAdBLMHrWBWwfP3juheUftGVm7oLhUpVM35riyIT6OusBHvP0UIlt__8F54Htv8r08MZPCZgdjfrEzT2G_lQ81VvoR7zCLSHU9l3FzS-YedeNtyh6uprjCun7o-KFsX5xRsktdjXZcuyk1lQcZ7qaAvx2doSuCjd5IbVhkxbq9vMU1tMk9n5Fvzk261FE7KzPMdhIYtmvulUmGus"/>
+</div>
+<div class="bg-primary p-8 rounded-xl border-4 border-black rubber-hose-shadow mt-12 relative overflow-hidden">
+<!-- Decor element -->
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-8xl text-white" data-icon="key">key</span>
+</div>
+<h2 class="font-headline text-5xl font-black text-white leading-none tracking-tighter mb-4">JOIN THE <br/>CURATION.</h2>
+<p class="text-on-primary font-medium text-lg max-w-xs">Enter the hive mind of campus life. Your keys to the kinetic kingdom await.</p>
+</div>
+</div>
+<!-- Right Side: Login Form Bento Box -->
+<div class="w-full">
+<div class="bg-white p-8 md:p-12 rounded-xl border-4 border-black rubber-hose-shadow flex flex-col gap-8">
+<header>
+<h3 class="font-headline text-4xl font-extrabold text-black uppercase tracking-tighter">WELCOME BACK</h3>
+<p class="text-zinc-500 font-medium">Please enter your credentials below.</p>
+</header>
+<!-- Form Fields -->
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="font-headline font-bold text-sm tracking-widest uppercase">Student Email</label>
+<div class="relative">
+<input class="w-full py-4 px-6 rounded-lg bg-surface-container-low focus:outline-none focus:ring-0 input-neo text-lg font-bold placeholder:text-zinc-400" placeholder="curator@campus.edu" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-black" data-icon="alternate_email">alternate_email</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline font-bold text-sm tracking-widest uppercase">Password</label>
+<div class="relative">
+<input class="w-full py-4 px-6 rounded-lg bg-surface-container-low focus:outline-none focus:ring-0 input-neo text-lg font-bold placeholder:text-zinc-400" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-black" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col gap-6 mt-4">
+<button class="w-full py-5 bg-primary rounded-full border-4 border-black text-white font-headline text-2xl font-black uppercase tracking-widest rubber-hose-shadow hover:scale-[1.02] hover:-rotate-1 active:scale-95 transition-all duration-100">
+                            LOG IN
+                        </button>
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+<a class="font-headline italic font-medium text-primary hover:underline decoration-2 underline-offset-4 transition-all" href="#">Forgot Password?</a>
+<div class="flex items-center gap-2">
+<span class="text-zinc-400 text-xs font-bold uppercase tracking-widest">New here?</span>
+<a class="font-headline font-extrabold text-black hover:text-primary uppercase tracking-tighter" href="#">Create Account</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Illustration Peek (Visible only on small screens) -->
+<div class="md:hidden mt-8 flex justify-center">
+<img alt="Character with key" class="w-32 h-32 object-contain hover:scale-110 transition-transform cursor-pointer" data-alt="cartoon rubber hose hand holding a large vintage black key, high contrast red background, thick ink strokes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-0ecSJ5zIm6nXoqIlB2A6E9Gn_tjaAfgFSaKqmSp1mm7hTlq_sntW49gIlIp2wn8JQ116l24l_669Jt3AnwqHLTWL4tm3k66gZ-5QzakJGREnP74iLLlELm7z_mAeugHUn4cQ9vIPYq1OFqucDPXtZZwgQEYZgbfrrhtFJLPvqwWPdJ9d-Y0dQky_LNY6oro4GAnSF-pwKv291kpAvgr6VvZ2UYxEu_6_ZxhHJYtZpIsw1r5fdzJo0UmARjaX1SfUHLHPzDFRu18"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="flex flex-col items-center gap-4 w-full py-8 mt-auto bg-transparent">
+<div class="flex items-center gap-6">
+<a class="font-['Manrope'] text-xs font-medium uppercase tracking-widest text-zinc-400 hover:text-orange-600 transition-colors duration-200" href="#">Privacy</a>
+<a class="font-['Manrope'] text-xs font-medium uppercase tracking-widest text-zinc-400 hover:text-orange-600 transition-colors duration-200" href="#">Terms</a>
+<a class="font-['Manrope'] text-xs font-medium uppercase tracking-widest text-zinc-400 hover:text-orange-600 transition-colors duration-200" href="#">Support</a>
+</div>
+<div class="text-sm font-bold text-black dark:text-white uppercase tracking-widest">© 2026 SYKERIIN</div>
+</footer>
+</body></html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COMMONS - Activity Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#f6f6f6",
+                        "surface-bright": "#f6f6f6",
+                        "on-surface-variant": "#5a5c5c",
+                        "tertiary-fixed": "#cafd00",
+                        "secondary-dim": "#0041c7",
+                        "on-secondary-fixed-variant": "#0042c9",
+                        "on-error-container": "#510017",
+                        "secondary": "#004be2",
+                        "on-tertiary-container": "#4a5e00",
+                        "inverse-primary": "#ff562c",
+                        "surface-container-highest": "#dbdddd",
+                        "secondary-fixed": "#c5d0ff",
+                        "tertiary-dim": "#435600",
+                        "primary-container": "#ff7856",
+                        "primary-dim": "#9a2100",
+                        "primary": "#af2700",
+                        "on-tertiary-fixed-variant": "#526900",
+                        "background": "#f6f6f6",
+                        "surface-dim": "#d2d5d5",
+                        "secondary-container": "#c5d0ff",
+                        "on-secondary": "#f2f1ff",
+                        "surface-container-high": "#e1e3e3",
+                        "tertiary-fixed-dim": "#beee00",
+                        "surface-container": "#e7e8e8",
+                        "outline": "#757777",
+                        "on-surface": "#2d2f2f",
+                        "tertiary": "#4e6300",
+                        "on-primary": "#ffefec",
+                        "on-error": "#ffefef",
+                        "primary-fixed-dim": "#ff5c34",
+                        "secondary-fixed-dim": "#b3c1ff",
+                        "outline-variant": "#acadad",
+                        "inverse-surface": "#0c0f0f",
+                        "surface-variant": "#dbdddd",
+                        "error-dim": "#a70138",
+                        "surface-container-low": "#f0f1f1",
+                        "error-container": "#f74b6d",
+                        "error": "#b41340",
+                        "on-primary-container": "#490b00",
+                        "surface-tint": "#af2700",
+                        "on-tertiary-fixed": "#3a4a00",
+                        "on-primary-fixed": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#5a0f00",
+                        "primary-fixed": "#ff7856",
+                        "on-background": "#2d2f2f",
+                        "on-secondary-container": "#003ab4",
+                        "tertiary-container": "#cafd00",
+                        "on-secondary-fixed": "#002a88",
+                        "on-tertiary": "#e1ff88",
+                        "inverse-on-surface": "#9c9d9d"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+        }
+        .bento-inner-glow {
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.4);
+        }
+        .rubber-hose-limb {
+            border-radius: 50%;
+            border: 4px solid black;
+        }
+        .nav-pill-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-tertiary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white border-b-4 border-black">
+<div class="grid grid-cols-3 items-center px-6 h-16 w-full max-w-7xl mx-auto"><!-- Left: Menu -->
+<div class="flex items-center justify-start">
+<button class="material-symbols-outlined text-black text-3xl">
+        menu
+    </button>
+</div>
+<!-- Center: Logo -->
+<div class="flex items-center justify-center">
+<h1 class="font-['Space_Grotesk'] font-bold tracking-tight uppercase text-3xl text-[#FF3D00]">
+        COMMONS
+    </h1>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center justify-end gap-4">
+<button class="material-symbols-outlined text-black text-2xl">
+        notifications
+    </button>
+</div></div>
+</header>
+<main class="pb-32 px-4 max-w-7xl mx-auto pt-24">
+<!-- Dashboard Header -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-headline font-bold text-primary uppercase tracking-[0.2em] text-xs">Activity Dashboard</span>
+<h2 class="font-headline font-black text-6xl md:text-8xl tracking-tight leading-[0.85] mt-2">
+                    COMMONS
+                </h2>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Section 1: Live Events -->
+<section class="md:col-span-8 bg-secondary-container rounded-2xl border-4 border-black neo-shadow p-8 relative overflow-hidden">
+<!-- Rubber Hose Character Arm Bleed -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 opacity-20 pointer-events-none">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<path d="M10,80 Q30,40 80,50" fill="none" stroke="black" stroke-linecap="round" stroke-width="8"></path>
+<circle cx="85" cy="50" fill="white" r="10" stroke="black" stroke-width="4"></circle>
+</svg>
+</div>
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 bg-error rounded-full animate-pulse"></span>
+<h3 class="font-headline font-extrabold text-3xl uppercase tracking-tighter text-on-secondary-container">Live Events</h3>
+</div>
+<span class="font-label font-bold text-sm bg-white/40 px-3 py-1 rounded-full border-2 border-black">2 ACTIVE</span>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest rounded-xl border-2 border-black p-5 flex items-center gap-6 group hover:bg-tertiary-container transition-colors">
+<div class="w-16 h-16 bg-primary-container rounded-full border-2 border-black flex items-center justify-center neo-shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-black text-3xl" data-icon="palette">palette</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline font-bold text-xl">Creative Workshop</h4>
+<p class="font-body text-on-surface-variant text-sm font-semibold italic">Design Building • Room 402</p>
+</div>
+<button class="material-symbols-outlined text-black hover:rotate-90 transition-transform" data-icon="arrow_forward_ios">arrow_forward_ios</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border-2 border-black p-5 flex items-center gap-6 group hover:bg-secondary-fixed transition-colors">
+<div class="w-16 h-16 bg-secondary-fixed rounded-full border-2 border-black flex items-center justify-center neo-shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-black text-3xl" data-icon="forum">forum</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline font-bold text-xl">Debate Finals</h4>
+<p class="font-body text-on-surface-variant text-sm font-semibold italic">Main Auditorium • 10m left</p>
+</div>
+<button class="material-symbols-outlined text-black hover:rotate-90 transition-transform" data-icon="arrow_forward_ios">arrow_forward_ios</button>
+</div>
+</div>
+</section>
+<!-- Section 2: Active Ticket -->
+<section class="md:col-span-4 bg-tertiary-container rounded-2xl border-4 border-black neo-shadow p-8 relative flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-headline font-extrabold text-3xl uppercase tracking-tighter leading-none">Active<br/>Ticket</h3>
+<div class="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="confirmation_number">confirmation_number</span>
+</div>
+</div>
+<div class="mt-4">
+<h4 class="font-headline font-black text-2xl uppercase text-primary">Neon Tide Festival</h4>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+<span class="font-label font-bold text-xs uppercase tracking-widest">Oct 24, 2026</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t-2 border-black border-dashed relative">
+<div class="absolute -left-11 -top-4 w-6 h-6 bg-surface border-2 border-black rounded-full"></div>
+<div class="absolute -right-11 -top-4 w-6 h-6 bg-surface border-2 border-black rounded-full"></div>
+<div class="bg-white rounded-lg border-2 border-black p-4 flex flex-col items-center neo-shadow-sm">
+<div class="w-full h-24 bg-[repeating-linear-gradient(90deg,black,black_2px,transparent_2px,transparent_6px)] opacity-80 mb-3"></div>
+<span class="font-label font-black text-xs">#TKT-8842-SYK</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Events in Your Area -->
+<section class="md:col-span-12 lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Feature Image Card -->
+<div class="relative h-80 rounded-2xl border-4 border-black neo-shadow overflow-hidden group">
+<img alt="Campus Central" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110" data-alt="Cinematic eye-level shot of a modern architectural campus courtyard with students walking between brutalist concrete structures and lush green areas during golden hour." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhr9-t8QO4fuQERk9OgP3kdomtVlsMl1TMJ5wWENrEFwHDyb49FqvGwx-Hq2oRGJY3vwYHF5i3XhSiqtWtYPmgMBqYLJj1VLLSIlMpQlgGLNA9ZuLbS61iwH4DcW7xk9SDcTM7tQtn2RZ3QcmKpeVkmNOQ9Bb_KEUqqJYy6KkKjZOSknWUP7_zZIw255BTX_8YBv0rtNhaMRCBFgUZMUYdm6KsCmxDeyCHgnkU0aLkGf1_ipaFqz6_vEf6XT6Cml2HSZAp9TO1Ick"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="location_on">location_on</span>
+<span class="font-label font-bold text-white uppercase text-xs tracking-widest">Main Plaza Central</span>
+</div>
+<h3 class="font-headline font-black text-4xl text-white leading-none uppercase">Campus Heartbeat</h3>
+</div>
+</div>
+<!-- Bento Sub-Grid for Area Events -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low rounded-2xl border-2 border-black p-6 flex flex-col justify-between hover:bg-primary-container transition-colors group">
+<span class="material-symbols-outlined text-4xl" data-icon="music_note">music_note</span>
+<div>
+<h5 class="font-headline font-bold text-lg leading-tight group-hover:text-on-primary-container">Jazz Night @ The Den</h5>
+<p class="text-xs font-bold mt-2 uppercase opacity-60">Starts in 2h</p>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-2xl border-2 border-black p-6 flex flex-col justify-between hover:bg-tertiary-container transition-colors group">
+<span class="material-symbols-outlined text-4xl" data-icon="sports_basketball">sports_basketball</span>
+<div>
+<h5 class="font-headline font-bold text-lg leading-tight group-hover:text-on-tertiary-container">3v3 Open Court</h5>
+<p class="text-xs font-bold mt-2 uppercase opacity-60">West Gym</p>
+</div>
+</div>
+<div class="col-span-2 bg-[#F3E8FF] rounded-2xl border-2 border-black p-6 flex items-center justify-between neo-shadow-sm">
+<div class="flex flex-col">
+<span class="font-headline font-extrabold text-2xl italic">Market Day</span>
+<p class="text-sm font-medium">Support local student vendors</p>
+</div>
+<div class="w-14 h-14 rounded-full border-2 border-black bg-white flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="mt-20 mb-12 flex flex-col items-center justify-center text-on-surface-variant">
+<div class="flex items-center gap-4 mb-4">
+<div class="h-[2px] w-12 bg-black"></div>
+<p class="font-headline font-black text-xl tracking-widest uppercase">2026 SYKERIIN</p>
+<div class="h-[2px] w-12 bg-black"></div>
+</div>
+<p class="font-label text-xs font-bold uppercase tracking-tight opacity-50 italic text-center">Your kinetic campus companion.<br/>All rights reserved.</p>
+</footer>
+</main>
+<!-- Bottom Navigation Dock -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-center items-center px-4 h-24 pointer-events-none">
+<div class="pointer-events-auto bg-white border-4 border-black rounded-full w-full max-w-lg h-20 nav-pill-shadow flex items-center px-2">
+<div class="flex flex-1 justify-around items-center">
+<!-- Home (Active Page State) -->
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white w-16 h-16 rounded-full border-4 border-black scale-105 shadow-sm active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="font-['Space_Grotesk'] text-[8px] font-black uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black py-2 px-3 hover:text-[#FF3D00] transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined text-2xl font-black" data-icon="explore">explore</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-bold uppercase mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black py-2 px-3 hover:text-[#FF3D00] transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined text-2xl font-black" data-icon="person">person</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-bold uppercase mt-1">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black py-2 px-3 hover:text-[#FF3D00] transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined text-2xl font-black" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-bold uppercase mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black py-2 px-3 hover:text-[#FF3D00] transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined text-2xl font-black" data-icon="groups">groups</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-bold uppercase mt-1">Clubs</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Floating UI Decoration -->
+<div class="fixed top-1/2 -left-8 -translate-y-1/2 rotate-90 hidden lg:block opacity-30 select-none pointer-events-none">
+<span class="font-headline font-black text-7xl uppercase tracking-tighter stroke-black stroke-2 text-transparent" style="-webkit-text-stroke: 2px black;">KINETIC ENERGY</span>
+</div>
+</body></html>

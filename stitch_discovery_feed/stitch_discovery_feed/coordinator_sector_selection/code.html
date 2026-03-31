@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#beee00",
+              "secondary-fixed": "#c5d0ff",
+              "primary-dim": "#9a2100",
+              "on-secondary-fixed-variant": "#0042c9",
+              "on-tertiary-fixed": "#3a4a00",
+              "on-primary-fixed": "#000000",
+              "background": "#f6f6f6",
+              "on-secondary-container": "#003ab4",
+              "on-tertiary-container": "#4a5e00",
+              "on-error": "#ffefef",
+              "tertiary-dim": "#435600",
+              "surface-dim": "#d2d5d5",
+              "secondary-fixed-dim": "#b3c1ff",
+              "on-error-container": "#510017",
+              "secondary-dim": "#0041c7",
+              "on-surface-variant": "#5a5c5c",
+              "secondary-container": "#c5d0ff",
+              "error-dim": "#a70138",
+              "error-container": "#f74b6d",
+              "surface-container-high": "#e1e3e3",
+              "secondary": "#004be2",
+              "on-primary-container": "#490b00",
+              "on-background": "#2d2f2f",
+              "on-primary-fixed-variant": "#5a0f00",
+              "surface-bright": "#f6f6f6",
+              "surface-container": "#e7e8e8",
+              "primary-container": "#ff7856",
+              "outline": "#757777",
+              "on-secondary": "#f2f1ff",
+              "inverse-surface": "#0c0f0f",
+              "outline-variant": "#acadad",
+              "error": "#b41340",
+              "surface-variant": "#dbdddd",
+              "inverse-primary": "#ff562c",
+              "surface-tint": "#af2700",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#2d2f2f",
+              "primary": "#af2700",
+              "surface-container-highest": "#dbdddd",
+              "on-primary": "#ffefec",
+              "inverse-on-surface": "#9c9d9d",
+              "primary-fixed": "#ff7856",
+              "tertiary-container": "#cafd00",
+              "surface": "#f6f6f6",
+              "on-tertiary": "#e1ff88",
+              "on-tertiary-fixed-variant": "#526900",
+              "on-secondary-fixed": "#002a88",
+              "tertiary": "#4e6300",
+              "tertiary-fixed": "#cafd00",
+              "primary-fixed-dim": "#ff5c34",
+              "surface-container-low": "#f0f1f1"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .neo-brutal-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-brutal-shadow-hover:hover {
+            box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+            transform: translate(2px, 2px);
+        }
+        .bg-royal-gradient {
+            background: linear-gradient(135deg, #004be2 0%, #002a88 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-white dark:bg-zinc-900 border-b-4 border-black dark:border-zinc-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-zinc-500 dark:text-zinc-400 hover:scale-105 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-transform p-2 rounded-full">menu</button>
+<span class="text-2xl font-black italic text-[#FF3D00] uppercase font-headline tracking-tight">Campus Connect</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-zinc-500 dark:text-zinc-400 hover:scale-105 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-transform p-2 rounded-full">notifications</button>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-4xl mx-auto">
+<!-- Hero Header Section -->
+<div class="mb-10 relative">
+<h1 class="font-headline font-black text-6xl leading-none tracking-tighter text-on-surface mb-2 uppercase">
+                PICK YOUR <span class="text-secondary">SECTORS</span>
+</h1>
+<p class="text-on-surface-variant font-medium text-lg max-w-md">
+                You'll be the primary curator for these campus hubs. Select the domains you wish to manage.
+            </p>
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-tertiary-container rounded-full opacity-20 blur-2xl"></div>
+</div>
+<!-- Bento Grid Selection -->
+<div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+<!-- Athletics Card -->
+<div class="md:col-span-3 bg-royal-gradient p-8 rounded-xl border-2 border-black neo-brutal-shadow group cursor-pointer relative overflow-hidden">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-tertiary-fixed text-5xl mb-4 group-hover:scale-110 transition-transform">fitness_center</span>
+<h3 class="font-headline font-bold text-3xl text-white uppercase italic">Athletics</h3>
+</div>
+<div class="mt-8 flex justify-between items-end">
+<span class="text-secondary-fixed text-sm font-bold tracking-widest uppercase">Sports &amp; Wellness</span>
+<div class="w-12 h-12 rounded-full border-2 border-tertiary-fixed flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-tertiary-fixed filled-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-8 -right-8 w-32 h-32 bg-white/5 rounded-full"></div>
+</div>
+<!-- Vibes Card -->
+<div class="md:col-span-3 bg-white p-8 rounded-xl border-2 border-black neo-brutal-shadow group cursor-pointer transition-all hover:bg-zinc-50">
+<div class="flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-secondary text-5xl mb-4">auto_awesome</span>
+<h3 class="font-headline font-bold text-3xl text-on-surface uppercase italic">Vibes</h3>
+</div>
+<div class="mt-8 flex justify-between items-end">
+<span class="text-outline text-sm font-bold tracking-widest uppercase">Atmosphere &amp; Chill</span>
+<div class="w-12 h-12 rounded-full border-2 border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Innovation Card (Large) -->
+<div class="md:col-span-4 bg-zinc-900 p-8 rounded-xl border-2 border-black neo-brutal-shadow group cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-black uppercase tracking-tighter">Hot Sector</span>
+</div>
+<div class="flex items-center gap-8 h-full">
+<div class="flex-1">
+<span class="material-symbols-outlined text-tertiary-fixed text-6xl mb-2">lightbulb</span>
+<h3 class="font-headline font-black text-4xl text-white uppercase italic leading-none">Innovation</h3>
+<p class="text-zinc-400 mt-2 text-sm">Tech, Entrepreneurship &amp; Futures</p>
+</div>
+<div class="w-16 h-16 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:bg-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined text-white group-hover:text-black transition-colors">bolt</span>
+</div>
+</div>
+</div>
+<!-- Socials Card -->
+<div class="md:col-span-2 bg-secondary-container p-8 rounded-xl border-2 border-black neo-brutal-shadow group cursor-pointer">
+<div class="flex flex-col h-full justify-between items-center text-center">
+<span class="material-symbols-outlined text-on-secondary-container text-5xl">groups</span>
+<div>
+<h3 class="font-headline font-bold text-2xl text-on-secondary-container uppercase">Socials</h3>
+<p class="text-on-secondary-fixed-variant text-xs font-bold uppercase mt-1">Mixers &amp; Meets</p>
+</div>
+</div>
+</div>
+<!-- Creative Card -->
+<div class="md:col-span-6 bg-surface-container-lowest p-6 rounded-xl border-2 border-black neo-brutal-shadow flex items-center justify-between group cursor-pointer hover:border-secondary transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 bg-tertiary-container rounded-full border-2 border-black flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-container text-3xl">palette</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-2xl text-on-surface uppercase">Creative</h3>
+<p class="text-outline text-sm">Arts, Design &amp; Performances</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-black bg-zinc-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a young smiling creative artist with colorful background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxtGmVXd04E3LPE3wrXJE5UvSXJxSnWcg97drsCFjaIjQU37ldLGdMNBEjOBKC0JzCf-SIloirp-9oTiMPSKcYRg28hV2CV8Qv9o0ZSrIbLOA42wIq3lifkQPxxMxK3DCMuIXUZZJEOM4rzYHPyTt8SItgZDbyG19vLICDK4Z8pM9xzBy7BMIA_M0u4Cb2dMkGZem6NUZ55Xnd6LhbgCEvW9dx-ThS00_iabGeayOT48XIGPk_9nNfJtW18ipJHr_9UxdycmgLmJ0"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-black bg-zinc-300 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close up profile of a student designer with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Pd7o10NezjFQEiS3W0lzwXZIIIH1GDtOQDWINsaP8Yr9wCNsEbCJerkDGuhMkD4rtCHCfrFYgSwA1sNGlzO5iByBfkvtmRTBkpye5Sj5zvNWuYNOA1o2M5djOTL53rPfTTOyZj7CBBagilpQi_MJiJ2k5Nw007fljB4kQPqpAmsZTES2spfkV9geoykxk7i3DvGCL6seMUmzLVaCSt393QOJ9Jy2MLlAon0TQS-64fpn1-cYp5e12HIR2aiz85GjLtWlMKY-KNw"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-black bg-secondary flex items-center justify-center text-[10px] text-white font-bold">+12</div>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-black flex items-center justify-center">
+<span class="material-symbols-outlined text-black">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-16 flex flex-col md:flex-row items-center justify-between gap-8 p-8 bg-zinc-900 rounded-3xl border-4 border-black neo-brutal-shadow text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary opacity-10 blur-3xl -mr-32 -mt-32"></div>
+<div class="relative z-10">
+<h4 class="font-headline font-bold text-xl uppercase tracking-wider text-tertiary-fixed">Ready to lead?</h4>
+<p class="text-zinc-400 max-w-xs">Complete your setup to unlock the coordinator dashboard.</p>
+</div>
+<button class="relative z-10 w-full md:w-auto px-10 py-5 bg-[#FF3D00] text-white font-headline font-black text-xl rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 uppercase italic">
+                COMPLETE SETUP
+                <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+<!-- Copyright -->
+<div class="mt-12 text-center pb-8">
+<p class="font-headline font-bold text-zinc-400 uppercase tracking-widest text-xs">2026 SYKERIIN copyright • All Rights Reserved</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center pb-8 px-4 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl">
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md rounded-full border-2 border-black dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(45,47,47,0.12)] flex justify-around items-center h-16 px-4">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full w-12 h-12 scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] animate-bounce duration-300" href="#">
+<span class="material-symbols-outlined filled-icon" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden">Clubs</span>
+</a>
+</div>
+</nav>
+</body></html>

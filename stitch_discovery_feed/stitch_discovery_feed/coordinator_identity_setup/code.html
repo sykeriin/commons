@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#beee00",
+              "secondary-fixed": "#c5d0ff",
+              "primary-dim": "#9a2100",
+              "on-secondary-fixed-variant": "#0042c9",
+              "on-tertiary-fixed": "#3a4a00",
+              "on-primary-fixed": "#000000",
+              "background": "#f6f6f6",
+              "on-secondary-container": "#003ab4",
+              "on-tertiary-container": "#4a5e00",
+              "on-error": "#ffefef",
+              "tertiary-dim": "#435600",
+              "surface-dim": "#d2d5d5",
+              "secondary-fixed-dim": "#b3c1ff",
+              "on-error-container": "#510017",
+              "secondary-dim": "#0041c7",
+              "on-surface-variant": "#5a5c5c",
+              "secondary-container": "#c5d0ff",
+              "error-dim": "#a70138",
+              "error-container": "#f74b6d",
+              "surface-container-high": "#e1e3e3",
+              "secondary": "#004be2",
+              "on-primary-container": "#490b00",
+              "on-background": "#2d2f2f",
+              "on-primary-fixed-variant": "#5a0f00",
+              "surface-bright": "#f6f6f6",
+              "surface-container": "#e7e8e8",
+              "primary-container": "#ff7856",
+              "outline": "#757777",
+              "on-secondary": "#f2f1ff",
+              "inverse-surface": "#0c0f0f",
+              "outline-variant": "#acadad",
+              "error": "#b41340",
+              "surface-variant": "#dbdddd",
+              "inverse-primary": "#ff562c",
+              "surface-tint": "#af2700",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#2d2f2f",
+              "primary": "#af2700",
+              "surface-container-highest": "#dbdddd",
+              "on-primary": "#ffefec",
+              "inverse-on-surface": "#9c9d9d",
+              "primary-fixed": "#ff7856",
+              "tertiary-container": "#cafd00",
+              "surface": "#f6f6f6",
+              "on-tertiary": "#e1ff88",
+              "on-tertiary-fixed-variant": "#526900",
+              "on-secondary-fixed": "#002a88",
+              "tertiary": "#4e6300",
+              "tertiary-fixed": "#cafd00",
+              "primary-fixed-dim": "#ff5c34",
+              "surface-container-low": "#f0f1f1"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .rubber-hose-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-white dark:bg-zinc-900 border-b-4 border-black dark:border-zinc-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#FF3D00] hover:scale-105 transition-transform">menu</button>
+<h1 class="font-['Space_Grotesk'] font-bold tracking-tight text-2xl text-[#FF3D00] uppercase italic">Campus Connect</h1>
+</div>
+<button class="material-symbols-outlined text-[#FF3D00] hover:scale-105 transition-transform">notifications</button>
+</header>
+<main class="pt-24 px-6 max-w-4xl mx-auto">
+<!-- Hero Section -->
+<div class="mb-10 text-center flex flex-col items-center">
+<div class="w-32 h-32 bg-tertiary-container rounded-full flex items-center justify-center mb-6 rubber-hose-shadow border-2 border-on-surface overflow-hidden">
+<span class="material-symbols-outlined text-6xl text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+</div>
+<h2 class="font-headline font-black text-4xl md:text-5xl tracking-tighter text-on-surface uppercase mb-2">TELL US WHO'S IN CHARGE</h2>
+<p class="font-body text-on-surface-variant font-medium max-w-md">Let's set up your coordinator profile to get your club moving.</p>
+</div>
+<!-- Bento Grid Form -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Full Name Card (Pastel Yellow) -->
+<div class="md:col-span-7 bg-tertiary-container p-8 rounded-xl border-2 border-black rubber-hose-shadow relative overflow-hidden group">
+<div class="relative z-10">
+<label class="block font-headline font-bold text-xs uppercase tracking-widest text-on-tertiary-container mb-4">Full Name</label>
+<input class="w-full bg-transparent border-none border-b-2 border-on-tertiary-container focus:ring-0 font-headline text-3xl font-bold placeholder:text-on-tertiary-container/30 text-on-tertiary-container p-0 pb-2" placeholder="Alex Sterling" type="text"/>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:rotate-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">badge</span>
+</div>
+</div>
+<!-- Major Card (Lavender/Secondary Container) -->
+<div class="md:col-span-5 bg-secondary-container p-8 rounded-xl border-2 border-black rubber-hose-shadow relative overflow-hidden group">
+<div class="relative z-10">
+<label class="block font-headline font-bold text-xs uppercase tracking-widest text-on-secondary-container mb-4">Major</label>
+<input class="w-full bg-transparent border-none border-b-2 border-on-secondary-container focus:ring-0 font-headline text-2xl font-bold placeholder:text-on-secondary-container/30 text-on-secondary-container p-0 pb-2" placeholder="Computer Science" type="text"/>
+</div>
+<div class="absolute -right-6 -top-6 opacity-10 group-hover:-rotate-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-8xl">school</span>
+</div>
+</div>
+<!-- Leadership Bio Card (Spans full width) -->
+<div class="md:col-span-12 bg-surface-container-lowest p-8 rounded-xl border-2 border-black rubber-hose-shadow relative group">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-1 w-full">
+<label class="block font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant mb-4">Leadership Bio</label>
+<textarea class="w-full bg-transparent border-none border-b-2 border-on-surface focus:ring-0 font-body text-lg placeholder:text-on-surface-variant/30 text-on-surface p-0 resize-none" placeholder="Tell us about your vision for leading your campus community..." rows="4"></textarea>
+</div>
+<div class="w-full md:w-48 h-48 rounded-xl overflow-hidden border-2 border-black shrink-0 grayscale hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover" data-alt="Modern collaborative workspace with students working on laptops and notebooks in a bright airy campus setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCATOhY6fRm38whSf3MuYNTKcJon1PAFylmb9YO4HQnLLdy_8KhVOyJD22U_sfQbRTqbGUkAFwkNvwyz4oc2RmObwqZolCcNnuwKspmH9zmIMHhVKg50tAXUt7VT-2Bcj42O98wQ28xczl95uRxDVIeRSg5LzeL0nH53tIpbLcCQ0T-d9u_xMT5YMt5qzaxqkGfa5hNtYI7inaufnjVe9JvXJuOm74U6mntkAM11B-EPuXUXTwd2bPwmwCDjj_7d0b3Cnniru9HWh8"/>
+</div>
+</div>
+</div>
+<!-- Character / Decorative Card -->
+<div class="md:col-span-4 bg-primary-container p-8 rounded-xl border-2 border-black rubber-hose-shadow flex items-center justify-center min-h-[160px]">
+<div class="text-on-primary-container text-center">
+<span class="material-symbols-outlined text-6xl mb-2" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<p class="font-headline font-bold uppercase text-xs">Identity Setup</p>
+</div>
+</div>
+<!-- Submit Action Card -->
+<div class="md:col-span-8 bg-on-surface p-1 rounded-xl border-2 border-black rubber-hose-shadow flex items-stretch">
+<button class="w-full bg-primary hover:bg-primary-dim text-on-primary font-headline font-black text-2xl uppercase tracking-tighter py-6 rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-4">
+                    CONTINUE
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Footer Copyright -->
+<footer class="mt-16 text-center pb-12">
+<p class="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface-variant/50">2026 SYKERIIN copyright</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center pb-8 px-4">
+<div class="flex justify-around items-center bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl w-[92%] max-w-md rounded-full border-2 border-black dark:border-zinc-700 h-20 shadow-[0_20px_40px_rgba(45,47,47,0.12)] px-4">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full w-12 h-12 scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] animate-bounce duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden md:block">Home</span>
+</a>
+<!-- Discover -->
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden md:block">Discover</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden md:block">Profile</span>
+</a>
+<!-- Events -->
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden md:block">Events</span>
+</a>
+<!-- Clubs -->
+<a class="flex flex-col items-center justify-center text-zinc-600 dark:text-zinc-400 w-12 h-12 hover:text-[#FF3D00] transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase tracking-wider hidden md:block">Clubs</span>
+</a>
+</div>
+</nav>
+</body></html>

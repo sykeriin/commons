@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#ff562c",
+              "surface-bright": "#f6f6f6",
+              "surface-container-high": "#e1e3e3",
+              "tertiary-fixed-dim": "#beee00",
+              "surface-container-highest": "#dbdddd",
+              "on-surface": "#2d2f2f",
+              "primary-fixed-dim": "#ff5c34",
+              "on-secondary": "#f2f1ff",
+              "secondary-fixed-dim": "#b3c1ff",
+              "primary-container": "#ff7856",
+              "on-primary-container": "#490b00",
+              "outline-variant": "#acadad",
+              "on-secondary-container": "#003ab4",
+              "background": "#f6f6f6",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#c5d0ff",
+              "primary": "#af2700",
+              "surface-variant": "#dbdddd",
+              "tertiary-dim": "#435600",
+              "on-tertiary-container": "#4a5e00",
+              "on-tertiary": "#e1ff88",
+              "on-tertiary-fixed-variant": "#526900",
+              "on-secondary-fixed": "#002a88",
+              "on-error": "#ffefef",
+              "outline": "#757777",
+              "error-dim": "#a70138",
+              "surface-dim": "#d2d5d5",
+              "on-surface-variant": "#5a5c5c",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-primary": "#ffefec",
+              "error-container": "#f74b6d",
+              "tertiary-container": "#cafd00",
+              "surface-tint": "#af2700",
+              "surface": "#f6f6f6",
+              "surface-container-low": "#f0f1f1",
+              "surface-container": "#e7e8e8",
+              "primary-dim": "#9a2100",
+              "secondary": "#004be2",
+              "primary-fixed": "#ff7856",
+              "secondary-container": "#c5d0ff",
+              "on-primary-fixed": "#000000",
+              "inverse-on-surface": "#9c9d9d",
+              "on-tertiary-fixed": "#3a4a00",
+              "secondary-dim": "#0041c7",
+              "on-error-container": "#510017",
+              "on-secondary-fixed-variant": "#0042c9",
+              "tertiary": "#4e6300",
+              "inverse-surface": "#0c0f0f",
+              "error": "#b41340",
+              "on-background": "#2d2f2f",
+              "tertiary-fixed": "#cafd00"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .clay-morphism {
+            box-shadow: inset 4px 4px 8px rgba(255, 255, 255, 0.2), 
+                        inset -4px -4px 8px rgba(0, 0, 0, 0.3),
+                        8px 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(202, 253, 0, 0.5);
+        }
+        .bento-border {
+            border: 2px solid #2d2f2f;
+        }
+        .dark .bento-border {
+            border: 2px solid #dbdddd;
+        }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 font-body text-zinc-50 antialiased selection:bg-tertiary-fixed selection:text-on-tertiary-fixed overflow-x-hidden">
+<!-- TopAppBar Updated -->
+<header class="text-zinc-900 flex justify-between items-center w-full px-4 py-3 fixed top-0 z-50 border-b bg-black border-zinc-800">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-70 transition-opacity text-white">
+<span class="material-symbols-outlined text-2xl font-bold">menu</span>
+</button>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<span class="text-[#FF3D00] font-['Space_Grotesk'] font-black text-2xl tracking-tight uppercase">COMMONS</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-70 transition-opacity text-white">
+<span class="material-symbols-outlined text-2xl font-bold">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-24 pb-40">
+<!-- Hero Section: Museum of Digital Arts -->
+<section class="relative h-[530px] rounded-3xl overflow-hidden mb-12 bg-secondary flex items-end p-8 group">
+<img alt="Digital Arts Background" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" data-alt="abstract digital art gallery with glowing neon shapes and deep blue shadows, futuristic museum interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARtfNCl5Gx1cgJ1GUlVAbk4lY1PlQrxkSeyYTq2iU9mXkgGIQi2N3XxQNsuwILfdZo-jyCnZV-ectVsVlLOMoCdt0SPU1x8Wchv-FAQ314RGvHkAxFWdAOkVA0K-8LGW4ZtCSijkf_27_LPpBwBw0NQHq5CxJXRNox25lUpurHbKgCuuckuN0zo3lnPfMJelyLUPeEAjwZ7W_v03ITd3TyVYuvlmIaFNRcstxJ74CpTQ8W-jlOlpyc11xOiBtadk1SjWzm2EuKT3E"/>
+<!-- Clay-morphism Octopus Asset -->
+<div class="absolute top-10 right-10 w-64 h-64 clay-morphism rounded-full bg-tertiary-fixed flex items-center justify-center transform rotate-12 group-hover:rotate-0 transition-transform duration-500">
+<span class="material-symbols-outlined text-8xl text-on-tertiary-fixed select-none">scuba_diving</span>
+</div>
+<div class="relative z-10 w-full max-w-3xl">
+<h2 class="font-headline text-zinc-50 text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="w-2 h-2 bg-tertiary-fixed rounded-full animate-pulse"></span>
+                    Now Exhibiting
+                </h2>
+<h1 class="font-headline font-black text-7xl md:text-9xl text-white leading-tight -ml-1">
+                    NEON <br/>TIDE
+                </h1>
+<p class="font-headline italic text-2xl text-tertiary-fixed mt-4 max-w-xl">
+                    A deep-sea digital immersion at the Museum of Digital Arts.
+                </p>
+</div>
+</section>
+<!-- Bento Grid Info Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Event Details Card -->
+<div class="md:col-span-8 bg-zinc-900 rounded-[2rem] p-8 border border-zinc-800 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap gap-3 mb-8">
+<span class="px-4 py-2 rounded-full bg-secondary text-on-secondary text-sm font-bold uppercase tracking-wider">Interactive</span>
+<span class="px-4 py-2 rounded-full border border-tertiary-fixed text-tertiary-fixed text-sm font-bold uppercase tracking-wider">Free Entry</span>
+<span class="px-4 py-2 rounded-full bg-zinc-800 text-zinc-400 text-sm font-bold uppercase tracking-wider">18+ Only</span>
+</div>
+<p class="text-zinc-300 text-xl leading-relaxed mb-8">
+                        Dive into the bioluminescent wonders of the digital deep. "Neon Tide" explores the intersection of marine biology and algorithmic art through 3D clay-morphic installations and immersive soundscapes.
+                    </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-zinc-800">
+<div>
+<span class="text-zinc-500 text-xs uppercase font-black tracking-widest block mb-2">Location</span>
+<p class="text-zinc-50 font-bold text-lg">Main Atrium, Hall B</p>
+</div>
+<div>
+<span class="text-zinc-500 text-xs uppercase font-black tracking-widest block mb-2">Date</span>
+<p class="text-zinc-50 font-bold text-lg">Oct 24, 2023</p>
+</div>
+<div class="col-span-2 md:col-span-1">
+<span class="text-zinc-500 text-xs uppercase font-black tracking-widest block mb-2">Time</span>
+<p class="text-zinc-50 font-bold text-lg">19:00 — 23:00</p>
+</div>
+</div>
+</div>
+<!-- Booking Card -->
+<div class="md:col-span-4 bg-tertiary-fixed rounded-[2rem] p-8 flex flex-col items-center justify-center text-center">
+<div class="mb-6 w-20 h-20 bg-black rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-tertiary-fixed" data-weight="fill">confirmation_number</span>
+</div>
+<h3 class="font-headline font-black text-3xl text-zinc-950 mb-2">JOIN THE TIDE</h3>
+<p class="text-zinc-900 font-medium mb-8">Secure your spot in the virtual ocean. Limited capacity available.</p>
+<button class="w-full bg-zinc-950 text-white font-headline font-bold py-5 rounded-full hover:scale-105 transition-transform active:scale-95 shadow-xl">
+                    RESERVE ACCESS
+                </button>
+<p class="text-zinc-800 text-[10px] uppercase font-bold mt-4 tracking-tighter">42 spots remaining this hour</p>
+</div>
+<!-- Stylized Fish Card (Visual) -->
+<div class="md:col-span-5 h-[400px] relative rounded-[2rem] overflow-hidden bg-zinc-900 flex items-center justify-center group">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/40 to-black pointer-events-none"></div>
+<!-- Clay-morphism Fish Asset -->
+<div class="relative w-48 h-48 clay-morphism rounded-full bg-secondary flex items-center justify-center transform -translate-x-4 group-hover:translate-x-0 transition-transform duration-700">
+<span class="material-symbols-outlined text-7xl text-white select-none">set_meal</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<h4 class="font-headline font-black text-2xl text-white uppercase italic">Algorithmic Fauna</h4>
+<p class="text-zinc-400 text-sm mt-1 font-medium">Generated by Neural Ocean Engine v.2.4</p>
+</div>
+</div>
+<!-- Map/Location Card -->
+<div class="md:col-span-7 h-[400px] rounded-[2rem] overflow-hidden relative border-2 border-zinc-800">
+<div class="absolute inset-0 opacity-50 contrast-125 grayscale" data-alt="stylized monochrome city map with glowing markers and clean architectural lines" data-location="San Francisco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcisBFaFadp1XGhqXSA6z2QOuv3SkXQwBu81pww0VVXftsMbunkqKU8PgMhj1bR1ISZgVn1lWynB012ypFZIQuzkxkZR4n-LV1besQXPXU6Fsvy1EZjL-GeNeMO2ALJ9ndEk5ZPxtLQMyGZaoqPlSSNNsObimz0POBOs0rWPz1ZzALMyzJTBBovu_i4filVSYMbQjEdx8THzv3PUJmqs7euHr74QXifZrWxmdQ2Ag4QiXQZwKPgG6-2kH4Te2zTy5_n3r_piHYlBg')">
+</div>
+<div class="absolute inset-0 bg-zinc-950/40"></div>
+<div class="absolute top-6 left-6 p-6 bg-zinc-900/90 backdrop-blur-md rounded-2xl border border-zinc-700 max-w-xs">
+<p class="font-headline italic text-tertiary-fixed text-lg mb-2">Getting there</p>
+<p class="text-zinc-200 text-sm">East Campus Gateway. Follow the neon signs from the Student Union parking structure.</p>
+</div>
+<div class="absolute bottom-6 right-6 flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined">directions</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Space -->
+<footer class="w-full py-8 text-center text-zinc-500 text-sm font-['Space_Grotesk'] uppercase tracking-widest pb-32">
+<p>© 2026 SYKERIIN</p>
+</footer>
+<!-- Bottom Navigation Bar Updated -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center w-[90%] max-w-md px-4 py-3 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-full border-4 border-zinc-900 dark:border-zinc-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)]">
+<!-- Home (Active as prominent red circle) -->
+<button class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full w-14 h-14 scale-110 shadow-inner hover:scale-110 transition-transform duration-200 active:scale-90 duration-150">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-['Space_Grotesk'] font-medium text-[8px] uppercase tracking-widest">Home</span>
+</button>
+<!-- Discover -->
+<button class="flex flex-col items-center justify-center text-zinc-900 dark:text-zinc-400 w-12 h-12 hover:scale-110 transition-transform duration-200 active:scale-90 duration-150">
+<span class="material-symbols-outlined text-2xl">explore</span>
+<span class="font-['Space_Grotesk'] font-medium text-[8px] uppercase tracking-widest">Discover</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-zinc-900 dark:text-zinc-400 w-12 h-12 hover:scale-110 transition-transform duration-200 active:scale-90 duration-150">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-['Space_Grotesk'] font-medium text-[8px] uppercase tracking-widest">Profile</span>
+</button>
+<!-- Events -->
+<button class="flex flex-col items-center justify-center text-zinc-900 dark:text-zinc-400 w-12 h-12 hover:scale-110 transition-transform duration-200 active:scale-90 duration-150">
+<span class="material-symbols-outlined text-2xl">calendar_today</span>
+<span class="font-['Space_Grotesk'] font-medium text-[8px] uppercase tracking-widest">Events</span>
+</button>
+<!-- Clubs -->
+<button class="flex flex-col items-center justify-center text-zinc-900 dark:text-zinc-400 w-12 h-12 hover:scale-110 transition-transform duration-200 active:scale-90 duration-150">
+<span class="material-symbols-outlined text-2xl">groups</span>
+<span class="font-['Space_Grotesk'] font-medium text-[8px] uppercase tracking-widest">Clubs</span>
+</button>
+</nav>
+</body></html>

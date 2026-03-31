@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COMMONS | Lead The Charge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .rubber-hose-curve {
+            border-radius: 60% 40% 70% 30% / 40% 50% 60% 70%;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-container-high": "#e1e3e3",
+                "tertiary-fixed-dim": "#beee00",
+                "secondary-fixed-dim": "#b3c1ff",
+                "surface-dim": "#d2d5d5",
+                "secondary-container": "#c5d0ff",
+                "primary-dim": "#9a2100",
+                "on-secondary-fixed-variant": "#0042c9",
+                "on-primary-fixed-variant": "#5a0f00",
+                "on-primary-fixed": "#000000",
+                "inverse-primary": "#ff562c",
+                "error-container": "#f74b6d",
+                "inverse-on-surface": "#9c9d9d",
+                "on-surface": "#2d2f2f",
+                "background": "#f6f6f6",
+                "surface-variant": "#dbdddd",
+                "surface-tint": "#af2700",
+                "secondary": "#004be2",
+                "on-secondary": "#f2f1ff",
+                "primary-fixed-dim": "#ff5c34",
+                "on-tertiary-container": "#4a5e00",
+                "surface-container-low": "#f0f1f1",
+                "tertiary-fixed": "#cafd00",
+                "primary-fixed": "#ff7856",
+                "tertiary": "#4e6300",
+                "primary": "#af2700",
+                "on-secondary-container": "#003ab4",
+                "on-tertiary": "#e1ff88",
+                "primary-container": "#ff7856",
+                "tertiary-dim": "#435600",
+                "surface-container-lowest": "#ffffff",
+                "on-error": "#ffefef",
+                "error": "#b41340",
+                "on-tertiary-fixed-variant": "#526900",
+                "outline-variant": "#acadad",
+                "error-dim": "#a70138",
+                "on-surface-variant": "#5a5c5c",
+                "on-tertiary-fixed": "#3a4a00",
+                "surface-container-highest": "#dbdddd",
+                "outline": "#757777",
+                "on-error-container": "#510017",
+                "secondary-fixed": "#c5d0ff",
+                "surface-container": "#e7e8e8",
+                "inverse-surface": "#0c0f0f",
+                "tertiary-container": "#cafd00",
+                "on-primary-container": "#490b00",
+                "on-background": "#2d2f2f",
+                "surface": "#f6f6f6",
+                "on-secondary-fixed": "#002a88",
+                "on-primary": "#ffefec",
+                "surface-bright": "#f6f6f6",
+                "secondary-dim": "#0041c7"
+              },
+              fontFamily: {
+                "headline": ["Space Grotesk"],
+                "body": ["Manrope"],
+                "label": ["Manrope"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-[#f6f6f6] dark:bg-zinc-900 border-b-4 border-black dark:border-white docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary border-2 border-black overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Close-up portrait of a stylish young person with a confident expression, minimalist aesthetic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChsMjpKlKpWXExx4HVI6RxW7RFfV9CthQ_f2mrn_QTFHvqhpy2_d_EjkcXtaYA5ou-1llZdSX7GfJZgLLNZm3Afo1nOJU9sAtjqV15JD_DNxFAOwil4RuQUSqN4cBZJRLxH_7GOS2hE0B-Cwle43xyoGpD8lwWfs0gr44efO4LEfXDRfXOhvFi6xQh7Hovo_32rQdO7XDkqT-zTo1nIFd615KqtkuUh4BZOYy-1dOZE3GIAOWVr7cU1Hz6SWK0g3NoSlAeF9yT_Ss"/>
+</div>
+<span class="text-3xl font-black text-black dark:text-white italic font-['Space_Grotesk'] tracking-tighter uppercase">COMMONS</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Desktop Navigation Mockup -->
+<nav class="hidden md:flex gap-8 font-['Space_Grotesk'] font-bold tracking-tighter uppercase">
+<a class="text-black dark:text-white hover:skew-x-2 transition-transform" href="#">Feed</a>
+<a class="text-[#af2700] dark:text-[#ff7856] hover:skew-x-2 transition-transform" href="#">Clubs</a>
+<a class="text-black dark:text-white hover:skew-x-2 transition-transform" href="#">Search</a>
+</nav>
+<button class="material-symbols-outlined text-black dark:text-white text-2xl active:scale-95 duration-100" data-icon="settings">settings</button>
+</div>
+</div>
+</header>
+<main class="relative pt-8 pb-32 px-6 max-w-7xl mx-auto overflow-hidden">
+<!-- Hero Section: Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+<!-- Headline Card -->
+<div class="md:col-span-7 bg-surface-container-lowest border-4 border-black p-8 rounded-xl neo-shadow flex flex-col justify-center relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-tertiary-fixed rounded-full opacity-20 blur-3xl"></div>
+<div class="relative z-10">
+<span class="inline-block px-4 py-1 bg-black text-white font-headline font-bold uppercase tracking-widest text-sm mb-6 -rotate-1">2026 Season Launch</span>
+<h1 class="font-headline font-bold text-7xl md:text-8xl leading-none tracking-tighter text-black uppercase mb-6">
+                        LEAD <br/> <span class="text-primary italic">THE CHARGE</span>
+</h1>
+<p class="text-xl md:text-2xl font-medium text-on-surface-variant max-w-md leading-tight">
+                        Empower your squad and own the campus rhythm.
+                    </p>
+</div>
+</div>
+<!-- Illustration Card (Rubber Hose) -->
+<div class="md:col-span-5 bg-primary border-4 border-black p-4 rounded-xl neo-shadow flex items-center justify-center relative min-h-[400px]">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-container/30 to-transparent opacity-50"></div>
+<!-- Rubber Hose Character Placement -->
+<div class="relative w-full h-full flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
+<div class="absolute -bottom-8 -right-8 z-0">
+<div class="w-64 h-64 bg-black/10 rounded-full blur-2xl"></div>
+</div>
+<img alt="Rubber Hose Character" class="w-full h-full object-contain mix-blend-multiply filter contrast-125" data-alt="Vibrant 1930s rubber hose style cartoon illustration of a character with noodle limbs holding a massive megaphone, high energy, bold red and black lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcsWkerShOKuL_QR1L2YffKR9XOxcHma_hVb5nH08flz5ct7uttbetYqOiQxLdE1mj5RkcNy9aXDd3Szfu5PQ07ZmHsoy09G_B2pAwLvYJBjGxnM721vpj0TxEbEFy_XQxy4cvo9JYYikf53QVLPZ5EM5MRnNcyhFIEPRjffOXV8f-e4dtKBu3z0xK1d4MuOaGTioMy564zYPQxaBbkj2dVRSwlDGlzi_12IDKx9IlS2GePYjm_BYHNR0yjJJHDQ65M4ifqeiwuCw"/>
+</div>
+</div>
+<!-- CTAs and Secondary Bento Row -->
+<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Primary Action -->
+<button class="bg-primary text-white border-4 border-black rounded-full px-8 py-6 neo-shadow flex items-center justify-between group hover:bg-primary-dim transition-all active:translate-y-1 active:shadow-none">
+<span class="font-headline font-bold text-2xl uppercase tracking-tighter">Start Club Registration</span>
+<span class="material-symbols-outlined text-4xl group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Secondary Action -->
+<button class="bg-surface-container-high text-black border-4 border-black rounded-full px-8 py-6 neo-shadow-sm flex items-center justify-center gap-4 hover:bg-surface-variant transition-all">
+<span class="font-headline font-bold text-2xl uppercase tracking-tighter">Learn More</span>
+</button>
+</div>
+<!-- Decorative Info Tile -->
+<div class="md:col-span-4 bg-tertiary-fixed border-4 border-black p-6 rounded-xl neo-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-black text-4xl" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-headline font-bold text-4xl">1.2K+</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-xl uppercase leading-none mb-1 text-black">Clubs Active</h3>
+<p class="text-sm font-bold opacity-70 uppercase tracking-widest text-black">Across all Commons</p>
+</div>
+</div>
+</div>
+<!-- Extra Content Section -->
+<section class="mt-20">
+<h2 class="font-headline font-bold text-4xl uppercase mb-12 flex items-center gap-4">
+<span class="w-12 h-[4px] bg-black"></span>
+                Why Start a Club?
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="relative group">
+<div class="absolute inset-0 bg-black rounded-xl translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform"></div>
+<div class="relative bg-white border-4 border-black p-8 rounded-xl h-full">
+<span class="material-symbols-outlined text-primary text-5xl mb-6 block" data-icon="campaign">campaign</span>
+<h4 class="font-headline font-bold text-2xl uppercase mb-3">Amplified Voice</h4>
+<p class="text-on-surface-variant leading-relaxed">Get the platform your mission deserves with built-in recruitment tools.</p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary rounded-xl translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform"></div>
+<div class="relative bg-white border-4 border-black p-8 rounded-xl h-full">
+<span class="material-symbols-outlined text-secondary text-5xl mb-6 block" data-icon="hub">hub</span>
+<h4 class="font-headline font-bold text-2xl uppercase mb-3">Campus Network</h4>
+<p class="text-on-surface-variant leading-relaxed">Connect directly with student leaders and faculty across the ecosystem.</p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-tertiary-fixed rounded-xl translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform"></div>
+<div class="relative bg-white border-4 border-black p-8 rounded-xl h-full">
+<span class="material-symbols-outlined text-tertiary text-5xl mb-6 block" data-icon="database">database</span>
+<h4 class="font-headline font-bold text-2xl uppercase mb-3">Resource Vault</h4>
+<p class="text-on-surface-variant leading-relaxed">Unlock funding, equipment, and space booking for your events.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer / Copyright -->
+<footer class="mt-24 mb-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 grayscale hover:grayscale-0 transition-all">
+<div class="font-headline font-bold text-2xl tracking-tighter uppercase italic">2026 SYKERIIN</div>
+<div class="flex gap-8 font-label font-extrabold uppercase text-xs tracking-[0.2em]">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+<a href="#">Help Center</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-8 left-0 right-0 mx-auto z-50 flex justify-around items-center h-20 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl w-[92%] max-w-lg rounded-full border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.2)]">
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-5 py-2 hover:scale-105 hover:rotate-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Manrope'] font-extrabold text-[10px] uppercase tracking-widest mt-1">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#af2700] text-white rounded-full px-5 py-2 scale-110 -rotate-2 transition-all animate-pulse" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-['Manrope'] font-extrabold text-[10px] uppercase tracking-widest mt-1">Clubs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-5 py-2 hover:scale-105 hover:rotate-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Manrope'] font-extrabold text-[10px] uppercase tracking-widest mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-5 py-2 hover:scale-105 hover:rotate-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Manrope'] font-extrabold text-[10px] uppercase tracking-widest mt-1">Inbox</span>
+</a>
+</nav>
+</body></html>

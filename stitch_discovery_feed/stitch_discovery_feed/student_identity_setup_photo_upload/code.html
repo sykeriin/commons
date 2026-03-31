@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COMMONS - Student Identity Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#ff7856",
+                        "secondary-container": "#c5d0ff",
+                        "on-tertiary-fixed-variant": "#526900",
+                        "inverse-on-surface": "#9c9d9d",
+                        "outline": "#757777",
+                        "on-surface": "#2d2f2f",
+                        "secondary-dim": "#0041c7",
+                        "surface-container-highest": "#dbdddd",
+                        "primary": "#af2700",
+                        "surface-variant": "#dbdddd",
+                        "on-error": "#ffefef",
+                        "tertiary-fixed": "#cafd00",
+                        "tertiary-fixed-dim": "#beee00",
+                        "surface-tint": "#af2700",
+                        "on-tertiary-fixed": "#3a4a00",
+                        "on-secondary-fixed": "#002a88",
+                        "surface-container-low": "#f0f1f1",
+                        "on-secondary-fixed-variant": "#0042c9",
+                        "on-error-container": "#510017",
+                        "error-dim": "#a70138",
+                        "inverse-surface": "#0c0f0f",
+                        "tertiary-container": "#cafd00",
+                        "surface": "#f6f6f6",
+                        "surface-container-high": "#e1e3e3",
+                        "surface-container": "#e7e8e8",
+                        "outline-variant": "#acadad",
+                        "inverse-primary": "#ff562c",
+                        "on-secondary": "#f2f1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#4e6300",
+                        "surface-dim": "#d2d5d5",
+                        "secondary": "#004be2",
+                        "primary-dim": "#9a2100",
+                        "on-tertiary": "#e1ff88",
+                        "on-background": "#2d2f2f",
+                        "error": "#b41340",
+                        "surface-bright": "#f6f6f6",
+                        "on-primary-container": "#490b00",
+                        "primary-fixed": "#ff7856",
+                        "on-primary-fixed-variant": "#5a0f00",
+                        "on-primary-fixed": "#000000",
+                        "background": "#f6f6f6",
+                        "on-surface-variant": "#5a5c5c",
+                        "tertiary-dim": "#435600",
+                        "secondary-fixed-dim": "#b3c1ff",
+                        "on-secondary-container": "#003ab4",
+                        "primary-fixed-dim": "#ff5c34",
+                        "secondary-fixed": "#c5d0ff",
+                        "error-container": "#f74b6d",
+                        "on-primary": "#ffefec",
+                        "on-tertiary-container": "#4a5e00"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .squash-stretch:active {
+            transform: scaleX(1.2) scaleY(0.8);
+        }
+        .hard-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .hard-shadow-sm {
+            box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-tertiary-fixed">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-zinc-950 flex justify-between items-center w-full px-6 py-4 docked full-width top-0 sticky z-50 border-b-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<button class="text-black dark:text-white hover:skew-x-2 transition-transform active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+<h1 class="font-['Space_Grotesk'] font-bold tracking-tighter uppercase text-2xl font-black text-[#FF3D00] tracking-tighter">COMMONS</h1>
+<button class="text-black dark:text-white hover:skew-x-2 transition-transform active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">notifications</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto px-6 pt-12 pb-32">
+<!-- Hero Character Section -->
+<section class="text-center mb-12">
+<h2 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter leading-none mb-4 uppercase italic">
+                Who are <span class="text-primary">you</span>, kid?
+            </h2>
+<p class="text-xl font-medium max-w-2xl mx-auto opacity-80">Pick your persona and join the most chaotic student hub on campus. No boring resumes allowed!</p>
+</section>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Avatar Selection (Bento Span 7) -->
+<div class="md:col-span-7 bg-surface-container-low p-8 rounded-xl border-4 border-black hard-shadow">
+<h3 class="font-headline text-2xl font-bold uppercase tracking-tight mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-primary">add_a_photo</span> UPLOAD PHOTO</h3>
+<div class="flex flex-col items-center justify-center py-8">
+<button class="group relative w-48 h-48 rounded-full border-4 border-dashed border-black bg-white hover:bg-primary/5 transition-colors flex flex-col items-center justify-center gap-2 active:scale-95 squash-stretch">
+<div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center border-4 border-black hard-shadow-sm group-hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</div>
+<span class="font-headline font-black text-xs uppercase tracking-widest mt-4 group-hover:scale-110 transition-transform">Click to Upload</span>
+<input accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</button>
+<p class="mt-6 font-headline font-bold text-sm opacity-60 uppercase italic text-center">JPG, PNG or GIF. Max 5MB.</p>
+</div>
+</div>
+<!-- Identity Details (Bento Span 5) -->
+<div class="md:col-span-5 space-y-6">
+<!-- Name Field -->
+<div class="bg-white p-6 rounded-xl border-4 border-black hard-shadow">
+<label class="block font-headline font-black text-sm uppercase mb-2 tracking-widest text-primary">Full Name</label>
+<input class="w-full border-b-4 border-black focus:border-primary focus:ring-0 outline-none px-0 py-2 text-xl font-bold font-headline placeholder:opacity-30" placeholder="e.g. BENTLEY HOSE" type="text"/>
+</div>
+<!-- Major Field -->
+<div class="bg-white p-6 rounded-xl border-4 border-black hard-shadow">
+<label class="block font-headline font-black text-sm uppercase mb-2 tracking-widest text-primary">Major</label>
+<input class="w-full border-b-4 border-black focus:border-primary focus:ring-0 outline-none px-0 py-2 text-xl font-bold font-headline placeholder:opacity-30" placeholder="e.g. KINETIC ARTS" type="text"/>
+</div>
+</div>
+<!-- Bio Field (Full Width Bento) -->
+<div class="md:col-span-12 bg-secondary-container p-8 rounded-xl border-4 border-black hard-shadow overflow-hidden relative">
+<div class="absolute -right-8 -bottom-8 opacity-20 rotate-12">
+<span class="material-symbols-outlined text-[12rem]">edit_note</span>
+</div>
+<div class="relative z-10">
+<textarea class="w-full bg-transparent border-b-4 border-black focus:border-primary focus:ring-0 outline-none px-0 py-2 text-2xl font-bold font-headline placeholder:text-black/20 resize-none" placeholder="I spin wheels and take names. Just looking for a club that serves free snacks and loud music..." rows="3"></textarea>
+</div>
+</div>
+<!-- Final Action (Centered) -->
+<div class="md:col-span-12 flex justify-center pt-8 pb-12">
+<button class="group relative px-12 py-6 bg-primary text-white font-headline text-3xl font-black rounded-full border-4 border-black hard-shadow hover:scale-105 active:scale-90 squash-stretch transition-all uppercase tracking-tighter italic">
+                SET IDENTITY
+                <span class="material-symbols-outlined align-middle ml-2 group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 text-center pb-20">
+<p class="font-headline font-bold text-sm tracking-[0.3em] uppercase opacity-40">© 2026 SYKERIIN</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-8 w-full z-50 flex justify-center px-4">
+<div class="bg-white dark:bg-zinc-900 w-full md:max-w-xl rounded-full border-4 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex justify-between items-center px-6 py-2">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-black uppercase mt-1 tracking-wider">Home</span>
+</a>
+<!-- Discover -->
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-black transition-colors" href="#">
+<div class="bg-zinc-200 dark:bg-zinc-800 rounded-full p-1">
+<span class="material-symbols-outlined text-xl">explore</span>
+</div>
+<span class="font-['Space_Grotesk'] text-[9px] font-black uppercase mt-1 tracking-wider">Discover</span>
+</a>
+<!-- Profile (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-3xl px-6 py-2 border-2 border-black shadow-md" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-black uppercase tracking-wider">Profile</span>
+</a>
+<!-- Events -->
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">calendar_today</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-black uppercase mt-1 tracking-wider">Events</span>
+</a>
+<!-- Clubs -->
+<a class="flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">groups</span>
+<span class="font-['Space_Grotesk'] text-[9px] font-black uppercase mt-1 tracking-wider">Clubs</span>
+</a>
+</div>
+</nav>
+</body></html>

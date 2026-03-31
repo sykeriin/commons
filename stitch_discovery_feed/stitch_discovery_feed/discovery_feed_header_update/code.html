@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#c5d0ff",
+              "on-error-container": "#510017",
+              "on-surface": "#2d2f2f",
+              "error-dim": "#a70138",
+              "surface-bright": "#f6f6f6",
+              "primary": "#af2700",
+              "on-secondary-fixed-variant": "#0042c9",
+              "secondary-dim": "#0041c7",
+              "surface-container-high": "#e1e3e3",
+              "secondary-fixed-dim": "#b3c1ff",
+              "primary-container": "#ff7856",
+              "on-error": "#ffefef",
+              "surface-dim": "#d2d5d5",
+              "on-tertiary-container": "#4a5e00",
+              "on-background": "#2d2f2f",
+              "surface-tint": "#af2700",
+              "inverse-on-surface": "#9c9d9d",
+              "surface-variant": "#dbdddd",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#f74b6d",
+              "surface": "#f6f6f6",
+              "tertiary-dim": "#435600",
+              "error": "#b41340",
+              "surface-container-low": "#f0f1f1",
+              "outline-variant": "#acadad",
+              "on-tertiary-fixed-variant": "#526900",
+              "on-surface-variant": "#5a5c5c",
+              "tertiary-container": "#cafd00",
+              "primary-fixed-dim": "#ff5c34",
+              "on-primary-fixed-variant": "#5a0f00",
+              "on-tertiary-fixed": "#3a4a00",
+              "tertiary-fixed": "#cafd00",
+              "primary-fixed": "#ff7856",
+              "on-primary-fixed": "#000000",
+              "inverse-surface": "#0c0f0f",
+              "tertiary-fixed-dim": "#beee00",
+              "secondary-container": "#c5d0ff",
+              "on-primary-container": "#490b00",
+              "tertiary": "#4e6300",
+              "background": "#f6f6f6",
+              "on-secondary": "#f2f1ff",
+              "primary-dim": "#9a2100",
+              "on-tertiary": "#e1ff88",
+              "surface-container-highest": "#dbdddd",
+              "on-secondary-fixed": "#002a88",
+              "on-secondary-container": "#003ab4",
+              "secondary": "#004be2",
+              "outline": "#757777",
+              "on-primary": "#ffefec",
+              "inverse-primary": "#ff562c",
+              "surface-container": "#e7e8e8"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+        }
+        .rubber-hose-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            width: fit-content;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-tertiary-container selection:text-on-tertiary-container pb-32">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-zinc-900 border-b-4 border-black dark:border-zinc-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] docked full-width top-0 z-50 fixed w-full">
+<div class="flex justify-between items-center w-full px-6 py-4 relative">
+<div class="flex items-center gap-4">
+<button class="hover:scale-110 hover:-rotate-2 transition-transform active:scale-95 text-black dark:text-white">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+<h1 class="font-['Space_Grotesk'] font-black uppercase tracking-tighter text-4xl text-[#FF3D00] dark:text-[#FF7856] absolute left-1/2 -translate-x-1/2">COMMONS</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:scale-110 hover:-rotate-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-black dark:text-white text-3xl">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-4 max-w-7xl mx-auto space-y-8">
+<!-- Hero Section: Campus Focus -->
+<section class="relative bg-primary-fixed border-4 border-black rounded-3xl p-8 overflow-hidden neo-shadow flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1 space-y-6 z-10">
+<div class="inline-block bg-black text-white px-4 py-1 font-headline font-bold uppercase tracking-widest text-sm rounded-full">SIGN UP OPEN</div>
+<h2 class="font-headline font-black text-5xl md:text-7xl leading-none text-black uppercase tracking-tighter">
+                3v3 <br/> Basketball
+            </h2>
+<p class="font-body text-lg font-bold text-on-primary-container max-w-md">
+                Compete in our annual 3v3 tournament at the North Court. All skill levels welcome. Grab your squad and dominate the paint!
+            </p>
+<button class="bg-black text-white font-headline font-black text-xl px-10 py-4 rounded-full neo-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase italic">
+                REGISTER NOW
+            </button>
+</div>
+<div class="relative w-full md:w-1/2 flex justify-center">
+<img alt="Mascot Character" class="w-full max-w-sm drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/ADBb0ui1x35P7PS-RSIw50DRSuiyuhu0mBWonVCZWt_m6TLRxGzsy7F9IByHt-hziWfXJwUVxbo2dVp13crbj5zgSgbZkFYmVBC35AZfg26oMSIABYx_iXcP5QKQoHifWbqU0mnlwjERZJI9kRoHKabzGY9sliGQwwPCb6rSEJ3kzJcc7DCNkn0jGPly13tzhpGZUsDgJYIl2JrFu8ZfFwTSoWZqaCht5VH5MKGtEY6xvDP4oaqDsvYpWa1WgEkMq3zUYsit-_sudFgXeg"/>
+<!-- Abstract floating elements -->
+<div class="absolute -top-4 -left-4 w-12 h-12 bg-tertiary rounded-full border-4 border-black"></div>
+<div class="absolute top-1/2 -right-8 w-20 h-20 bg-secondary-container rounded-lg border-4 border-black rotate-12"></div>
+</div>
+</section>
+<!-- Campus Pulse: Live Ticker -->
+<div class="bg-black py-3 -mx-4 overflow-hidden flex whitespace-nowrap">
+<div class="animate-marquee flex gap-12 items-center">
+<span class="text-white font-headline font-black uppercase italic text-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-[#cafd00]">bolt</span> PULSE: BOT-CLASH REGISTRATION OPEN
+            </span>
+<span class="text-white font-headline font-black uppercase italic text-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-[#cafd00]">bolt</span> DIGITAL ART GALLERY SUBMISSIONS
+            </span>
+<span class="text-white font-headline font-black uppercase italic text-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-[#cafd00]">bolt</span> WRITING WORKSHOP STARTS IN 1H
+            </span>
+<span class="text-white font-headline font-black uppercase italic text-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-[#cafd00]">bolt</span> BASKETBALL BRACKETS LIVE
+            </span>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Club Meetings (Left Column) -->
+<div class="md:col-span-4 bg-surface-container-lowest border-4 border-black rounded-3xl p-6 neo-shadow">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-black text-2xl uppercase italic">Clubs for You</h3>
+<span class="material-symbols-outlined font-black">groups</span>
+</div>
+<div class="space-y-4">
+<div class="group flex items-center gap-4 p-3 rounded-2xl hover:bg-secondary-container transition-colors border-2 border-transparent hover:border-black cursor-pointer">
+<div class="w-12 h-12 rounded-full border-2 border-black bg-[#cafd00] flex items-center justify-center font-headline font-bold">RC</div>
+<div>
+<p class="font-bold text-sm uppercase">Robotics Club</p>
+<p class="text-xs text-outline">Meet: Tue 6PM</p>
+</div>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<div class="group flex items-center gap-4 p-3 rounded-2xl hover:bg-primary-container transition-colors border-2 border-transparent hover:border-black cursor-pointer">
+<div class="w-12 h-12 rounded-full border-2 border-black bg-secondary-dim flex items-center justify-center font-headline font-bold text-white">DS</div>
+<div>
+<p class="font-bold text-sm uppercase">Design Society</p>
+<p class="text-xs text-outline">Meet: Wed 4PM</p>
+</div>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<div class="group flex items-center gap-4 p-3 rounded-2xl hover:bg-tertiary-container transition-colors border-2 border-transparent hover:border-black cursor-pointer">
+<div class="w-12 h-12 rounded-full border-2 border-black bg-error flex items-center justify-center font-headline font-bold text-white">CS</div>
+<div>
+<p class="font-bold text-sm uppercase">Chess Strategists</p>
+<p class="text-xs text-outline">Meet: Thu 7PM</p>
+</div>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border-2 border-black rounded-full font-headline font-bold uppercase text-sm hover:bg-black hover:text-white transition-all">Explore All Clubs</button>
+</div>
+<!-- Recent Events (Main Column) -->
+<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2 bg-secondary-container border-4 border-black rounded-3xl overflow-hidden neo-shadow flex flex-col sm:flex-row">
+<div class="sm:w-1/2 h-64 sm:h-auto">
+<img alt="Digital Art Gallery" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCauaFxeOcY0eofGrvmRu7us_ej2OuNBZqlhthUxxjzuCblw7YO8w6x9KYnDK1NAOiggO1sbnIE2qQsXCUoXepmjnrRIt4VjVLarMnQlbAwhHvcIPNJkQr3r4ACA5OZaIluzaqSuLRc7pD2wAC7ZXsf7iBdoLJ92t1_nkuMuxU9UYwt4F0g-jld9QwFi9LBjapKaS5O9dZHaI45SNbWjEaQ4zsUOKJu0QI3mravjY0GNe_YmPMiJbYRFqGbQvQzIglpNG2WCNzBtE8"/>
+</div>
+<div class="p-6 flex flex-col justify-center gap-4 sm:w-1/2 bg-white">
+<div class="bg-secondary text-white px-3 py-1 text-xs font-black rounded-full w-fit uppercase">Exhibition</div>
+<h4 class="font-headline font-black text-3xl uppercase leading-none">Digital Art Gallery</h4>
+<p class="text-sm text-outline leading-relaxed">Showcasing the finest student-made 3D models and digital paintings from the semester.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">calendar_month</span>
+<span class="text-xs font-bold uppercase">October 24-26</span>
+</div>
+<button class="mt-2 bg-black text-white py-3 rounded-xl font-headline font-bold uppercase italic tracking-wider hover:scale-105 transition-transform">Visit Now</button>
+</div>
+</div>
+<!-- Creative Writing Workshop (Left Nested) -->
+<div class="bg-tertiary-container border-4 border-black rounded-3xl p-6 neo-shadow flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline font-black text-3xl uppercase leading-none italic">Dance<br/>Workshops</h4>
+<div class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-tertiary-container group-hover:rotate-12 transition-transform">
+<span class="material-symbols-outlined text-3xl">sports_gymnastics</span>
+</div>
+</div>
+<p class="text-sm font-bold uppercase tracking-tight text-on-tertiary-fixed">KINETIC MOVEMENT • STUDIO B</p>
+</div>
+<div class="mt-8">
+<img alt="Creative writing concept" class="w-full h-32 object-cover rounded-2xl border-2 border-black mb-4 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAORdCRi5jHkWdX1bXYVu5cRC6r6gHTkKT-4CpwO4zSPD3Aji_oI8i9AoUINfy_x9d_HVrOHvoJzijJVG0d42bHapQj1TOTo8jhjwr5N0Gw2oFfaamG7Yn7VQ2AcyfDjWCuESFamA4BAb82KRm8XRieHSjAtWHfA1sK7ORMR-kHem9PlT82ldaMjTvpyb6Gl2BQwC9A-cvnqgVWxaGD72R3QHmtSDmnmoXe_zUL-CnsKzviApVfTWwGT1eDymob_EOw9MQpCYADCYw"/>
+<button class="w-full py-2 bg-black text-white rounded-full font-headline font-black uppercase text-xs">Join Session</button>
+</div>
+</div>
+<!-- Bot-Clash (Right Nested) -->
+<div class="space-y-6">
+<div class="bg-secondary border-4 border-black rounded-3xl p-5 neo-shadow text-white relative overflow-hidden group">
+<div class="relative z-10">
+<p class="font-headline font-black text-4xl uppercase tracking-tighter leading-none italic">Bot-Clash<br/>Qualifiers</p>
+<p class="text-xs font-bold uppercase mt-2 opacity-80 italic">Fri • 4PM • Engineering Hall</p>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-20 group-hover:rotate-45 transition-transform">smart_toy</span>
+</div>
+<div class="bg-white border-4 border-black rounded-3xl p-5 neo-shadow group hover:bg-black hover:text-white transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="font-headline font-black text-xl uppercase italic">Tech Lab</span>
+<span class="material-symbols-outlined">memory</span>
+</div>
+<div class="flex -space-x-3 mt-4">
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-black bg-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCDYUpJ3Vj9Q78XWh73zdKpZaLgIQDtuQZrPo9sJzkPGJYOR9qALcXL3RwhuoqqLm3wmb7cIhF6oyBf-t7-ULIeD2Qm5PuQ0hMbasPdIB-7lESOJrcVYjP_ProQYWzwAeY15xlmc3eD8HrPxV5AznFC2laBUCNgxyfxMFlpnMnvy59VnLLL0bsPWKvc9X7qV7Te94u8KJJ-m4DFZRsN6UVXzNpOFifxU5dEGiGcM-Ujo2Lodc1R-nB_Flyr4_FF0Th7bcINtmf99c"/>
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-black bg-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhk1ojsIdr-ttPjMRFhTIg62wMVj6ajosGIOPC9Tn_ZCSCbkhXjDNDwIlS-78dGr27kJX9MKsAtGnO_SJkJGcRvzlYygpWVTCXqmUNN21GU0s95NE-0HmWPPQGsYzT3zLqune0Yg081-MKbqa_gJwCbH5bHbbRuozJLCPs9tvJYemeL654ojhqkSZtASGEO-pTRsAc1ry2MbUa-V15LZSHTrMXG-vQp9JquL6U8r_TNVI9BQfCL-BFtm6q3ljh0Xu79gEC50ygp-E"/>
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-black bg-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmMqQO3hsEYV2hRvQJqYQ3orc8Y6JWFJlP1tVQxYG4vgg7iEDzVN8G3cczdk0HQST80XPl62O1GvAyJLAapt15lIds5jflodASrJdM6j8-dRA3x-mo4P7ExkEz9kFEXG1eKcgiX_84D7tiFAeyT7WU-j-83AQH5HrNFbIK1j49BBmGt9MfoL0Ps4z3RBBp4FEZ5W_ox_CtjuW4Wk41P2abtveYe0O_bRzhwhL7kbQHoQ2eUK-vYb9uD3fBIGtXyCs4kgwhUrPCjMA"/>
+<div class="w-8 h-8 rounded-full border-2 border-black bg-tertiary-container flex items-center justify-center text-[10px] font-bold text-black">+42</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="pt-12 pb-24 text-center border-t-4 border-black border-dashed mt-12">
+<h5 class="font-headline font-black text-2xl uppercase italic mb-2 tracking-widest">COMMONS</h5>
+<p class="font-headline font-bold text-xs uppercase text-outline tracking-widest">2026 SYKERIIN</p>
+<div class="flex justify-center gap-6 mt-6">
+<span class="material-symbols-outlined text-2xl hover:text-primary transition-colors cursor-pointer">language</span>
+<span class="material-symbols-outlined text-2xl hover:text-primary transition-colors cursor-pointer">alternate_email</span>
+<span class="material-symbols-outlined text-2xl hover:text-primary transition-colors cursor-pointer">share</span>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Standardized 5-item) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-lg z-50 flex justify-around items-center h-20 px-4 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-full border-4 border-black dark:border-white shadow-[0_20px_40px_rgba(0,0,0,0.2)]">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#FF3D00] text-white rounded-full px-4 py-2 scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors active:scale-90 duration-75" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase">Home</span>
+</a>
+<!-- Discover -->
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-2 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors active:scale-90 duration-75" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase">Discover</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-2 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors active:scale-90 duration-75" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase">Profile</span>
+</a>
+<!-- Events -->
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-2 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors active:scale-90 duration-75" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase">Events</span>
+</a>
+<!-- Clubs -->
+<a class="flex flex-col items-center justify-center text-black dark:text-white px-2 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors active:scale-90 duration-75" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Space_Grotesk'] font-bold text-[10px] uppercase">Clubs</span>
+</a>
+</nav>
+</body></html>
