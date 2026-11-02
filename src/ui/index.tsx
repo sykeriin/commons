@@ -45,7 +45,7 @@ export const Badge: React.FC<{ children: React.ReactNode; tone?: 'neutral' | 'ok
 export const Avatar: React.FC<{ name: string; size?: number; color?: string; className?: string }> = ({ name, size = 40, color, className }) => {
   const initials = name.replace(/^(Dr|Prof)\.?\s+/i, '').split(/\s+/).slice(0, 2).map(s => s[0]).join('').toUpperCase();
   let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) % 360;
-  return <span aria-hidden style={{ width: size, height: size, fontSize: size * 0.38, background: color ?? `hsl(${h} 55% 52%)` }}
+  return <span aria-hidden style={{ width: size, height: size, fontSize: size * 0.38, background: color ?? `hsl(${h} 48% 38%)` }}
     className={cn('inline-flex shrink-0 items-center justify-center rounded-full border-2 border-ink font-headline font-black text-white', className)}>{initials}</span>;
 };
 

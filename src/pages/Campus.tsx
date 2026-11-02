@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { CalendarDays, Users, Building2, UserSearch, MapPin, ArrowUpRight } from 'lucide-react';
 import { useDB, useMe } from '@/src/app/session';
 import { visibleEvents } from '@/src/data/select';
-import { PageHeader, Section } from '@/src/ui';
+import { PageHeader, Section, hue } from '@/src/ui';
 import { EventCard, ClubCard } from './parts';
 import { today } from '@/src/lib/dates';
 
 const TILES = [
-  { to: '/events', t: 'Events', icon: CalendarDays, bg: 'bg-primary-container' },
-  { to: '/clubs', t: 'Clubs', icon: Users, bg: 'bg-secondary-container' },
-  { to: '/departments', t: 'Departments', icon: Building2, bg: 'bg-tertiary-container !text-on-tertiary-container' },
-  { to: '/people', t: 'People', icon: UserSearch, bg: 'bg-surface-container-high' },
-  { to: '/places', t: 'Places', icon: MapPin, bg: 'bg-surface-container-high' },
+  { to: '/events', t: 'Events', icon: CalendarDays, c: '#af2700' },
+  { to: '/clubs', t: 'Clubs', icon: Users, c: '#004be2' },
+  { to: '/departments', t: 'Departments', icon: Building2, c: '#00838f' },
+  { to: '/people', t: 'People', icon: UserSearch, c: '#6a4fd8' },
+  { to: '/places', t: 'Places', icon: MapPin, c: '#4a5568' },
 ];
 
 export default function Campus() {
@@ -23,7 +23,7 @@ export default function Campus() {
     <>
       <PageHeader title="Campus" subtitle="Everything happening around you." />
       <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-5">{TILES.map(t => (
-        <Link key={t.to} to={t.to} className={`brut-sm group flex aspect-[4/3] flex-col justify-between rounded-2xl p-4 transition-transform hover:-translate-y-0.5 md:aspect-square ${t.bg}`}>
+        <Link key={t.to} to={t.to} style={hue(t.c)} className="hue brut-sm group flex aspect-[4/3] flex-col justify-between rounded-2xl p-4 text-white transition-transform hover:-translate-y-0.5 md:aspect-square">
           <t.icon size={26} /><span className="flex items-center justify-between font-headline text-lg font-black">{t.t}<ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span></Link>))}</div>
       <div className="grid gap-8 lg:grid-cols-2">
         <Section title="Next up"><div className="space-y-3">{events.map(e => <EventCard key={e.id} ev={e} compact />)}</div></Section>
