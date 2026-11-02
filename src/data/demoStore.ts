@@ -19,18 +19,22 @@ function load(): DB {
 export class DemoStore implements Store {
   readonly kind = 'demo' as const;
   actorId: string | null;
-  private db: DB;
-  private subs = new Set<() => void>();
-  constructor(actorId: string | null) { this.actorId = actorId; this.db = load(); }
+  protected db: DB;
+  protected subs = new Set<() => void>();
+  constructor(actorId: string | null, initial?: DB) { this.actorId = actorId; this.db = initial ?? load(); }
 
   getState = () => this.db;
   subscribe = (fn: () => void) => { this.subs.add(fn); return () => { this.subs.delete(fn); }; };
   reset() { this.set(() => buildSeed()); }
 
-  private set(fn: (d: DB) => DB) {
-    this.db = fn(this.db);
-    try { localStorage.setItem(KEY, JSON.stringify({ day: today(), db: this.db })); } catch { /* ignore */ }
+  protected set(fn: (d: DB) => DB) {
+    const prev = this.db; this.db = fn(prev);
+    this.persist(prev, this.db);
     this.subs.forEach(s => s());
+  }
+  /** Demo: keep everything in localStorage. The Firebase store overrides this to write diffs to Firestore. */
+  protected persist(_prev: DB, next: DB) {
+    try { localStorage.setItem(KEY, JSON.stringify({ day: today(), db: next })); } catch { /* ignore */ }
   }
   private me() { const p = this.db.people.find(x => x.id === this.actorId); if (!p) throw new Error('Not signed in'); return p; }
   private audit(action: string, target: string) {

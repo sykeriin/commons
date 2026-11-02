@@ -9,7 +9,7 @@ import { relDay } from '@/src/lib/dates';
 import type { Role } from '@/src/data/types';
 
 export default function Me() {
-  const db = useDB(); const me = useMe()!; const A = useActions(); const act = useAction(); const { theme, setTheme, signOut, resetDemo } = useSession();
+  const db = useDB(); const me = useMe()!; const A = useActions(); const act = useAction(); const { theme, setTheme, signOut, resetDemo, store } = useSession();
   const [f, setF] = useState({ name: me.name, bio: me.bio ?? '', departmentId: me.departmentId ?? '', year: me.year ?? 1 });
   const [req, setReq] = useState<{ role: Role; reason: string }>({ role: 'faculty', reason: '' });
   const reqs = db.roleRequests.filter(r => r.personId === me.id); const pending = reqs.some(r => r.status === 'pending');
@@ -39,7 +39,7 @@ export default function Me() {
 
           <Section title="App"><Card className="space-y-4"><div><p className="label">Theme</p><Segmented value={theme} onChange={setTheme} options={[{ value: 'system', label: 'System' }, { value: 'light', label: 'Light' }, { value: 'dark', label: 'Dark' }]} /></div>
             <div className="flex flex-wrap gap-2"><Link to="/about"><Button variant="outline" size="sm"><Info size={15} />About</Button></Link><Link to="/privacy"><Button variant="outline" size="sm"><ShieldCheck size={15} />Privacy</Button></Link>
-              <Button variant="outline" size="sm" onClick={() => { if (confirm('Reset all demo data?')) resetDemo(); }}><RotateCcw size={15} />Reset demo data</Button>
+              {store.kind === 'demo' && <Button variant="outline" size="sm" onClick={() => { if (confirm('Reset all demo data?')) resetDemo(); }}><RotateCcw size={15} />Reset demo data</Button>}
               <Button variant="danger" size="sm" onClick={signOut}><LogOut size={15} />Sign out</Button></div></Card></Section>
         </div>
       </div>

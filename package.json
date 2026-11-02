@@ -1,5 +1,5 @@
 {
-  "name": "react-example",
+  "name": "commons",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test:rules": "npx -y firebase-tools emulators:exec --only firestore --project demo-commons 'node tests/firebase/rules.test.mjs'",
+    "test:firebase": "npx -y firebase-tools emulators:exec --only firestore --project demo-commons 'tsx tests/firebase/integration.mts'",
+    "test": "npm run test:rules && npm run test:firebase"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
@@ -28,6 +31,7 @@
     "vite": "^6.2.0"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "@types/qrcode": "^1.5.6",

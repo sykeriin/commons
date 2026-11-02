@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Check, X } from 'lucide-react';
-import { useActions, useDB, useMe } from '@/src/app/session';
+import { useActions, useDB, useMe, useSession } from '@/src/app/session';
 import { byId, goingCount, personName, seatsTaken } from '@/src/data/select';
 import { Avatar, Badge, BarList, Button, Card, EmptyState, Field, Input, PageHeader, Section, Segmented, Select, StatTile, Textarea, useAction } from '@/src/ui';
 import { can, ROLE_LABEL } from '@/src/lib/permissions';
@@ -11,7 +11,7 @@ import type { Role } from '@/src/data/types';
 type Tab = 'overview' | 'approvals' | 'roles' | 'users' | 'courses' | 'announce' | 'audit';
 
 export default function Manage() {
-  const db = useDB(); const me = useMe()!; const A = useActions(); const act = useAction();
+  const db = useDB(); const me = useMe()!; const A = useActions(); const act = useAction(); const { store } = useSession();
   const tabs: { value: Tab; label: string }[] = [{ value: 'overview', label: 'Overview' }];
   if (can(me, 'approve:club')) tabs.push({ value: 'approvals', label: 'Approvals' });
   if (can(me, 'manage:roles')) tabs.push({ value: 'roles', label: 'Role requests' }, { value: 'users', label: 'Users' });
@@ -39,6 +39,9 @@ export default function Manage() {
       <Segmented className="mb-6" value={tab} onChange={setTab} options={tabs.map(t => ({ value: t.value, label: t.value === 'approvals' && pendingClubs.length + pendingEvents.length ? `${t.label} (${pendingClubs.length + pendingEvents.length})` : t.value === 'roles' && pendingRoles.length ? `${t.label} (${pendingRoles.length})` : t.label }))} />
 
       {tab === 'overview' && (<>
+        {store.importSample && me.role === 'admin' && db.departments.length === 0 && (
+          <Card className="mb-6 !border-ink"><h3 className="h-sec">This campus is empty</h3><p className="muted mt-1 max-w-xl">Import a sample campus (departments, courses, clubs, events and fictional people) to try Commons with realistic data. You can add your own data instead.</p>
+            <Button className="mt-3" onClick={() => act(() => store.importSample!(), 'Sample campus imported')}>Import sample campus</Button></Card>)}
         <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4"><StatTile label="Students" value={db.people.filter(p => p.role === 'student' && (!scopeDept || p.departmentId === scopeDept)).length} /><StatTile label="Faculty" value={teachers.length} />
           <StatTile label="Active clubs" value={db.clubs.filter(x => x.approval === 'approved').length} /><StatTile label="Upcoming events" value={db.events.filter(e => e.approval === 'approved' && e.date >= new Date().toISOString().slice(0, 10)).length} /></div>
         <div className="grid gap-6 lg:grid-cols-2"><Card><h3 className="h-sec mb-4">Students per department</h3><BarList items={stats} /></Card><Card><h3 className="h-sec mb-4">Course enrolments</h3><BarList items={enrol} /></Card>

@@ -49,4 +49,11 @@ export interface Store {
   /** The signed-in (or impersonated) person id. */
   actorId: string | null;
   actions: Actions;
+  /** Resolves once initial data has loaded (Firebase). Demo is ready immediately. */
+  ready?: Promise<void>;
+  dispose?(): void;
+  /** Called when a background write is rejected (e.g. permission denied). */
+  onError?: (message: string) => void;
+  /** Admin-only: populate an empty campus with sample data. */
+  importSample?(): Promise<void>;
 }

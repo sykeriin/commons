@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { SessionProvider, useMe } from './app/session';
+import { SessionProvider, useSession } from './app/session';
 import { Shell } from './app/Shell';
 import { ToastProvider } from './ui';
 import { Landing } from './pages/Landing';
@@ -34,13 +34,17 @@ const pages = {
   Info: lazy(() => import('./pages/Info')),
 };
 
-const Gate: React.FC = () => { const me = useMe(); return me ? <Shell /> : <Landing />; };
+const Gate: React.FC = () => {
+  const { me, booting, firebaseEnabled, signInGoogle } = useSession();
+  if (booting) return <div className="flex min-h-screen items-center justify-center font-headline text-lg font-bold">Loading your campus…</div>;
+  return me ? <Shell /> : <Landing onGoogle={firebaseEnabled ? signInGoogle : undefined} />;
+};
 
 export default function App() {
   return (
     <ErrorBoundary>
-      <SessionProvider>
-        <ToastProvider>
+      <ToastProvider>
+        <SessionProvider>
           <HashRouter>
             <Suspense fallback={<div className="p-10 text-center font-headline font-bold">Loading…</div>}>
               <Routes>
@@ -64,8 +68,8 @@ export default function App() {
               </Routes>
             </Suspense>
           </HashRouter>
-        </ToastProvider>
-      </SessionProvider>
+        </SessionProvider>
+      </ToastProvider>
     </ErrorBoundary>
   );
 }
