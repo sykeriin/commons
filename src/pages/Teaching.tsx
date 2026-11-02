@@ -72,7 +72,7 @@ const SectionManage: React.FC = () => {
           <li key={p.id} className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5"><span className="font-bold">{p.name}</span>
             <div role="radiogroup" aria-label={`Attendance for ${p.name}`} className="flex gap-1">{ST.map(st => (
               <button key={st} role="radio" aria-checked={status(p.id) === st} onClick={() => setMarks({ ...marks, [p.id]: st })}
-                className={`min-h-9 rounded-full border-2 px-3 text-xs font-bold capitalize ${status(p.id) === st ? 'border-ink bg-ink text-background' : 'border-line text-on-surface-variant'}`}>{st}</button>))}</div></li>))}</ul></Card></>)}
+                className={`min-h-9 rounded-full border-2 px-3 text-xs font-bold capitalize ${status(p.id) === st ? 'border-on-surface bg-on-surface text-background' : 'border-line text-on-surface-variant'}`}>{st}</button>))}</div></li>))}</ul></Card></>)}
 
       {tab === 'assignments' && (<>
         <div className="mb-4"><Button onClick={() => setForm('asg')}><Plus size={16} />New assignment</Button></div>

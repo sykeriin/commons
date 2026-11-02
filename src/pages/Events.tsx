@@ -4,7 +4,7 @@ import QRCode from 'qrcode';
 import { Check, MapPin, Clock, Plus, Users, Ticket, Trash2 } from 'lucide-react';
 import { useActions, useDB, useMe } from '@/src/app/session';
 import { byId, goingCount, personName, placeLabel, visibleEvents } from '@/src/data/select';
-import { Avatar, Badge, Button, Card, EmptyState, Field, Input, PageHeader, Section, Segmented, Select, Sheet, Textarea, useAction } from '@/src/ui';
+import { Avatar, Badge, Button, Card, EmptyState, Field, Input, PageHeader, Section, Segmented, Select, Sheet, Textarea, useAction, hue } from '@/src/ui';
 import { EventCard } from './parts';
 import { fmtDate, fmtTime, relDay, today } from '@/src/lib/dates';
 import { can, canEditEvent, canManageClub } from '@/src/lib/permissions';
@@ -24,7 +24,7 @@ const List: React.FC = () => {
       <PageHeader title="Events" subtitle="Find something to do" actions={<Link to="/events/new"><Button><Plus size={16} />Create event</Button></Link>} />
       <div className="mb-3 flex flex-wrap items-center gap-3"><Segmented value={view} onChange={setView} options={[{ value: 'upcoming', label: 'Upcoming' }, { value: 'going', label: "I'm going" }, { value: 'past', label: 'Past' }]} />
         <Input aria-label="Search events" className="max-w-56" placeholder="Search…" value={q} onChange={e => setQ(e.target.value)} /></div>
-      <div className="scroll-hide mb-6 flex gap-2 overflow-x-auto">{cats.map(c => <button key={c} onClick={() => setCat(c)} className={`min-h-9 shrink-0 rounded-full border-2 px-3.5 text-xs font-bold ${cat === c ? 'border-ink bg-ink text-background' : 'border-line text-on-surface-variant'}`}>{c}</button>)}</div>
+      <div className="scroll-hide mb-6 flex gap-2 overflow-x-auto">{cats.map(c => <button key={c} onClick={() => setCat(c)} className={`min-h-9 shrink-0 rounded-full border-2 px-3.5 text-xs font-bold ${cat === c ? 'border-on-surface bg-on-surface text-background' : 'border-line text-on-surface-variant'}`}>{c}</button>)}</div>
       {Object.keys(groups).length === 0 ? <EmptyState title="No events here" hint="Try another filter, or create one yourself." /> :
         <div className="grid gap-x-6 xl:grid-cols-2">{Object.entries(groups).map(([d, evs]) => <Section key={d} title={relDay(d) + (relDay(d).includes(',') ? '' : ` · ${fmtDate(d)}`)}><div className="space-y-3">{evs.map(e => <EventCard key={e.id} ev={e} />)}</div></Section>)}</div>}
     </>
@@ -49,7 +49,7 @@ const Detail: React.FC = () => {
   return (
     <>
       <Link to="/events" className="mb-3 inline-block text-sm font-bold text-secondary hover:underline">← Events</Link>
-      <div className="brut mb-6 rounded-3xl p-6 text-white md:p-8" style={{ background: club?.color ?? byId(db.departments, ev.departmentId)?.color ?? 'var(--primary)' }}>
+      <div className="hue brut mb-6 rounded-3xl p-6 text-white md:p-8" style={hue(club?.color ?? byId(db.departments, ev.departmentId)?.color)}>
         <div className="flex flex-wrap gap-2"><Badge tone="neutral" className="!bg-white/25 !text-white">{ev.category}</Badge>{ev.approval !== 'approved' && <Badge tone="warn">Pending approval</Badge>}{past && <Badge tone="neutral">Past</Badge>}</div>
         <h1 className="mt-3 font-headline text-4xl font-black leading-[0.95] tracking-tight md:text-6xl">{ev.title}</h1>
         <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm font-bold"><span className="inline-flex items-center gap-1.5"><Clock size={15} />{fmtDate(ev.date, { weekday: 'long', month: 'long', day: 'numeric' })}, {fmtTime(ev.start)}–{fmtTime(ev.end)}</span>

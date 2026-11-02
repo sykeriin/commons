@@ -4,6 +4,9 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Check, X, Inbox as InboxIcon } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
+/** Inline style that feeds a colour to the .hue / .hue-bar / .hue-text / .hue-chip classes. */
+export const hue = (c?: string) => ({ '--c': c ?? 'var(--primary)' }) as React.CSSProperties;
+
 /* ---------- Button ---------- */
 type BtnVariant = 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost' | 'danger';
 interface BtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { variant?: BtnVariant; size?: 'sm' | 'md' | 'lg'; busy?: boolean; block?: boolean }
@@ -21,7 +24,7 @@ export const Button = React.forwardRef<HTMLButtonElement, BtnProps>(({ variant =
   return (
     <button ref={ref} disabled={disabled || busy} onClick={onClick}
       className={cn('inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 font-headline font-extrabold tracking-wide transition-all disabled:cursor-not-allowed disabled:opacity-50',
-        raised && 'hover:translate-x-px hover:translate-y-px hover:shadow-[1.5px_1.5px_0_0_var(--ink)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none',
+        raised && 'hover:translate-x-px hover:translate-y-px hover:shadow-[1.5px_1.5px_0_0_var(--shadow)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none',
         v[variant], s, block && 'w-full', className)} {...p}>
       {busy ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" /> : null}{children}
     </button>
@@ -36,7 +39,7 @@ export const Card: React.FC<React.HTMLAttributes<HTMLDivElement> & { hover?: boo
 export const Badge: React.FC<{ children: React.ReactNode; tone?: 'neutral' | 'ok' | 'warn' | 'bad' | 'blue' | 'lime' | 'brand'; color?: string; className?: string }> = ({ children, tone = 'neutral', color, className }) => {
   const t = { neutral: 'bg-surface-container text-on-surface-variant', ok: 'bg-ok/15 text-ok', warn: 'bg-warn/15 text-warn', bad: 'bg-bad/15 text-bad',
     blue: 'bg-secondary-container text-on-secondary-container', lime: 'bg-tertiary-container text-on-tertiary-container', brand: 'bg-primary text-on-primary' }[tone];
-  return <span style={color ? { background: color + '26', color } : undefined} className={cn('inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-0.5 font-headline text-[11px] font-bold tracking-wide', !color && t, className)}>{children}</span>;
+  return <span style={color ? hue(color) : undefined} className={cn(color && 'hue-chip', 'inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-0.5 font-headline text-[11px] font-bold tracking-wide', !color && t, className)}>{children}</span>;
 };
 
 export const Avatar: React.FC<{ name: string; size?: number; color?: string; className?: string }> = ({ name, size = 40, color, className }) => {
@@ -98,7 +101,7 @@ export function Segmented<T extends string>({ value, onChange, options, classNam
       {options.map(o => (
         <button key={o.value} role="tab" aria-selected={value === o.value} onClick={() => onChange(o.value)}
           className={cn('min-h-9 whitespace-nowrap rounded-full px-4 font-headline text-xs font-extrabold tracking-wide transition-colors',
-            value === o.value ? 'bg-ink text-background' : 'text-on-surface-variant hover:text-on-surface')}>{o.label}</button>
+            value === o.value ? 'bg-on-surface text-background' : 'text-on-surface-variant hover:text-on-surface')}>{o.label}</button>
       ))}
     </div>
   );
@@ -157,7 +160,7 @@ export const BarList: React.FC<{ items: { label: string; value: number; color?: 
     <ul className="space-y-2.5">{items.map(i => (
       <li key={i.label} className="grid grid-cols-[9.5rem_1fr_3rem] items-center gap-3 text-sm">
         <span className="truncate font-semibold">{i.label}</span>
-        <span className="h-3 overflow-hidden rounded-full bg-surface-container"><span className="block h-full rounded-full" style={{ width: `${(i.value / max) * 100}%`, background: i.color ?? 'var(--secondary)' }} /></span>
+        <span className="h-3 overflow-hidden rounded-full bg-surface-container"><span className={cn('block h-full rounded-full', i.color ? 'hue-bar' : 'bg-secondary')} style={{ width: `${(i.value / max) * 100}%`, ...(i.color ? hue(i.color) : {}) }} /></span>
         <span className="text-right font-headline font-bold tabular-nums">{i.value}{unit}</span>
       </li>))}</ul>
   );

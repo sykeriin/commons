@@ -3,7 +3,7 @@ import { Link, Route, Routes, useParams, useLocation } from 'react-router-dom';
 import { Mail, MapPin } from 'lucide-react';
 import { useActions, useDB, useMe } from '@/src/app/session';
 import { byId, gpa, placeLabel } from '@/src/data/select';
-import { Avatar, Badge, Button, Card, EmptyState, Input, PageHeader, Section, Segmented, Select, StatTile, useAction } from '@/src/ui';
+import { hue, Avatar, Badge, Button, Card, EmptyState, Input, PageHeader, Section, Segmented, Select, StatTile, useAction } from '@/src/ui';
 import { ClassCard, ClubCard, PersonRow } from './parts';
 import { fmtTime, DAYS_LONG, relDay } from '@/src/lib/dates';
 import { ROLE_LABEL } from '@/src/lib/permissions';
@@ -12,8 +12,8 @@ const Departments: React.FC = () => {
   const db = useDB();
   return (<><PageHeader title="Departments" subtitle={`${db.departments.length} departments`} />
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{db.departments.map(d => { const head = byId(db.people, d.headId);
-      return (<Link key={d.id} to={`/departments/${d.id}`} className="card card-hover overflow-hidden"><div className="h-3" style={{ background: d.color }} /><div className="p-5">
-        <p className="font-headline text-xs font-bold tracking-widest" style={{ color: d.color }}>{d.code}</p><h2 className="font-headline text-xl font-black">{d.name}</h2><p className="muted mt-1 line-clamp-2">{d.description}</p>
+      return (<Link key={d.id} to={`/departments/${d.id}`} className="card card-hover overflow-hidden"><div className="hue-bar h-3" style={hue(d.color)} /><div className="p-5">
+        <p className="hue-text font-headline text-xs font-bold tracking-widest" style={hue(d.color)}>{d.code}</p><h2 className="font-headline text-xl font-black">{d.name}</h2><p className="muted mt-1 line-clamp-2">{d.description}</p>
         <p className="muted mt-3 !text-xs">Head: <b className="text-on-surface">{head?.name ?? 'Vacant'}</b> · {db.people.filter(p => p.departmentId === d.id && p.role !== 'student').length} faculty · {db.courses.filter(c => c.departmentId === d.id).length} courses</p></div></Link>); })}</div></>);
 };
 
@@ -24,7 +24,7 @@ const DepartmentPage: React.FC = () => {
   const students = db.people.filter(p => p.departmentId === d.id && p.role === 'student').length;
   return (<>
     <Link to="/departments" className="mb-3 inline-block text-sm font-bold text-secondary hover:underline">← Departments</Link>
-    <div className="brut mb-6 rounded-3xl p-6 text-white md:p-8" style={{ background: d.color }}><p className="font-headline text-sm font-bold tracking-widest opacity-90">{d.code}</p><h1 className="font-headline text-4xl font-black md:text-5xl">{d.name}</h1><p className="mt-2 max-w-xl font-semibold opacity-95">{d.description}</p>
+    <div className="hue brut mb-6 rounded-3xl p-6 text-white md:p-8" style={hue(d.color)}><p className="font-headline text-sm font-bold tracking-widest opacity-90">{d.code}</p><h1 className="font-headline text-4xl font-black md:text-5xl">{d.name}</h1><p className="mt-2 max-w-xl font-semibold opacity-95">{d.description}</p>
       <p className="mt-3 flex items-center gap-1.5 text-sm font-bold"><MapPin size={15} />{d.building}</p></div>
     <div className="mb-6 grid grid-cols-3 gap-3"><StatTile label="Faculty" value={faculty.length} /><StatTile label="Students" value={students} /><StatTile label="Courses" value={db.courses.filter(c => c.departmentId === d.id).length} /></div>
     <Segmented className="mb-5" value={tab} onChange={setTab} options={[{ value: 'faculty', label: 'People' }, { value: 'courses', label: 'Courses' }, { value: 'programs', label: 'Programs' }, { value: 'news', label: 'News' }]} />

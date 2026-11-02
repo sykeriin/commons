@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Megaphone, Pin, ArrowRight } from 'lucide-react';
 import { useDB, useMe, useActions } from '@/src/app/session';
 import { byId, mySections, timetable, visibleEvents, personName, placeLabel } from '@/src/data/select';
-import { Badge, Card, EmptyState, PageHeader, Section } from '@/src/ui';
+import { Badge, Card, EmptyState, PageHeader, Section, hue } from '@/src/ui';
 import { EventCard, ClubCard } from './parts';
 import { DAYS_LONG, fmtDate, fmtTime, minutes, relDay, today, iso, addDays } from '@/src/lib/dates';
 import { ROLE_LABEL } from '@/src/lib/permissions';
@@ -44,7 +44,7 @@ export const Today: React.FC = () => {
                 return (
                   <li key={i} className={`card flex gap-4 p-4 ${done ? 'opacity-55' : ''} ${live ? '!border-ink brut-sm' : ''}`}>
                     <div className="w-20 shrink-0 font-headline"><p className="text-sm font-black">{fmtTime(c.start)}</p><p className="text-xs font-semibold text-on-surface-variant">{fmtTime(c.end)}</p></div>
-                    <span className="w-1 shrink-0 rounded-full" style={{ background: c.department?.color }} />
+                    <span className="hue-bar w-1 shrink-0 rounded-full" style={hue(c.department?.color)} />
                     <div className="min-w-0 flex-1"><p className="truncate font-headline font-extrabold">{c.course.title}</p><p className="muted !text-xs">{c.course.code} · {placeLabel(db, c.placeId)}</p></div>
                     {live && <Badge tone="brand">Now</Badge>}{c === nextClass && !live && <Badge tone="lime">Next</Badge>}
                   </li>);

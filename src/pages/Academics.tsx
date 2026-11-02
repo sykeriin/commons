@@ -3,7 +3,7 @@ import { Link, Route, Routes, useParams, Navigate } from 'react-router-dom';
 import { Check, Clock, Plus } from 'lucide-react';
 import { useActions, useDB, useMe } from '@/src/app/session';
 import { attendancePct, byId, gpa, mySections, personName, placeLabel, seatsTaken, sectionInfo, timetable } from '@/src/data/select';
-import { Badge, Button, Card, EmptyState, PageHeader, Section, Segmented, StatTile, useAction, Input } from '@/src/ui';
+import { Badge, Button, Card, EmptyState, PageHeader, Section, Segmented, StatTile, useAction, Input, hue } from '@/src/ui';
 import { ClassCard, SlotLine } from './parts';
 import { DAYS, fmtDate, fmtTime, minutes, relDay } from '@/src/lib/dates';
 import { cn } from '@/src/lib/utils';
@@ -23,8 +23,8 @@ const WeekGrid: React.FC<{ items: ReturnType<typeof timetable> }> = ({ items }) 
             {items.filter(c => c.day === d).map((c, i) => {
               const top = ((minutes(c.start) - 8 * 60) / 60) * 64, height = ((minutes(c.end) - minutes(c.start)) / 60) * 64 - 3;
               return (
-                <Link key={i} to={`/academics/${c.section.id}`} className="absolute inset-x-1 overflow-hidden rounded-lg border-2 border-ink p-1.5 text-white transition-transform hover:z-10 hover:scale-[1.03]"
-                  style={{ top, height, background: c.department?.color }}>
+                <Link key={i} to={`/academics/${c.section.id}`} className="hue absolute inset-x-1 overflow-hidden rounded-lg border-2 border-ink p-1.5 text-white transition-transform hover:z-10 hover:scale-[1.03]"
+                  style={{ top, height, ...hue(c.department?.color) }}>
                   <p className="truncate font-headline text-xs font-black leading-tight">{c.course.code}</p><p className="truncate text-[10px] font-semibold opacity-90">{placeLabel(db, c.placeId).split(',')[0]}</p>
                 </Link>);
             })}
@@ -76,9 +76,9 @@ const Overview: React.FC = () => {
             const clash = !en && timetable(db, mine).some(m => s.slots.some(sl => sl.day === m.day && minutes(sl.start) < minutes(m.end) && minutes(m.start) < minutes(sl.end)));
             return (
               <Card key={s.id} className="flex flex-wrap items-center gap-4">
-                <span className="w-1.5 self-stretch rounded-full" style={{ background: department?.color }} />
+                <span className="hue-bar w-1.5 self-stretch rounded-full" style={hue(department?.color)} />
                 <div className="min-w-0 flex-1">
-                  <p className="font-headline text-xs font-bold" style={{ color: department?.color }}>{course.code} · {course.credits} credits</p>
+                  <p className="hue-text font-headline text-xs font-bold" style={hue(department?.color)}>{course.code} · {course.credits} credits</p>
                   <h3 className="font-headline text-base font-extrabold">{course.title}</h3>
                   <p className="muted !text-xs">{instructor?.name} · <SlotLine s={s} /></p>
                   <p className="mt-1.5 flex gap-2"><Badge tone={taken >= s.capacity ? 'bad' : 'neutral'}>{taken}/{s.capacity} seats</Badge>{clash && <Badge tone="warn">Time clash</Badge>}</p>
