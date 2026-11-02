@@ -49,8 +49,8 @@ const Detail: React.FC = () => {
   return (
     <>
       <Link to="/events" className="mb-3 inline-block text-sm font-bold text-secondary hover:underline">← Events</Link>
-      <div className="hue brut mb-6 rounded-3xl p-6 text-white md:p-8" style={hue(club?.color ?? byId(db.departments, ev.departmentId)?.color)}>
-        <div className="flex flex-wrap gap-2"><Badge tone="neutral" className="!bg-white/25 !text-white">{ev.category}</Badge>{ev.approval !== 'approved' && <Badge tone="warn">Pending approval</Badge>}{past && <Badge tone="neutral">Past</Badge>}</div>
+      <div className="hue brut mb-6 rounded-3xl p-6 on-hue md:p-8" style={hue(club?.color ?? byId(db.departments, ev.departmentId)?.color)}>
+        <div className="flex flex-wrap gap-2"><Badge tone="neutral" className="!bg-[var(--on-hue-soft)] !text-[var(--on-hue)]">{ev.category}</Badge>{ev.approval !== 'approved' && <Badge tone="warn">Pending approval</Badge>}{past && <Badge tone="neutral">Past</Badge>}</div>
         <h1 className="mt-3 font-headline text-4xl font-black leading-[0.95] tracking-tight md:text-6xl">{ev.title}</h1>
         <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm font-bold"><span className="inline-flex items-center gap-1.5"><Clock size={15} />{fmtDate(ev.date, { weekday: 'long', month: 'long', day: 'numeric' })}, {fmtTime(ev.start)}–{fmtTime(ev.end)}</span>
           <span className="inline-flex items-center gap-1.5"><MapPin size={15} />{placeLabel(db, ev.placeId)}</span></p>

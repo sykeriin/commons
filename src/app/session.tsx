@@ -38,7 +38,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const el = document.documentElement;
     if (theme === 'system') el.removeAttribute('data-theme'); else el.setAttribute('data-theme', theme);
     const dark = theme === 'dark' || (theme === 'system' && window.matchMedia?.('(prefers-color-scheme: dark)').matches);
-    document.querySelector('meta[name=theme-color]')?.setAttribute('content', dark ? '#0f1011' : '#f6f6f4');
+    document.querySelector('meta[name=theme-color]')?.setAttribute('content', dark ? '#000000' : '#f6f6f4');
   }, [theme]);
 
   // Real accounts: swap in the Firestore-backed store when a Firebase user is signed in.

@@ -23,7 +23,7 @@ export default function Campus() {
     <>
       <PageHeader title="Campus" subtitle="Everything happening around you." />
       <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-5">{TILES.map(t => (
-        <Link key={t.to} to={t.to} style={hue(t.c)} className="hue brut-sm group flex aspect-[4/3] flex-col justify-between rounded-2xl p-4 text-white transition-transform hover:-translate-y-0.5 md:aspect-square">
+        <Link key={t.to} to={t.to} style={hue(t.c)} className="hue brut-sm group flex aspect-[4/3] flex-col justify-between rounded-2xl p-4 on-hue transition-transform hover:-translate-y-0.5 md:aspect-square">
           <t.icon size={26} /><span className="flex items-center justify-between font-headline text-lg font-black">{t.t}<ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span></Link>))}</div>
       <div className="grid gap-8 lg:grid-cols-2">
         <Section title="Next up"><div className="space-y-3">{events.map(e => <EventCard key={e.id} ev={e} compact />)}</div></Section>

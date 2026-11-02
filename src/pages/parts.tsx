@@ -13,7 +13,7 @@ export const EventCard: React.FC<{ ev: CampusEvent; compact?: boolean }> = ({ ev
   const club = byId(db.clubs, ev.clubId); const color = club?.color ?? byId(db.departments, ev.departmentId)?.color ?? 'var(--primary)';
   return (
     <Link to={`/events/${ev.id}`} className="card card-hover flex gap-4 p-4">
-      <div className="hue brut-sm flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl text-white" style={hue(color)}>
+      <div className="hue brut-sm flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl on-hue" style={hue(color)}>
         <span className="font-headline text-[10px] font-bold uppercase leading-none">{fmtDate(ev.date, { month: 'short' })}</span>
         <span className="font-headline text-2xl font-black leading-none">{ev.date.slice(8)}</span>
       </div>
@@ -37,7 +37,7 @@ export const EventCard: React.FC<{ ev: CampusEvent; compact?: boolean }> = ({ ev
 
 export const ClubCard: React.FC<{ club: Club }> = ({ club }) => (
   <Link to={`/clubs/${club.id}`} className="card card-hover flex items-center gap-3 p-4">
-    <span className="hue brut-sm flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl font-headline text-lg font-black text-white" style={hue(club.color)}>{club.name[0]}</span>
+    <span className="hue brut-sm flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl font-headline text-lg font-black on-hue" style={hue(club.color)}>{club.name[0]}</span>
     <span className="min-w-0 flex-1">
       <span className="block truncate font-headline text-base font-extrabold">{club.name}</span>
       <span className="muted block !text-xs">{club.category} · {club.memberCount} members</span>

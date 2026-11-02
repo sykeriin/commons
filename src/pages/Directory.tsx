@@ -24,7 +24,7 @@ const DepartmentPage: React.FC = () => {
   const students = db.people.filter(p => p.departmentId === d.id && p.role === 'student').length;
   return (<>
     <Link to="/departments" className="mb-3 inline-block text-sm font-bold text-secondary hover:underline">← Departments</Link>
-    <div className="hue brut mb-6 rounded-3xl p-6 text-white md:p-8" style={hue(d.color)}><p className="font-headline text-sm font-bold tracking-widest opacity-90">{d.code}</p><h1 className="font-headline text-4xl font-black md:text-5xl">{d.name}</h1><p className="mt-2 max-w-xl font-semibold opacity-95">{d.description}</p>
+    <div className="hue brut mb-6 rounded-3xl p-6 on-hue md:p-8" style={hue(d.color)}><p className="font-headline text-sm font-bold tracking-widest opacity-90">{d.code}</p><h1 className="font-headline text-4xl font-black md:text-5xl">{d.name}</h1><p className="mt-2 max-w-xl font-semibold opacity-95">{d.description}</p>
       <p className="mt-3 flex items-center gap-1.5 text-sm font-bold"><MapPin size={15} />{d.building}</p></div>
     <div className="mb-6 grid grid-cols-3 gap-3"><StatTile label="Faculty" value={faculty.length} /><StatTile label="Students" value={students} /><StatTile label="Courses" value={db.courses.filter(c => c.departmentId === d.id).length} /></div>
     <Segmented className="mb-5" value={tab} onChange={setTab} options={[{ value: 'faculty', label: 'People' }, { value: 'courses', label: 'Courses' }, { value: 'programs', label: 'Programs' }, { value: 'news', label: 'News' }]} />

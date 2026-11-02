@@ -23,7 +23,7 @@ const WeekGrid: React.FC<{ items: ReturnType<typeof timetable> }> = ({ items }) 
             {items.filter(c => c.day === d).map((c, i) => {
               const top = ((minutes(c.start) - 8 * 60) / 60) * 64, height = ((minutes(c.end) - minutes(c.start)) / 60) * 64 - 3;
               return (
-                <Link key={i} to={`/academics/${c.section.id}`} className="hue absolute inset-x-1 overflow-hidden rounded-lg border-2 border-ink p-1.5 text-white transition-transform hover:z-10 hover:scale-[1.03]"
+                <Link key={i} to={`/academics/${c.section.id}`} className="hue absolute inset-x-1 overflow-hidden rounded-lg border-2 border-ink p-1.5 on-hue transition-transform hover:z-10 hover:scale-[1.03]"
                   style={{ top, height, ...hue(c.department?.color) }}>
                   <p className="truncate font-headline text-xs font-black leading-tight">{c.course.code}</p><p className="truncate text-[10px] font-semibold opacity-90">{placeLabel(db, c.placeId).split(',')[0]}</p>
                 </Link>);

@@ -17,7 +17,7 @@ export const Button = React.forwardRef<HTMLButtonElement, BtnProps>(({ variant =
     accent: 'bg-tertiary-container text-on-tertiary-container border-ink brut-sm',
     outline: 'bg-surface-container-lowest text-on-surface border-line hover:border-ink',
     ghost: 'bg-transparent text-on-surface border-transparent hover:bg-surface-container',
-    danger: 'bg-surface-container-lowest text-bad border-bad hover:bg-bad hover:text-white',
+    danger: 'bg-surface-container-lowest text-bad border-bad hover:bg-bad hover:text-on-bad',
   };
   const s = { sm: 'min-h-9 px-3.5 text-xs', md: 'min-h-11 px-5 text-sm', lg: 'min-h-13 px-7 text-base' }[size];
   const raised = variant === 'primary' || variant === 'secondary' || variant === 'accent';
@@ -45,8 +45,8 @@ export const Badge: React.FC<{ children: React.ReactNode; tone?: 'neutral' | 'ok
 export const Avatar: React.FC<{ name: string; size?: number; color?: string; className?: string }> = ({ name, size = 40, color, className }) => {
   const initials = name.replace(/^(Dr|Prof)\.?\s+/i, '').split(/\s+/).slice(0, 2).map(s => s[0]).join('').toUpperCase();
   let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) % 360;
-  return <span aria-hidden style={{ width: size, height: size, fontSize: size * 0.38, background: color ?? `hsl(${h} 48% 38%)` }}
-    className={cn('inline-flex shrink-0 items-center justify-center rounded-full border-2 border-ink font-headline font-black text-white', className)}>{initials}</span>;
+  return <span aria-hidden style={{ width: size, height: size, fontSize: size * 0.38, ...hue(color ?? `hsl(${h} 70% 45%)`) }}
+    className={cn('hue on-hue inline-flex shrink-0 items-center justify-center rounded-full border-2 border-ink font-headline font-black', className)}>{initials}</span>;
 };
 
 export const PageHeader: React.FC<{ title: string; subtitle?: React.ReactNode; actions?: React.ReactNode; back?: () => void; eyebrow?: string }> = ({ title, subtitle, actions, eyebrow }) => (
@@ -138,7 +138,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       <div aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-24 z-[200] flex flex-col items-center gap-2 px-4 lg:bottom-8">
         <AnimatePresence>{items.map(t => (
           <motion.div key={t.id} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }}
-            className={cn('brut-sm pointer-events-auto flex max-w-md items-center gap-2 rounded-full px-4 py-2.5 text-sm font-bold', t.tone === 'ok' ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-bad text-white')}>
+            className={cn('brut-sm pointer-events-auto flex max-w-md items-center gap-2 rounded-full px-4 py-2.5 text-sm font-bold', t.tone === 'ok' ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-bad text-on-bad')}>
             {t.tone === 'ok' ? <Check size={16} /> : <X size={16} />}{t.msg}</motion.div>))}</AnimatePresence>
       </div>
     </ToastCtx.Provider>
