@@ -15,24 +15,24 @@
 :root[data-theme='dark'] {
   --bg: #0b0d11; --s-lowest: #151920; --s-low: #10131a; --s: #1c212a; --s-high: #252b36; --s-highest: #303847;
   --on-s: #eef1f6; --on-s-var: #9aa5b6;
-  --ink: #9aa6ba; --line: #2a313d; --shadow: #a8431f;
-  --primary: #ff8a66; --primary-dim: #ffa088; --on-primary: #2a0c03; --primary-c: #7a2a14; --on-primary-c: #ffe3db;
-  --secondary: #86a2ff; --on-secondary: #0a1a52; --secondary-c: #1f2f73; --on-secondary-c: #dfe5ff;
+  --ink: #9aa6ba; --line: #2a313d; --shadow: #343fa3;
+  --primary: #9aa8ff; --primary-dim: #b3beff; --on-primary: #0c1244; --primary-c: #2a337c; --on-primary-c: #e3e6ff;
+  --secondary: #9aa8ff; --on-secondary: #0c1244; --secondary-c: #232b6b; --on-secondary-c: #dfe5ff;
   --tertiary-c: #232d0a; --on-tertiary-c: #d4f56b; --tertiary: #d4f56b;
   --ok: #5fd68a; --warn: #f0b34a; --bad: #ff8f86;
-  --glow-1: rgba(255,138,102,.09); --glow-2: rgba(134,162,255,.08);
+  --glow-1: rgba(154,168,255,.10); --glow-2: rgba(154,168,255,.05);
   color-scheme: dark;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg: #0b0d11; --s-lowest: #151920; --s-low: #10131a; --s: #1c212a; --s-high: #252b36; --s-highest: #303847;
     --on-s: #eef1f6; --on-s-var: #9aa5b6;
-    --ink: #9aa6ba; --line: #2a313d; --shadow: #a8431f;
-    --primary: #ff8a66; --primary-dim: #ffa088; --on-primary: #2a0c03; --primary-c: #7a2a14; --on-primary-c: #ffe3db;
-    --secondary: #86a2ff; --on-secondary: #0a1a52; --secondary-c: #1f2f73; --on-secondary-c: #dfe5ff;
+    --ink: #9aa6ba; --line: #2a313d; --shadow: #343fa3;
+    --primary: #9aa8ff; --primary-dim: #b3beff; --on-primary: #0c1244; --primary-c: #2a337c; --on-primary-c: #e3e6ff;
+    --secondary: #9aa8ff; --on-secondary: #0c1244; --secondary-c: #232b6b; --on-secondary-c: #dfe5ff;
     --tertiary-c: #232d0a; --on-tertiary-c: #d4f56b; --tertiary: #d4f56b;
     --ok: #5fd68a; --warn: #f0b34a; --bad: #ff8f86;
-    --glow-1: rgba(255,138,102,.09); --glow-2: rgba(134,162,255,.08);
+    --glow-1: rgba(154,168,255,.10); --glow-2: rgba(154,168,255,.05);
     color-scheme: dark;
   }
 }

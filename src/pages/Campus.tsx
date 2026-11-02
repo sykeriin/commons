@@ -8,7 +8,7 @@ import { EventCard, ClubCard } from './parts';
 import { today } from '@/src/lib/dates';
 
 const TILES = [
-  { to: '/events', t: 'Events', icon: CalendarDays, c: '#af2700' },
+  { to: '/events', t: 'Events', icon: CalendarDays, c: '#c2185b' },
   { to: '/clubs', t: 'Clubs', icon: Users, c: '#004be2' },
   { to: '/departments', t: 'Departments', icon: Building2, c: '#00838f' },
   { to: '/people', t: 'People', icon: UserSearch, c: '#6a4fd8' },

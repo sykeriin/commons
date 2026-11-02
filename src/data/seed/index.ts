@@ -6,7 +6,7 @@ function rng(seed: number) { let s = seed; return () => (s = (s * 1664525 + 1013
 
 const DEPTS = [
   { id: 'cs', name: 'Computer Science', code: 'CS', color: '#004be2', building: 'Turing Hall', description: 'Algorithms, systems, AI and the software that runs the world.' },
-  { id: 'eng', name: 'Engineering', code: 'ENG', color: '#af2700', building: 'Forge Building', description: 'Mechanical, electrical and civil engineering with a build-first culture.' },
+  { id: 'eng', name: 'Engineering', code: 'ENG', color: '#455a64', building: 'Forge Building', description: 'Mechanical, electrical and civil engineering with a build-first culture.' },
   { id: 'bio', name: 'Life Sciences', code: 'BIO', color: '#4e6300', building: 'Helix Labs', description: 'Biology, biochemistry and environmental science.' },
   { id: 'arts', name: 'Arts & Design', code: 'ART', color: '#c2185b', building: 'Atelier', description: 'Visual design, media, music and performance.' },
   { id: 'bus', name: 'Business', code: 'BUS', color: '#6a4fd8', building: 'Meridian Centre', description: 'Management, economics and entrepreneurship.' },
@@ -119,13 +119,13 @@ export function buildSeed(): DB {
   const CLUBS: [string, string, string, string, string, string?][] = [
     ['robotics', 'Robotics Society', 'Tech', 'Build bots, enter national competitions, break things responsibly.', '#004be2', 'f-lena'],
     ['writers', 'Creative Writing Guild', 'Arts', 'Poets, novelists and storytellers sharing work every week.', '#c2185b', 'f-mei'],
-    ['hoops', 'Varsity Basketball', 'Sports', 'Official campus team. Tryouts every semester.', '#af2700'],
+    ['hoops', 'Varsity Basketball', 'Sports', 'Official campus team. Tryouts every semester.', '#9d2f6b'],
     ['ux', 'UX Design Collective', 'Design', 'Portfolio reviews, industry talks and design sprints.', '#6a4fd8', 'f-sofia'],
     ['chess', 'Chess Masters', 'Games', 'Strategic thinking and friendly competition, all levels.', '#4e6300'],
     ['ml', 'AI & ML Circle', 'Tech', 'Reading groups and weekend model-building.', '#004be2', 'f-ada'],
     ['green', 'Green Campus', 'Service', 'Sustainability projects, clean-ups and the community garden.', '#00838f', 'f-priya'],
     ['debate', 'Debate Union', 'Academic', 'Parliamentary debate, public speaking and inter-college tournaments.', '#6a4fd8', 'f-eli'],
-    ['startup', 'Startup Garage', 'Business', 'Pitch nights, founder talks and a small seed fund.', '#af2700', 'f-claire'],
+    ['startup', 'Startup Garage', 'Business', 'Pitch nights, founder talks and a small seed fund.', '#9d2f6b', 'f-claire'],
     ['film', 'Film Society', 'Arts', 'Weekly screenings and a yearly short-film festival.', '#c2185b', 'f-jin'],
     ['dance', 'Rhythm Dance Crew', 'Arts', 'Street, contemporary and cultural dance.', '#c2185b'],
     ['biolab', 'Biotech Lab Club', 'Science', 'Journal clubs and open-lab nights.', '#4e6300', 'f-kwame'],
