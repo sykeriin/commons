@@ -202,6 +202,7 @@ export class DemoStore implements Store {
       if (e.scope === 'club') {
         const club = this.db.clubs.find(c => c.id === e.clubId); if (!club || !canManageClub(this.db, me, club)) throw new Error('Only club officers can create club events');
       }
+      if (e.scope === 'department' && !(can(me, 'teach') || me.role === 'staff' || me.role === 'admin')) throw new Error('Only faculty can host department events');
       const approval = initialEventApproval(me, e.scope);
       this.set(d => ({ ...d, events: [...d.events, { ...e, id, organizerId: me.id, approval, createdAt: nowISO() }] }));
       return id;

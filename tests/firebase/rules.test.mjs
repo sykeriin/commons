@@ -91,6 +91,8 @@ await t('student forges join request for someone else', false, () => setDoc(D(as
 // --- events
 await t('club president creates club event', true, () => setDoc(D(as('s1'), 'events/e10'), { id: 'e10', scope: 'club', clubId: 'club1', organizerId: 's1', approval: 'approved' }));
 await t('non-member creates club event', false, () => setDoc(D(as('s5'), 'events/e11'), { id: 'e11', scope: 'club', clubId: 'club1', organizerId: 's5', approval: 'approved' }));
+await t('student creates department event', false, () => setDoc(D(as('s5'), 'events/e14'), { id: 'e14', scope: 'department', departmentId: 'cs', organizerId: 's5', approval: 'approved' }));
+await t('faculty creates department event', true, () => setDoc(D(as('f1'), 'events/e15'), { id: 'e15', scope: 'department', departmentId: 'cs', organizerId: 'f1', approval: 'approved' }));
 await t('student creates campus event pending', true, () => setDoc(D(as('s5'), 'events/e12'), { id: 'e12', scope: 'campus', organizerId: 's5', approval: 'pending' }));
 await t('student creates campus event pre-approved', false, () => setDoc(D(as('s5'), 'events/e13'), { id: 'e13', scope: 'campus', organizerId: 's5', approval: 'approved' }));
 await t('organizer self-approves campus event', false, () => updateDoc(D(as('s2'), 'events/ev3'), { approval: 'approved' }));

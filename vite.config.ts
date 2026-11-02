@@ -6,7 +6,8 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: mode === 'production' ? '/commons/' : '/',
+    // GitHub Pages serves from /commons/. Native apps load from the bundle root, so use relative paths.
+    base: mode === 'mobile' ? './' : mode === 'production' ? '/commons/' : '/',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

@@ -142,7 +142,8 @@ service cloud.firestore {
       // Campus-wide events need staff approval. Club events need a club officer.
       allow create: if isStaff() || (signedIn() && request.resource.data.organizerId == uid() &&
         (request.resource.data.scope == 'campus' ? request.resource.data.approval == 'pending' : request.resource.data.approval == 'approved') &&
-        (request.resource.data.scope != 'club' || clubManager(request.resource.data.clubId)));
+        (request.resource.data.scope != 'club' || clubManager(request.resource.data.clubId)) &&
+        (request.resource.data.scope != 'department' || isTeacher()));
       allow update: if isStaff() || (eventManager(id) && request.resource.data.approval == resource.data.approval);
       allow delete: if eventManager(id);
     }

@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, type Auth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, signOut, type Auth } from 'firebase/auth';
+import { Capacitor } from '@capacitor/core';
 import { getFirestore, type Firestore } from 'firebase/firestore';
 import firebaseConfig from '@/firebase-applet-config.json';
 
@@ -19,7 +20,21 @@ export const auth = _auth; export const db = _db;
 
 export async function signIn() {
   if (!_auth) throw new Error('Firebase is not configured');
-  try { return (await signInWithPopup(_auth, new GoogleAuthProvider())).user; }
-  catch (e: any) { if (e?.code === 'auth/popup-closed-by-user' || e?.code === 'auth/cancelled-popup-request') return null; throw e; }
+  try {
+    if (Capacitor.isNativePlatform()) {
+      // Popups don't work inside a native WebView: use the platform's Google sign-in, then hand the token to the web SDK.
+      const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication');
+      const res = await FirebaseAuthentication.signInWithGoogle();
+      const cred = GoogleAuthProvider.credential(res.credential?.idToken ?? null, res.credential?.accessToken ?? null);
+      return (await signInWithCredential(_auth, cred)).user;
+    }
+    return (await signInWithPopup(_auth, new GoogleAuthProvider())).user;
+  } catch (e: any) {
+    if (e?.code === 'auth/popup-closed-by-user' || e?.code === 'auth/cancelled-popup-request' || /cancel/i.test(e?.message ?? '')) return null;
+    throw e;
+  }
 }
-export async function logout() { if (_auth) await signOut(_auth); }
+export async function logout() {
+  if (Capacitor.isNativePlatform()) { try { const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication'); await FirebaseAuthentication.signOut(); } catch { /* ignore */ } }
+  if (_auth) await signOut(_auth);
+}

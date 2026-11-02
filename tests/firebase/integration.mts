@@ -40,6 +40,9 @@ check('new club stored as pending', (await getDoc(doc(adminFs, `clubs/${clubId}`
 check('rsvp doc has deterministic id', (await getDoc(doc(adminFs, 'rsvps/ev-1_s-demo'))).exists());
 let threw = false; try { await A.decideClub(clubId, 'approved'); } catch { threw = true; } check('student cannot approve own club (store guard)', threw);
 
+let tDept = false; try { await A.createEvent({ title: 'x', description: 'x', category: 'Social', date: '2026-12-01', start: '10:00', end: '11:00', placeId: 'quad', scope: 'department', departmentId: 'cs' }); } catch { tDept = true; }
+check('student cannot host department event (store guard)', tDept);
+
 // 3. Faculty acts on their own section.
 const fac = await open('f-ravi'); const FA = fac.s.actions; const fst = fac.s.getState();
 check('faculty sees own roster attendance', fst.attendance.length > 0 && fst.attendance.every(a => (fst.sections.find(s => s.id === a.sectionId)?.instructorId) === 'f-ravi'));
