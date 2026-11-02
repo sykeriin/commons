@@ -65,7 +65,7 @@ const SectionManage: React.FC = () => {
         </li>); })}{!roster.length && <li className="p-4"><EmptyState title="No students enrolled" /></li>}</ul></Card>}
 
       {tab === 'attendance' && (<>
-        <div className="mb-4 flex items-end gap-3"><Field label="Class date"><Input type="date" value={date} onChange={e => { setDate(e.target.value); setMarks({}); }} /></Field>
+        <div className="mb-4 flex flex-wrap items-end gap-3"><Field label="Class date"><Input type="date" value={date} onChange={e => { setDate(e.target.value); setMarks({}); }} /></Field>
           <Button onClick={() => act(() => A.saveAttendance(s.id, date, roster.map(r => ({ studentId: r.p.id, status: status(r.p.id) }))), 'Attendance saved')}>Save</Button>
           <Button variant="outline" onClick={() => setMarks(Object.fromEntries(roster.map(r => [r.p.id, 'present'])))}>All present</Button></div>
         <Card className="!p-0"><ul className="divide-y-2 divide-line">{roster.map(({ p }) => (

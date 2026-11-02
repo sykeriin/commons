@@ -55,6 +55,12 @@ npm test            # needs Java; starts the Firestore emulator
 
 `npm test` runs 96 security-rule tests and 24 integration tests that drive the real `FirebaseStore` as each role against the real rules.
 
+```bash
+npm run test:e2e    # browser tests; starts its own dev server, needs Chromium (npx playwright install chromium)
+```
+
+`test:e2e` drives the real app as each role: every route on phone and desktop with no console errors, nine behaviour flows (enrol, waitlist, approvals, role gating), a phone-width overflow audit across every tab in both themes, and WCAG contrast checks for the dark theme. Playwright is pinned to an exact version so it matches the installed browser build.
+
 ## Native apps (Android & iOS)
 
 ```bash

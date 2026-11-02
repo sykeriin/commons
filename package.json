@@ -15,7 +15,8 @@
     "build:mobile": "vite build --mode mobile",
     "cap:sync": "npm run build:mobile && cap sync",
     "android": "npm run cap:sync && cap open android",
-    "ios": "npm run cap:sync && cap open ios"
+    "ios": "npm run cap:sync && cap open ios",
+    "test:e2e": "node tests/e2e/run.mjs"
   },
   "dependencies": {
     "@capacitor-firebase/authentication": "^8.6.0",
@@ -51,6 +52,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.21",
+    "playwright": "1.63.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
