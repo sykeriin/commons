@@ -45,7 +45,7 @@ const Detail: React.FC = () => {
       <Link to="/clubs" className="mb-3 inline-block text-sm font-bold text-secondary hover:underline">← Clubs</Link>
       <div className="brut mb-6 flex flex-wrap items-center gap-5 rounded-3xl p-6 text-white md:p-8" style={{ background: club.color }}>
         <span className="flex h-20 w-20 items-center justify-center rounded-3xl border-[3px] border-white/70 bg-white/20 font-headline text-4xl font-black">{club.name[0]}</span>
-        <div className="min-w-0 flex-1"><div className="flex flex-wrap gap-2"><Badge tone="neutral" className="!bg-white/25 !text-white">{club.category}</Badge>{club.approval !== 'approved' && <Badge tone="warn">Pending approval</Badge>}</div>
+        <div className="min-w-[15rem] flex-1"><div className="flex flex-wrap gap-2"><Badge tone="neutral" className="!bg-white/25 !text-white">{club.category}</Badge>{club.approval !== 'approved' && <Badge tone="warn">Pending approval</Badge>}</div>
           <h1 className="mt-2 font-headline text-3xl font-black leading-none md:text-5xl">{club.name}</h1><p className="mt-2 text-sm font-bold opacity-90">{club.memberCount} members · President {personName(db, club.presidentId)}{club.advisorId ? ` · Advisor ${personName(db, club.advisorId)}` : ''}</p></div>
         {club.approval === 'approved' && (member ? (clubRoleOf(db, club.id, me.id) !== 'president' && <Button variant="outline" onClick={() => act(() => A.leaveClub(club.id), 'You left the club')}>Leave</Button>)
           : myReq ? <Badge tone="warn">Request sent</Badge>

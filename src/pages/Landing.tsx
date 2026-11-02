@@ -16,7 +16,7 @@ const FEATURES = [
 export const Landing: React.FC<{ onGoogle?: () => void }> = ({ onGoogle }) => {
   const { signInDemo } = useSession();
   return (
-    <div className="safe-top mx-auto min-h-screen max-w-5xl px-5 pb-16 pt-10 md:pt-16">
+    <div className="mx-auto min-h-screen max-w-5xl px-5 pb-16 pt-[calc(2.5rem+env(safe-area-inset-top))] md:pt-16">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
         <span className="brut-sm inline-flex items-center gap-2 rounded-full bg-tertiary-container px-3.5 py-1 font-headline text-xs font-extrabold uppercase tracking-widest text-on-tertiary-container">Your campus, one app</span>
         <h1 className="mt-5 font-headline text-6xl font-black leading-[0.9] tracking-tighter md:text-8xl">Com<span className="text-primary">mons</span></h1>

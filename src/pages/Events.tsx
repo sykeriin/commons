@@ -26,7 +26,7 @@ const List: React.FC = () => {
         <Input aria-label="Search events" className="max-w-56" placeholder="Search…" value={q} onChange={e => setQ(e.target.value)} /></div>
       <div className="scroll-hide mb-6 flex gap-2 overflow-x-auto">{cats.map(c => <button key={c} onClick={() => setCat(c)} className={`min-h-9 shrink-0 rounded-full border-2 px-3.5 text-xs font-bold ${cat === c ? 'border-ink bg-ink text-background' : 'border-line text-on-surface-variant'}`}>{c}</button>)}</div>
       {Object.keys(groups).length === 0 ? <EmptyState title="No events here" hint="Try another filter, or create one yourself." /> :
-        Object.entries(groups).map(([d, evs]) => <Section key={d} title={relDay(d) + (relDay(d).includes(',') ? '' : ` · ${fmtDate(d)}`)}><div className="grid gap-3 md:grid-cols-2">{evs.map(e => <EventCard key={e.id} ev={e} />)}</div></Section>)}
+        <div className="grid gap-x-6 xl:grid-cols-2">{Object.entries(groups).map(([d, evs]) => <Section key={d} title={relDay(d) + (relDay(d).includes(',') ? '' : ` · ${fmtDate(d)}`)}><div className="space-y-3">{evs.map(e => <EventCard key={e.id} ev={e} />)}</div></Section>)}</div>}
     </>
   );
 };

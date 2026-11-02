@@ -20,7 +20,7 @@ export const Button = React.forwardRef<HTMLButtonElement, BtnProps>(({ variant =
   const raised = variant === 'primary' || variant === 'secondary' || variant === 'accent';
   return (
     <button ref={ref} disabled={disabled || busy} onClick={onClick}
-      className={cn('inline-flex select-none items-center justify-center gap-2 rounded-full border-2 font-headline font-extrabold tracking-wide transition-all disabled:cursor-not-allowed disabled:opacity-50',
+      className={cn('inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 font-headline font-extrabold tracking-wide transition-all disabled:cursor-not-allowed disabled:opacity-50',
         raised && 'hover:translate-x-px hover:translate-y-px hover:shadow-[1.5px_1.5px_0_0_var(--ink)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none',
         v[variant], s, block && 'w-full', className)} {...p}>
       {busy ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" /> : null}{children}
@@ -112,7 +112,7 @@ export const Sheet: React.FC<{ open: boolean; onClose: () => void; title: string
       {open && (
         <motion.div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/55 md:items-center md:p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={e => e.target === e.currentTarget && onClose()}>
           <motion.div role="dialog" aria-modal aria-label={title} initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 60, opacity: 0 }} transition={{ type: 'spring', damping: 30, stiffness: 340 }}
-            className="safe-bottom brut max-h-[88vh] w-full overflow-y-auto rounded-t-3xl bg-surface-container-lowest p-5 md:max-w-lg md:rounded-3xl">
+            className="brut max-h-[88vh] w-full overflow-y-auto rounded-t-3xl bg-surface-container-lowest p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] md:max-w-lg md:rounded-3xl">
             <div className="mb-4 flex items-center justify-between"><h2 className="h-sec !text-xl">{title}</h2>
               <button aria-label="Close" onClick={onClose} className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-surface-container"><X size={20} /></button></div>
             {children}
