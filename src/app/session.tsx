@@ -2,8 +2,9 @@ import React, { createContext, useContext, useMemo, useState, useSyncExternalSto
 import type { DB, Person } from '@/src/data/types';
 import type { Store } from '@/src/data/store';
 import { DemoStore } from '@/src/data/demoStore';
-import { FirebaseStore, ensureUser } from '@/src/data/firebaseStore';
-import { auth, db as fsDb, firebaseEnabled, signIn, logout } from '@/src/lib/firebase';
+import { FirebaseStore, ensureUser, callableApi } from '@/src/data/firebaseStore';
+import { auth, db as fsDb, functions as fsFns, firebaseEnabled, signIn, logout } from '@/src/lib/firebase';
+import { registerPush } from '@/src/lib/push';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useToast } from '@/src/ui';
 
@@ -43,16 +44,17 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Real accounts: swap in the Firestore-backed store when a Firebase user is signed in.
   useEffect(() => {
-    if (!firebaseEnabled || !auth || !fsDb) return;
+    if (!firebaseEnabled || !auth || !fsDb || !fsFns) return;
     let cancelled = false;
     const off = onAuthStateChanged(auth, async user => {
       if (user) {
         setBooting(true);
         try {
           await ensureUser(fsDb, user);
-          const fs = new FirebaseStore(user.uid, fsDb); fs.onError = m => toast(m, 'bad');
+          const fs = new FirebaseStore(user.uid, fsDb, callableApi(fsFns)); fs.onError = m => toast(m, 'bad');
           await fs.ready; if (cancelled) { fs.dispose(); return; }
           setStore(prev => { prev.dispose?.(); return fs; }); setActorId(user.uid);
+          registerPush(user.uid, fsDb, link => { location.hash = '#' + link; }).catch(() => { /* push is optional */ });
         } catch (e: any) { toast(e?.message ?? 'Sign-in failed', 'bad'); await logout(); }
         finally { setBooting(false); }
       } else {

@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, signOut, type Auth } from 'firebase/auth';
 import { Capacitor } from '@capacitor/core';
 import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getFunctions, type Functions } from 'firebase/functions';
 import firebaseConfig from '@/firebase-applet-config.json';
 
 const cfg = firebaseConfig as Record<string, string>;
@@ -10,13 +11,14 @@ const isPlaceholder = (v?: string) => !v || v.startsWith('YOUR_');
 /** False until a real Firebase web config is placed in firebase-applet-config.json. The app then runs in demo mode only. */
 export const firebaseEnabled = !isPlaceholder(cfg.projectId) && !isPlaceholder(cfg.apiKey) && !isPlaceholder(cfg.appId);
 
-let _auth: Auth | null = null; let _db: Firestore | null = null;
+let _auth: Auth | null = null; let _db: Firestore | null = null; let _fns: Functions | null = null;
 if (firebaseEnabled) {
   const app = initializeApp(cfg);
   _auth = getAuth(app);
+  _fns = getFunctions(app, cfg.functionsRegion || 'us-central1');
   _db = isPlaceholder(cfg.firestoreDatabaseId) || cfg.firestoreDatabaseId === '(default)' ? getFirestore(app) : getFirestore(app, cfg.firestoreDatabaseId);
 }
-export const auth = _auth; export const db = _db;
+export const auth = _auth; export const db = _db; export const functions = _fns;
 
 export async function signIn() {
   if (!_auth) throw new Error('Firebase is not configured');

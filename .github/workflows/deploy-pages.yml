@@ -33,6 +33,9 @@ jobs:
       - name: Type-check
         run: npm run lint
 
+      - name: Type-check Cloud Functions
+        run: npm --prefix functions ci && npm --prefix functions run lint
+
       - name: Build site
         run: npm run build
 

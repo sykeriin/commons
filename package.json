@@ -8,18 +8,20 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit",
+    "lint": "tsc --noEmit && npm --prefix functions run lint",
     "test:rules": "npx -y firebase-tools emulators:exec --only firestore --project demo-commons 'node tests/firebase/rules.test.mjs'",
     "test:firebase": "npx -y firebase-tools emulators:exec --only firestore --project demo-commons 'tsx tests/firebase/integration.mts'",
-    "test": "npm run test:rules && npm run test:firebase",
+    "test": "npm run test:rules && npm run test:firebase && npm run test:functions",
     "build:mobile": "vite build --mode mobile",
     "cap:sync": "npm run build:mobile && cap sync",
     "android": "npm run cap:sync && cap open android",
     "ios": "npm run cap:sync && cap open ios",
-    "test:e2e": "node tests/e2e/run.mjs"
+    "test:e2e": "node tests/e2e/run.mjs",
+    "test:functions": "npx -y firebase-tools emulators:exec --only firestore --project demo-commons 'tsx functions/test/handlers.test.ts'"
   },
   "dependencies": {
     "@capacitor-firebase/authentication": "^8.6.0",
+    "@capacitor-firebase/messaging": "^8.6.0",
     "@capacitor/app": "^8.1.2",
     "@capacitor/core": "^8.6.0",
     "@capacitor/haptics": "^8.0.2",

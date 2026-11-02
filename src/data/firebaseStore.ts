@@ -1,9 +1,27 @@
 import { collection, doc, getDoc, onSnapshot, query, setDoc, where, writeBatch, type Firestore, type Query, type Unsubscribe } from 'firebase/firestore';
+import { httpsCallable, type Functions } from 'firebase/functions';
 import type { DB, Enrollment, Person } from './types';
 import { EMPTY_DB } from './types';
 import { DemoStore } from './demoStore';
 import { buildSeed } from './seed';
 import { BOOTSTRAP_ADMIN_EMAIL } from '@/src/lib/config';
+
+/** The server-side seat logic (Cloud Functions). Injected so tests can call the handlers directly. */
+export interface ServerApi {
+  enroll(sectionId: string, studentId: string): Promise<'enrolled' | 'waitlisted'>;
+  drop(sectionId: string, studentId: string): Promise<void>;
+  rsvp(eventId: string, status: 'going' | 'maybe'): Promise<'going' | 'waitlist' | 'maybe'>;
+  cancelRsvp(eventId: string): Promise<void>;
+}
+export const callableApi = (fns: Functions): ServerApi => {
+  const call = <T,>(name: string) => async (data: object) => (await httpsCallable<object, T>(fns, name)(data)).data;
+  return {
+    enroll: (sectionId, studentId) => call<'enrolled' | 'waitlisted'>('enroll')({ sectionId, studentId }),
+    drop: (sectionId, studentId) => call<void>('drop')({ sectionId, studentId }),
+    rsvp: (eventId, status) => call<'going' | 'waitlist' | 'maybe'>('rsvp')({ eventId, status }),
+    cancelRsvp: eventId => call<void>('cancelRsvp')({ eventId }),
+  };
+};
 
 type Key = keyof DB;
 /** DB key -> Firestore collection. */
@@ -41,8 +59,17 @@ export class FirebaseStore extends DemoStore {
   private privRole: string | null = null; private chain: Promise<void> = Promise.resolve();
   private grades = new Map<string, string>(); private rawEnrollments: Enrollment[] = [];
 
-  constructor(uid: string, private fs: Firestore) {
+  constructor(uid: string, private fs: Firestore, api: ServerApi) {
     super(uid, { ...EMPTY_DB });
+    // Seat counts and waitlist order must be decided on the server, in a transaction. Everything else stays client-side.
+    // The server writes the result to Firestore; our snapshot listeners pick it up, so there is no local state to patch.
+    this.actions = {
+      ...this.actions,
+      enroll: async (sectionId, studentId) => api.enroll(sectionId, studentId),
+      drop: async (sectionId, studentId) => { await api.drop(sectionId, studentId); },
+      rsvp: async (eventId, status) => api.rsvp(eventId, status),
+      cancelRsvp: async eventId => { await api.cancelRsvp(eventId); },
+    };
     let pending = 0; let resolve!: () => void; this.ready = new Promise(r => (resolve = r));
     const track = () => { pending++; let done = false; return () => { if (!done) { done = true; if (--pending === 0) resolve(); } }; };
     const listen = (q: Query, onDocs: (docs: any[]) => void, label: string) => {
@@ -100,6 +127,7 @@ export class FirebaseStore extends DemoStore {
       const after = new Set<string>();
       for (const o of b) {
         after.add(o.id); const old = before.get(o.id); if (old === o) continue;
+        if (key === 'notices' && !old) continue; // created by Cloud Functions, never by clients
         let data: any = o; const c = COLL[key];
         if (key === 'enrollments') {
           const { grade, ...rest } = o as Enrollment; data = rest;

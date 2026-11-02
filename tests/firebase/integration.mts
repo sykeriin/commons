@@ -3,13 +3,25 @@
 import { initializeTestEnvironment } from '@firebase/rules-unit-testing';
 import { readFileSync } from 'fs';
 import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
-import { FirebaseStore, ensureUser } from '../../src/data/firebaseStore';
+import { createRequire } from 'node:module';
+import { FirebaseStore, ensureUser, type ServerApi } from '../../src/data/firebaseStore';
+
+// Stand-in for the Cloud Functions transport: call the real server handlers with the Admin SDK (bypasses rules, as in production).
+const require = createRequire(new URL('../../functions/package.json', import.meta.url));
+const adminDb = require('firebase-admin/firestore').getFirestore(require('firebase-admin/app').initializeApp({ projectId: 'demo-commons' }, 'server'));
+const hm: any = await import('../../functions/src/handlers'); const H = hm.default ?? hm;
+const apiFor = (uid: string): ServerApi => ({
+  enroll: async (sectionId, studentId) => H.enroll(adminDb, await H.callerOf(adminDb, uid), { sectionId, studentId }),
+  drop: async (sectionId, studentId) => H.drop(adminDb, await H.callerOf(adminDb, uid), { sectionId, studentId }),
+  rsvp: async (eventId, status) => H.rsvp(adminDb, await H.callerOf(adminDb, uid), { eventId, status }),
+  cancelRsvp: async eventId => H.cancelRsvp(adminDb, await H.callerOf(adminDb, uid), { eventId }),
+});
 
 const env = await initializeTestEnvironment({ projectId: 'demo-commons', firestore: { rules: readFileSync(new URL('../../firestore.rules', import.meta.url), 'utf8'), host: '127.0.0.1', port: 8085 } });
 const ctxFor = (uid: string, email = `${uid}@commons.edu`) => env.authenticatedContext(uid, { email, email_verified: true }).firestore() as any;
 const errors: string[] = []; let pass = 0, fail = 0;
 const check = (name: string, ok: boolean, extra = '') => { ok ? pass++ : (fail++, console.log('FAIL', name, extra)); };
-const open = async (uid: string, email?: string) => { const fs = ctxFor(uid, email); const s = new FirebaseStore(uid, fs); s.onError = m => errors.push(`${uid}: ${m}`); await s.ready; await new Promise(r => setTimeout(r, 400)); return { s, fs }; };
+const open = async (uid: string, email?: string) => { const fs = ctxFor(uid, email); const s = new FirebaseStore(uid, fs, apiFor(uid)); s.onError = m => errors.push(`${uid}: ${m}`); await s.ready; await new Promise(r => setTimeout(r, 400)); return { s, fs }; };
 const count = async (fs: any, c: string) => (await getDocs(collection(fs, c))).size;
 
 // 1. Bootstrap admin signs in for the first time, imports sample campus.
@@ -31,6 +43,8 @@ check('student does NOT see classmates grades', st.enrollments.filter(e => e.stu
 check('student sees only own attendance', st.attendance.length > 0 && st.attendance.every(a => a.studentId === 's-demo'));
 const A = stu.s.actions;
 check('enroll works', (await A.enroll('sec-bio240', 's-demo')) === 'enrolled'); await stu.s.flush();
+await new Promise(r => setTimeout(r, 500));
+check('enrolment reaches the store through the server + snapshot (no local patching)', stu.s.getState().enrollments.some(e => e.studentId === 's-demo' && e.sectionId === 'sec-bio240' && e.status === 'enrolled'));
 check('enrolment persisted', (await getDoc(doc(adminFs, 'enrollments/en-s-demo-sec-bio240'))).exists() || (await getDocs(collection(adminFs, 'enrollments'))).docs.some(d => d.data().sectionId === 'sec-bio240' && d.data().studentId === 's-demo'));
 await A.rsvp('ev-1', 'going'); await A.joinClub('chess'); await A.submitAssignment('as-sec-cs220-3', 's-demo');
 const clubId = await A.createClub({ name: 'Origami Order', description: 'Folding', category: 'Arts', color: '#c2185b', joinPolicy: 'open' });
@@ -38,6 +52,9 @@ await A.requestRole('s-demo', 'faculty', 'I teach'); await A.requestJoin('hoops'
 check('student actions raised no permission errors', errors.length === 0, errors.join(' | '));
 check('new club stored as pending', (await getDoc(doc(adminFs, `clubs/${clubId}`))).data()?.approval === 'pending');
 check('rsvp doc has deterministic id', (await getDoc(doc(adminFs, 'rsvps/ev-1_s-demo'))).exists());
+await A.cancelRsvp('ev-1'); await new Promise(r => setTimeout(r, 400));
+check('cancelRsvp removes the doc via the server', !(await getDoc(doc(adminFs, 'rsvps/ev-1_s-demo'))).exists());
+await A.rsvp('ev-1', 'going'); await stu.s.flush();
 let threw = false; try { await A.decideClub(clubId, 'approved'); } catch { threw = true; } check('student cannot approve own club (store guard)', threw);
 
 let tDept = false; try { await A.createEvent({ title: 'x', description: 'x', category: 'Social', date: '2026-12-01', start: '10:00', end: '11:00', placeId: 'quad', scope: 'department', departmentId: 'cs' }); } catch { tDept = true; }
@@ -58,6 +75,7 @@ check('other faculty cannot grade (store guard)', t2);
 // 4. Staff approves; admin decides role + changes role.
 const staff = await open('staff-jo'); await staff.s.actions.decideClub('quidditch', 'approved'); await staff.s.actions.decideEvent('ev-12', 'approved'); await staff.s.flush();
 check('staff approvals raised no permission errors', errors.length === 0, errors.join(' | '));
+check('client did not write a notice for the club president (server triggers do that)', (await adminDb.collection('notices').get()).docs.every((d: any) => !d.id.startsWith('n-')));
 check('club approved in Firestore', (await getDoc(doc(adminFs, 'clubs/quidditch'))).data()?.approval === 'approved');
 const adm = await open('boss', 'durva.s170@gmail.com'); const rr = adm.s.getState().roleRequests.find(r => r.personId === 's-demo')!;
 await adm.s.actions.decideRole(rr.id, 'approved'); await adm.s.actions.setPersonRole('s-3', 'staff'); await adm.s.actions.saveDepartment({ name: 'Law', code: 'LAW' }); await adm.s.flush();

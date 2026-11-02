@@ -40,11 +40,26 @@ With the placeholder Firebase config the app runs in **demo mode**: pick a perso
 4. Set `BOOTSTRAP_ADMIN_EMAIL` in [`src/lib/config.ts`](src/lib/config.ts) **and** `bootstrapAdmin()` in `firestore.rules` to your Google account. The first sign-in from that verified email becomes the administrator. Everyone else starts as a student.
 5. Sign in as that admin and use **Manage → Import sample campus** on an empty project, or enter your own data.
 
-### Known limits (need Cloud Functions to close)
+### Cloud Functions (required for real accounts)
 
-- Event and course **capacity / waitlist** are enforced by the client; Firestore rules can't count documents, so two people racing for the last seat can both get it.
-- Any signed-in user can write a notification for another user (size-limited).
-- Push notifications aren't implemented (needs FCM/APNs keys).
+Seat limits and notifications need server code, because Firestore rules cannot count documents. The `functions/` package provides it:
+
+- **`enroll`, `drop`, `rsvp`, `cancelRsvp`** count seats and move people off the waitlist inside a transaction, so a full course or event cannot be oversold however many requests arrive at once. The rules forbid clients from writing enrolments or RSVPs directly, so the app has no other path.
+- **Firestore triggers** create notifications (grades, assignments, join requests, club/event/role decisions, waitlist promotions). Clients can only mark their own as read.
+- **`onNoticePush`** sends each notification to the recipient's registered devices through FCM and removes tokens FCM reports as dead.
+
+```bash
+npm --prefix functions install
+cp functions/.env.example functions/.env      # set FIRESTORE_DATABASE_ID only if you use a named database
+npx firebase-tools deploy --only functions,firestore:rules
+```
+
+Requirements and limits:
+
+- Deploying functions needs the Firebase **Blaze (pay-as-you-go)** plan. **Until they are deployed, enrolling and RSVPing do not work against a real project** (demo mode is unaffected).
+- Under heavy contention a transaction retries up to 30 times, so a burst of thousands of students hitting one section at the same instant could see some requests fail with `aborted`; the app reports it and they can retry.
+- The Firestore triggers, the callable wrappers and a real FCM delivery have **not been run**: no deployed project or emulator for functions was available here. The handlers they call, the notice builders and the push sender are tested (see below), and the thin wrappers in `functions/src/index.ts` are type-checked only.
+- Role changes are picked up live for the user's private-data queries. Web push is not implemented.
 
 ## Tests
 
@@ -53,7 +68,7 @@ npm run lint        # type-check
 npm test            # needs Java; starts the Firestore emulator
 ```
 
-`npm test` runs 96 security-rule tests and 24 integration tests that drive the real `FirebaseStore` as each role against the real rules.
+`npm test` runs, against the Firestore emulator: 104 security-rule tests; 27 integration tests that drive the real `FirebaseStore` as each role against the real rules and server handlers; and 16 tests of the server handlers themselves, including races (40 simultaneous enrolments into 10 seats must end with exactly 10 enrolled; the same suite run against a non-transactional implementation fails).
 
 ```bash
 npm run test:e2e    # browser tests; starts its own dev server, needs Chromium (npx playwright install chromium)
@@ -72,6 +87,7 @@ npm run ios               # opens Xcode           (needs macOS + Xcode)
 
 Before shipping:
 
+- **Push notifications** use `@capacitor-firebase/messaging` (`src/lib/push.ts`). Besides the config files below you must upload an APNs key in the Firebase console, enable the Push Notifications capability in Xcode, and add the AppDelegate forwarding code from [the plugin's iOS setup](https://github.com/capawesome-team/capacitor-firebase/tree/main/packages/messaging#ios). I did not add that Swift code because I could not compile it here. *Token registration and tap-to-open are written but unverified on a device.*
 - **Google sign-in** in the native app uses `@capacitor-firebase/authentication`. Add `google-services.json` to `android/app/` and `GoogleService-Info.plist` to `ios/App/App/` (from the Firebase console) and register your SHA-1 / URL scheme. *This path is written but unverified on a device.* Demo mode needs none of this.
 - Replace the default launcher icon and splash (`@capacitor/assets` can generate them).
 - App id is `app.commons.campus` in [`capacitor.config.ts`](capacitor.config.ts). Change it to your own reverse-DNS id.
@@ -84,7 +100,8 @@ src/app/        session, router shell, role-aware navigation
 src/pages/      screens (Academics, Teaching, Clubs, Events, Manage, …)
 src/ui/         design-system components (Button, Card, Sheet, Toast, …)
 src/data/       types, selectors, DemoStore, FirebaseStore, seed data
-src/lib/        permissions, dates, firebase init, native bridge
+src/lib/        permissions, dates, firebase init, native bridge, push
+functions/      Cloud Functions: seat/waitlist transactions, notification triggers, push
 tests/firebase/ rules + integration tests
 android/ ios/   Capacitor native projects
 ```

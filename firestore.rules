@@ -3,9 +3,10 @@ rules_version = '2';
 // Commons security rules.
 // These mirror src/lib/permissions.ts. The client enforces the same checks, but only these rules are authoritative.
 //
-// Known limits (need Cloud Functions to close, see README):
-//  - Event / course capacity and waitlist ordering are enforced client-side only (rules cannot count documents).
-//  - Any signed-in user can create a notification for another user (bounded in size).
+// Writes that need counting or that notify other people go through Cloud Functions (functions/src), because rules
+// cannot count documents:
+//  - enrolments and RSVPs (seat limits, waitlist order) are written only by the enroll/drop/rsvp/cancelRsvp functions
+//  - notifications are created only by Firestore triggers; clients may only mark their own as read
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -53,6 +54,9 @@ service cloud.firestore {
         request.resource.data.karma == resource.data.karma &&
         (resource.data.role == 'student' || request.resource.data.get('departmentId', '') == resource.data.get('departmentId', '')));
       allow delete: if isAdmin();
+
+      // Push tokens for this user's devices. The notification sender reads them with admin privileges.
+      match /devices/{token} { allow read, write: if signedIn() && uid() == id; }
     }
 
     // ---------- academic structure ----------
@@ -74,13 +78,8 @@ service cloud.firestore {
     // ---------- enrolment, grades, attendance ----------
     match /enrollments/{id} {
       allow read: if signedIn(); // seat counts and rosters. Grades live in /grades.
-      allow create: if isAdmin() || (request.resource.data.studentId == uid() && request.resource.data.status in ['enrolled', 'waitlisted']);
-      allow update: if isAdmin() ||
-        (resource.data.studentId == uid() && request.resource.data.studentId == uid() && request.resource.data.sectionId == resource.data.sectionId) ||
-        // a dropped seat promotes the next waitlisted student
-        (resource.data.status == 'waitlisted' && request.resource.data.status == 'enrolled' &&
-         request.resource.data.studentId == resource.data.studentId && request.resource.data.sectionId == resource.data.sectionId);
-      allow delete: if isAdmin() || resource.data.studentId == uid();
+      // Students enrol, drop and are promoted off the waitlist through Cloud Functions, which count seats in a transaction.
+      allow create, update, delete: if isAdmin();
     }
     match /grades/{id} {
       allow read: if signedIn() && (resource.data.studentId == uid() || resource.data.instructorId == uid() || isAdmin());
@@ -149,14 +148,9 @@ service cloud.firestore {
     }
     match /rsvps/{id} {
       allow read: if signedIn();
-      allow create: if isAdmin() || signedIn() && request.resource.data.personId == uid() && request.resource.data.checkedIn == false &&
-        request.resource.data.status in ['going', 'waitlist', 'maybe'] && id == request.resource.data.eventId + '_' + request.resource.data.personId;
-      allow update: if signedIn() && (
-        (resource.data.personId == uid() && request.resource.data.personId == uid() && request.resource.data.checkedIn == resource.data.checkedIn) ||
-        eventManager(resource.data.eventId) ||
-        // cancelling frees a seat for the next waitlisted person
-        (resource.data.status == 'waitlist' && request.resource.data.status == 'going' && changedOnly(['status'])));
-      allow delete: if signedIn() && (resource.data.personId == uid() || eventManager(resource.data.eventId));
+      // RSVP, cancel and waitlist promotion go through Cloud Functions. Organisers may only toggle check-in.
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (signedIn() && eventManager(resource.data.eventId) && changedOnly(['checkedIn']));
     }
 
     // ---------- communication ----------
@@ -177,7 +171,7 @@ service cloud.firestore {
     }
     match /notices/{id} {
       allow read: if signedIn() && resource.data.personId == uid();
-      allow create: if signedIn() && request.resource.data.read == false && request.resource.data.title.size() < 120 && request.resource.data.body.size() < 500;
+      allow create: if isAdmin(); // normally written by Cloud Functions triggers (Admin SDK bypasses rules)
       allow update: if signedIn() && resource.data.personId == uid() && changedOnly(['read']);
     }
 
