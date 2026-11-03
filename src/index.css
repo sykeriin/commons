@@ -1,148 +1,122 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-@theme {
+/* Light is the default; dark follows the OS unless the user picked a theme (data-theme on <html>). */
+:root {
+  --bg: #f6f6f4; --s-lowest: #ffffff; --s-low: #f0f1f0; --s: #e7e8e7; --s-high: #e1e3e2; --s-highest: #d6d9d8;
+  --on-s: #1f2121; --on-s-var: #585b5b;
+  --ink: #1f2121; --line: #d3d6d5; --shadow: #1f2121;
+  --primary: #af2700; --primary-dim: #8f1f00; --on-primary: #fff3f0; --primary-c: #ff7856; --on-primary-c: #3b0b00;
+  --secondary: #004be2; --on-secondary: #f2f1ff; --secondary-c: #d3dcff; --on-secondary-c: #00206b;
+  --tertiary-c: #cafd00; --on-tertiary-c: #1f2d00; --tertiary: #4e6300;
+  --ok: #1b7a3a; --warn: #a15c00; --bad: #b3261e; --on-bad: #ffffff;
+  --on-hue: #ffffff; --on-hue-soft: rgba(255,255,255,.25);
+  --glow-1: rgba(255,120,86,.14); --glow-2: rgba(0,75,226,.10);
+}
+:root[data-theme='dark'] {
+  --bg: #000000; --s-lowest: #0a0a0a; --s-low: #000000; --s: #141414; --s-high: #1f1f1f; --s-highest: #2b2b2b;
+  --on-s: #ffffff; --on-s-var: #a3a3a3;
+  --ink: #ffffff; --line: #646464; --shadow: #ffffff;
+  --primary: #c4f000; --primary-dim: #d6ff3a; --on-primary: #000000; --primary-c: #c4f000; --on-primary-c: #000000;
+  --secondary: #ff3ea5; --on-secondary: #000000; --secondary-c: #ff3ea5; --on-secondary-c: #000000;
+  --tertiary-c: #ffde00; --on-tertiary-c: #000000; --tertiary: #ffde00;
+  --ok: #4ade80; --warn: #ffde00; --bad: #ff5d5d; --on-bad: #000000;
+  --on-hue: #000000; --on-hue-soft: rgba(0,0,0,.16);
+  --glow-1: transparent; --glow-2: transparent;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #000000; --s-lowest: #0a0a0a; --s-low: #000000; --s: #141414; --s-high: #1f1f1f; --s-highest: #2b2b2b;
+    --on-s: #ffffff; --on-s-var: #a3a3a3;
+    --ink: #ffffff; --line: #646464; --shadow: #ffffff;
+    --primary: #c4f000; --primary-dim: #d6ff3a; --on-primary: #000000; --primary-c: #c4f000; --on-primary-c: #000000;
+    --secondary: #ff3ea5; --on-secondary: #000000; --secondary-c: #ff3ea5; --on-secondary-c: #000000;
+    --tertiary-c: #ffde00; --on-tertiary-c: #000000; --tertiary: #ffde00;
+    --ok: #4ade80; --warn: #ffde00; --bad: #ff5d5d; --on-bad: #000000;
+    --on-hue: #000000; --on-hue-soft: rgba(0,0,0,.16);
+    --glow-1: transparent; --glow-2: transparent;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
   --font-headline: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-label: "Manrope", ui-sans-serif, system-ui, sans-serif;
-
-  --color-primary: #af2700;
-  --color-primary-dim: #9a2100;
-  --color-primary-container: #ff7856;
-  --color-on-primary: #ffefec;
-  
-  --color-secondary: #004be2;
-  --color-secondary-dim: #0041c7;
-  --color-secondary-container: #c5d0ff;
-  --color-on-secondary: #f2f1ff;
-
-  --color-tertiary: #4e6300;
-  --color-tertiary-container: #cafd00;
-  --color-on-tertiary: #e1ff88;
-  --color-tertiary-fixed: #cafd00;
-
-  --color-background: #f6f6f6;
-  --color-surface: #f6f6f6;
-  --color-on-surface: #2d2f2f;
-  --color-on-surface-variant: #5a5c5c;
-  
-  --color-surface-container-low: #f0f1f1;
-  --color-surface-container: #e7e8e8;
-  --color-surface-container-high: #e1e3e3;
-  --color-surface-container-highest: #dbdddd;
-  --color-surface-container-lowest: #ffffff;
-
-  /* Neo-Brutalist Ink */
-  --color-ink: #2d2f2f;
+  --color-background: var(--bg);
+  --color-surface: var(--bg);
+  --color-surface-container-lowest: var(--s-lowest);
+  --color-surface-container-low: var(--s-low);
+  --color-surface-container: var(--s);
+  --color-surface-container-high: var(--s-high);
+  --color-surface-container-highest: var(--s-highest);
+  --color-on-surface: var(--on-s);
+  --color-on-surface-variant: var(--on-s-var);
+  --color-ink: var(--ink);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-dim: var(--primary-dim);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-c);
+  --color-on-primary-container: var(--on-primary-c);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-c);
+  --color-on-secondary-container: var(--on-secondary-c);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-c);
+  --color-on-tertiary-container: var(--on-tertiary-c);
+  --color-on-bad: var(--on-bad); --color-ok: var(--ok); --color-warn: var(--warn); --color-bad: var(--bad);
 }
 
 @layer base {
-  :root {
-    color-scheme: light;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    background: var(--color-background);
-  }
-
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { background: var(--bg); }
   body {
-    @apply bg-background text-on-surface font-body selection:bg-tertiary-container selection:text-on-tertiary;
-    background-image:
-      radial-gradient(circle at top left, rgba(255, 120, 86, 0.14), transparent 24%),
-      radial-gradient(circle at 85% 15%, rgba(0, 75, 226, 0.12), transparent 18%),
-      linear-gradient(180deg, #ffffff 0%, #f6f6f6 32%, #f0f1f1 100%);
-    min-height: 100vh;
+    @apply bg-background text-on-surface font-body antialiased;
+    background-image: radial-gradient(circle at top left, var(--glow-1), transparent 28%), radial-gradient(circle at 90% 8%, var(--glow-2), transparent 22%);
+    background-attachment: fixed; min-height: 100vh; overscroll-behavior-y: none;
   }
-
-  button,
-  input,
-  select,
-  textarea {
-    @apply outline-none;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: rgba(90, 92, 92, 0.72);
-  }
+  /* Plain grids default to one shrinkable column so long content can't force horizontal scroll on phones. */
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  button, input, select, textarea { font: inherit; }
+  :focus-visible { outline: 3px solid var(--secondary); outline-offset: 2px; border-radius: 6px; }
+  input::placeholder, textarea::placeholder { color: var(--on-s-var); opacity: .7; }
+  @media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 }
 
 @layer utilities {
-  .screen-shell {
-    @apply min-h-screen px-4 pt-24 pb-28 md:px-6;
+  /* Per-department / per-club colours. Set --c inline; these adapt it to the theme. */
+.hue { background: var(--c); }
+  .hue-bar { background: var(--c); }
+  .hue-text { color: var(--c); }
+  .hue-chip { color: var(--c); background: color-mix(in oklab, var(--c) 15%, transparent); }
+  .on-hue { color: var(--on-hue); }
+  /* Dark: flat, bright version of the same hue (relative colour), with black text on top. color-mix is the fallback. */
+  :root[data-theme='dark'] .hue { background: color-mix(in oklch, var(--c) 40%, white); background: oklch(from var(--c) 0.84 calc(c * 1.35) h); }
+  :root[data-theme='dark'] .hue-bar { background: color-mix(in oklch, var(--c) 55%, white); background: oklch(from var(--c) 0.8 calc(c * 1.35) h); }
+  :root[data-theme='dark'] .hue-text, :root[data-theme='dark'] .hue-chip { color: color-mix(in oklch, var(--c) 45%, white); color: oklch(from var(--c) 0.84 calc(c * 1.35) h); }
+  :root[data-theme='dark'] .hue-chip { background: color-mix(in oklch, var(--c) 25%, transparent); background: oklch(from var(--c) 0.84 calc(c * 1.35) h / .18); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .hue { background: color-mix(in oklch, var(--c) 40%, white); background: oklch(from var(--c) 0.84 calc(c * 1.35) h); }
+    :root:not([data-theme='light']) .hue-bar { background: color-mix(in oklch, var(--c) 55%, white); background: oklch(from var(--c) 0.8 calc(c * 1.35) h); }
+    :root:not([data-theme='light']) .hue-text, :root:not([data-theme='light']) .hue-chip { color: color-mix(in oklch, var(--c) 45%, white); color: oklch(from var(--c) 0.84 calc(c * 1.35) h); }
+    :root:not([data-theme='light']) .hue-chip { background: color-mix(in oklch, var(--c) 25%, transparent); background: oklch(from var(--c) 0.84 calc(c * 1.35) h / .18); }
   }
-  .editorial-frame {
-    @apply relative overflow-hidden rounded-[2rem] border-[3px] border-ink bg-surface-container-lowest;
-    box-shadow: 7px 7px 0px 0px var(--color-ink);
-  }
-  .editorial-chip {
-    @apply inline-flex items-center rounded-full border-[2px] border-ink px-3 py-1 font-headline text-[10px] font-black uppercase tracking-[0.22em];
-  }
-  .editorial-input {
-    @apply w-full rounded-[1.25rem] border-[3px] border-ink bg-surface-container-lowest px-4 py-3 font-body text-sm font-bold text-on-surface transition-all placeholder:text-on-surface-variant/70 focus:translate-x-[1px] focus:translate-y-[1px];
-    box-shadow: 4px 4px 0px 0px var(--color-ink);
-  }
-  .editorial-panel {
-    @apply rounded-[1.75rem] border-[3px] border-ink bg-surface-container-lowest;
-    box-shadow: 6px 6px 0px 0px var(--color-ink);
-  }
-  .interactive-grid {
-    background-image:
-      linear-gradient(rgba(45, 47, 47, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(45, 47, 47, 0.06) 1px, transparent 1px);
-    background-size: 18px 18px;
-  }
-  .floating-orb {
-    position: absolute;
-    border: 3px solid var(--color-ink);
-    border-radius: 999px;
-    box-shadow: 4px 4px 0 0 var(--color-ink);
-  }
-  .sticker-badge {
-    @apply inline-flex items-center rounded-full border-[3px] border-ink px-3 py-1 font-headline text-xs font-black uppercase tracking-[0.16em];
-    box-shadow: 4px 4px 0px 0px var(--color-ink);
-  }
-  .neo-shadow {
-    box-shadow: 8px 8px 0px 0px var(--color-ink);
-  }
-  .neo-shadow-sm {
-    box-shadow: 4px 4px 0px 0px var(--color-ink);
-  }
-  .neo-shadow-lg {
-    box-shadow: 12px 12px 0px 0px var(--color-ink);
-  }
-  .rubber-hose-curve {
-    border-radius: 60% 40% 70% 30% / 40% 50% 60% 70%;
-  }
-  .ticker-wrap {
-    overflow: hidden;
-    background: var(--color-primary);
-    white-space: nowrap;
-  }
-  .ticker-content {
-    display: inline-block;
-    animation: scroll 80s linear infinite;
-  }
-  .grain-overlay {
-    position: relative;
-  }
-  .grain-overlay::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.08;
-    background-image: radial-gradient(rgba(45, 47, 47, 0.45) 0.7px, transparent 0.7px);
-    background-size: 12px 12px;
-    mix-blend-mode: multiply;
-  }
+  /* Brand moments: heavy outline + hard shadow */
+  .brut { border: 3px solid var(--ink); box-shadow: 6px 6px 0 0 var(--shadow); }
+  .brut-sm { border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 0 var(--shadow); }
+  /* Data screens: calm card */
+  .card { @apply rounded-2xl border-2 border-line bg-surface-container-lowest; }
+  .card-hover { @apply transition-all hover:-translate-y-0.5 hover:border-ink hover:shadow-[3px_3px_0_0_var(--shadow)]; }
+  .field { @apply w-full min-h-11 rounded-xl border-2 border-line bg-surface-container-lowest px-3.5 py-2.5 text-sm font-semibold text-on-surface transition-colors focus:border-ink; }
+  .label { @apply mb-1.5 block font-headline text-[11px] font-bold uppercase tracking-[0.14em] text-on-surface-variant; }
+  .h-page { @apply font-headline text-3xl font-black tracking-tight md:text-4xl; }
+  .h-sec { @apply font-headline text-lg font-extrabold tracking-tight; }
+  .muted { @apply text-sm font-medium text-on-surface-variant; }
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .scroll-hide { scrollbar-width: none; } .scroll-hide::-webkit-scrollbar { display: none; }
+  .ticker { animation: scroll 60s linear infinite; display: inline-flex; }
 }
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+@keyframes scroll { to { transform: translateX(-50%); } }

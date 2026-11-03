@@ -1,144 +1,189 @@
 rules_version = '2';
+
+// Commons security rules.
+// These mirror src/lib/permissions.ts. The client enforces the same checks, but only these rules are authoritative.
+//
+// Writes that need counting or that notify other people go through Cloud Functions (functions/src), because rules
+// cannot count documents:
+//  - enrolments and RSVPs (seat limits, waitlist order) are written only by the enroll/drop/rsvp/cancelRsvp functions
+//  - notifications are created only by Firestore triggers; clients may only mark their own as read
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ===============================================================
-    // Helper Functions
-    // ===============================================================
+    // ---------- identity helpers ----------
+    function signedIn() { return request.auth != null; }
+    function uid() { return request.auth.uid; }
+    function userPath() { return /databases/$(database)/documents/users/$(request.auth.uid); }
+    function role() { return exists(userPath()) ? get(userPath()).data.role : 'none'; }
+    function myDept() { return get(userPath()).data.get('departmentId', ''); }
+    // Keep in sync with BOOTSTRAP_ADMIN_EMAIL in src/lib/config.ts. Only used to create the first admin account.
+    function bootstrapAdmin() {
+      return request.auth.token.email == 'durva.s170@gmail.com' && request.auth.token.email_verified == true;
+    }
+    function isAdmin() { return signedIn() && (bootstrapAdmin() || role() == 'admin'); }
+    function isStaff() { return isAdmin() || (signedIn() && role() == 'staff'); }
+    function isDeptHead() { return signedIn() && role() == 'dept_head'; }
+    function isTeacher() { return signedIn() && role() in ['faculty', 'dept_head']; }
 
-    function isAuthenticated() {
-      return request.auth != null;
+    // ---------- relationship helpers ----------
+    function sectionOf(id) { return get(/databases/$(database)/documents/sections/$(id)).data; }
+    function instructorOf(sectionId) { return signedIn() && sectionOf(sectionId).instructorId == uid(); }
+    function assignmentInstructor(aid) {
+      return sectionOf(get(/databases/$(database)/documents/assignments/$(aid)).data.sectionId).instructorId;
+    }
+    function memberPath(clubId) { return /databases/$(database)/documents/memberships/$(clubId + '_' + request.auth.uid); }
+    function clubRole(clubId) { return exists(memberPath(clubId)) ? get(memberPath(clubId)).data.role : 'none'; }
+    function clubManager(clubId) { return isAdmin() || clubRole(clubId) in ['president', 'officer', 'advisor']; }
+    function eventManager(eventId) {
+      let e = get(/databases/$(database)/documents/events/$(eventId)).data;
+      return isStaff() || e.organizerId == uid() || (e.scope == 'club' && clubManager(e.clubId));
+    }
+    function changedOnly(keys) { return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys); }
+
+    // ---------- people ----------
+    match /users/{id} {
+      allow read: if signedIn();
+      allow create: if isAdmin() || (
+        id == uid() && request.resource.data.id == id && request.resource.data.karma == 0 &&
+        request.resource.data.role == 'student');
+      // Users edit their own profile but can never change their role/email/karma. Only students may set a department.
+      allow update: if isAdmin() || (
+        id == uid() &&
+        request.resource.data.role == resource.data.role &&
+        request.resource.data.email == resource.data.email &&
+        request.resource.data.karma == resource.data.karma &&
+        (resource.data.role == 'student' || request.resource.data.get('departmentId', '') == resource.data.get('departmentId', '')));
+      allow delete: if isAdmin();
+
+      // Push tokens for this user's devices. The notification sender reads them with admin privileges.
+      match /devices/{token} { allow read, write: if signedIn() && uid() == id; }
     }
 
-    function isOwner(userId) {
-      return isAuthenticated() && request.auth.uid == userId;
+    // ---------- academic structure ----------
+    match /departments/{id} { allow read: if signedIn(); allow write: if isAdmin(); }
+    match /programs/{id}    { allow read: if signedIn(); allow write: if isAdmin(); }
+    match /places/{id}      { allow read: if signedIn(); allow write: if isAdmin(); }
+    match /courses/{id} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin() || (isDeptHead() && request.resource.data.departmentId == myDept());
+      allow delete: if isAdmin() || (isDeptHead() && resource.data.departmentId == myDept());
+    }
+    match /sections/{id} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin() || (isDeptHead() &&
+        get(/databases/$(database)/documents/courses/$(request.resource.data.courseId)).data.departmentId == myDept());
+      allow delete: if isAdmin();
     }
 
-    function isDocOwner() {
-      return isAuthenticated() && request.auth.uid == resource.data.ownerUid;
+    // ---------- enrolment, grades, attendance ----------
+    match /enrollments/{id} {
+      allow read: if signedIn(); // seat counts and rosters. Grades live in /grades.
+      // Students enrol, drop and are promoted off the waitlist through Cloud Functions, which count seats in a transaction.
+      allow create, update, delete: if isAdmin();
+    }
+    match /grades/{id} {
+      allow read: if signedIn() && (resource.data.studentId == uid() || resource.data.instructorId == uid() || isAdmin());
+      allow create, update: if isAdmin() || (request.resource.data.instructorId == uid() && instructorOf(request.resource.data.sectionId));
+      allow delete: if isAdmin() || resource.data.instructorId == uid();
+    }
+    match /attendance/{id} {
+      allow read: if signedIn() && (resource.data.studentId == uid() || resource.data.instructorId == uid() || isAdmin());
+      allow create, update: if isAdmin() || (request.resource.data.instructorId == uid() && instructorOf(request.resource.data.sectionId));
+      allow delete: if isAdmin() || resource.data.instructorId == uid();
+    }
+    match /assignments/{id} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin() || instructorOf(request.resource.data.sectionId);
+      allow delete: if isAdmin() || instructorOf(resource.data.sectionId);
+    }
+    match /submissions/{id} {
+      allow read: if signedIn() && (resource.data.studentId == uid() || resource.data.instructorId == uid() || isAdmin());
+      // Students submit work (no score). Instructors score it.
+      allow create: if isAdmin() ||
+        (request.resource.data.studentId == uid() && !('score' in request.resource.data) &&
+         request.resource.data.instructorId == assignmentInstructor(request.resource.data.assignmentId)) ||
+        (request.resource.data.instructorId == uid() && assignmentInstructor(request.resource.data.assignmentId) == uid());
+      allow update: if isAdmin() || (resource.data.instructorId == uid() && request.resource.data.instructorId == uid());
     }
 
-    function isAdmin() {
-      return isAuthenticated() &&
-        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
-         (request.auth.token.email == "durva.s170@gmail.com" && request.auth.token.email_verified == true));
+    // ---------- clubs ----------
+    match /clubs/{id} {
+      allow read: if signedIn();
+      // New clubs wait for staff approval unless a staff member creates them.
+      allow create: if isStaff() || (signedIn() && request.resource.data.presidentId == uid() && request.resource.data.approval == 'pending');
+      allow update: if isStaff() ||
+        (clubManager(id) && request.resource.data.approval == resource.data.approval) ||
+        (signedIn() && changedOnly(['memberCount']));
+      allow delete: if isAdmin();
+    }
+    match /memberships/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && id == request.resource.data.clubId + '_' + request.resource.data.personId && (
+        isStaff() || clubManager(request.resource.data.clubId) ||
+        (request.resource.data.personId == uid() && (
+          (request.resource.data.role == 'member' &&
+            getAfter(/databases/$(database)/documents/clubs/$(request.resource.data.clubId)).data.approval == 'approved' &&
+            getAfter(/databases/$(database)/documents/clubs/$(request.resource.data.clubId)).data.get('joinPolicy', 'open') == 'open') ||
+          (request.resource.data.role == 'president' &&
+            getAfter(/databases/$(database)/documents/clubs/$(request.resource.data.clubId)).data.presidentId == uid()))));
+      allow update: if isAdmin() || clubRole(resource.data.clubId) == 'president';
+      allow delete: if isAdmin() || resource.data.personId == uid() || clubManager(resource.data.clubId);
+    }
+    match /joinRequests/{id} {
+      allow read: if signedIn();
+      allow create: if isAdmin() || (signedIn() && request.resource.data.personId == uid() && request.resource.data.status == 'pending');
+      allow update: if clubManager(resource.data.clubId);
     }
 
-    function isValidEmail(email) {
-      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    // ---------- events ----------
+    match /events/{id} {
+      allow read: if signedIn(); // pending events are hidden in the UI, not secret
+      // Campus-wide events need staff approval. Club events need a club officer.
+      allow create: if isStaff() || (signedIn() && request.resource.data.organizerId == uid() &&
+        (request.resource.data.scope == 'campus' ? request.resource.data.approval == 'pending' : request.resource.data.approval == 'approved') &&
+        (request.resource.data.scope != 'club' || clubManager(request.resource.data.clubId)) &&
+        (request.resource.data.scope != 'department' || isTeacher()));
+      allow update: if isStaff() || (eventManager(id) && request.resource.data.approval == resource.data.approval);
+      allow delete: if eventManager(id);
+    }
+    match /rsvps/{id} {
+      allow read: if signedIn();
+      // RSVP, cancel and waitlist promotion go through Cloud Functions. Organisers may only toggle check-in.
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (signedIn() && eventManager(resource.data.eventId) && changedOnly(['checkedIn']));
     }
 
-    function isValidUrl(url) {
-      return url is string && (url.matches("^https://.*") || url.matches("^http://.*"));
+    // ---------- communication ----------
+    match /announcements/{id} {
+      allow read: if signedIn();
+      allow create: if isAdmin() || signedIn() && request.resource.data.authorId == uid() && (
+        request.resource.data.scope == 'campus' ? isStaff() :
+        request.resource.data.scope == 'department' ? (isAdmin() || (isDeptHead() && myDept() == request.resource.data.scopeId)) :
+        request.resource.data.scope == 'course' ? (isAdmin() || instructorOf(request.resource.data.scopeId)) :
+        request.resource.data.scope == 'club' ? clubManager(request.resource.data.scopeId) : false);
+      allow update, delete: if isStaff() || resource.data.authorId == uid();
+    }
+    match /officeHours/{id} {
+      allow read: if signedIn();
+      allow create: if isAdmin() || (isTeacher() && request.resource.data.facultyId == uid());
+      allow update: if signedIn() && (resource.data.facultyId == uid() || changedOnly(['booked']));
+      allow delete: if signedIn() && resource.data.facultyId == uid();
+    }
+    match /notices/{id} {
+      allow read: if signedIn() && resource.data.personId == uid();
+      allow create: if isAdmin(); // normally written by Cloud Functions triggers (Admin SDK bypasses rules)
+      allow update: if signedIn() && resource.data.personId == uid() && changedOnly(['read']);
     }
 
-    function hasOnlyAllowedFields(fields) {
-      return request.resource.data.keys().hasOnly(fields);
+    // ---------- administration ----------
+    match /roleRequests/{id} {
+      allow read: if signedIn() && (isAdmin() || resource.data.personId == uid());
+      allow create: if isAdmin() || (signedIn() && request.resource.data.personId == uid() && request.resource.data.status == 'pending' && request.resource.data.requested in ['faculty', 'staff']);
+      allow update: if isAdmin();
     }
-
-    function hasRequiredFields(fields) {
-      return request.resource.data.keys().hasAll(fields);
-    }
-
-    // ===============================================================
-    // Domain Validators
-    // ===============================================================
-
-    function isValidUser(data) {
-      return hasRequiredFields(['uid', 'displayName', 'email']) &&
-             data.uid is string && data.uid.size() > 0 &&
-             data.displayName is string && data.displayName.size() > 0 && data.displayName.size() < 100 &&
-             isValidEmail(data.email) &&
-             (!('photoURL' in data) || isValidUrl(data.photoURL)) &&
-             (!('major' in data) || (data.major is string && data.major.size() < 100)) &&
-             (!('graduationYear' in data) || (data.graduationYear is string && data.graduationYear.size() < 10)) &&
-             (!('karma' in data) || data.karma is number) &&
-             (!('hasSelectedCommons' in data) || data.hasSelectedCommons is bool) &&
-             (!('selectedCommons' in data) || data.selectedCommons is list) &&
-             (!('role' in data) || data.role in ['admin', 'user']);
-    }
-
-    function isValidClub(data) {
-      return hasRequiredFields(['id', 'name', 'description', 'category', 'ownerUid', 'createdAt']) &&
-             data.id is string && data.id.size() > 0 &&
-             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
-             data.description is string && data.description.size() > 0 && data.description.size() < 1000 &&
-             data.category is string && data.category.size() > 0 && data.category.size() < 50 &&
-             (!('logoURL' in data) || isValidUrl(data.logoURL)) &&
-             data.ownerUid is string && data.ownerUid.size() > 0 &&
-             (!('memberCount' in data) || data.memberCount is number) &&
-             data.createdAt is timestamp;
-    }
-
-    function isValidEvent(data) {
-      return hasRequiredFields(['id', 'name', 'description', 'date', 'time', 'location', 'clubId', 'createdAt']) &&
-             data.id is string && data.id.size() > 0 &&
-             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
-             data.description is string && data.description.size() > 0 && data.description.size() < 1000 &&
-             data.date is string && data.date.size() > 0 &&
-             data.time is string && data.time.size() > 0 &&
-             data.location is string && data.location.size() > 0 &&
-             data.clubId is string && data.clubId.size() > 0 &&
-             (!('attendeeCount' in data) || data.attendeeCount is number) &&
-             data.createdAt is timestamp;
-    }
-
-    function isValidMember(data) {
-      return hasRequiredFields(['clubId', 'userUid', 'role']) &&
-             data.clubId is string && data.clubId.size() > 0 &&
-             data.userUid is string && data.userUid.size() > 0 &&
-             data.role in ['member', 'admin', 'owner'];
-    }
-
-    function isValidRSVP(data) {
-      return hasRequiredFields(['eventId', 'userUid', 'status']) &&
-             data.eventId is string && data.eventId.size() > 0 &&
-             data.userUid is string && data.userUid.size() > 0 &&
-             data.status in ['attending', 'maybe', 'declined'];
-    }
-
-    // ===============================================================
-    // Match Rules
-    // ===============================================================
-
-    match /users/{uid} {
-      allow read: if isAuthenticated();
-      allow create: if isOwner(uid) && isValidUser(request.resource.data);
-      allow update: if isOwner(uid) && isValidUser(request.resource.data);
-    }
-
-    match /clubs/{clubId} {
-      allow read: if true;
-      allow create: if isAuthenticated() && isValidClub(request.resource.data) && (request.resource.data.ownerUid == request.auth.uid || isAdmin());
-      allow update: if (isDocOwner() || isAdmin()) && isValidClub(request.resource.data) && request.resource.data.ownerUid == resource.data.ownerUid;
-      allow delete: if isDocOwner() || isAdmin();
-
-      match /members/{userUid} {
-        allow read: if true;
-        allow create: if (isOwner(userUid) || isAdmin()) && isValidMember(request.resource.data) && request.resource.data.clubId == clubId;
-        allow update: if (isOwner(userUid) || isAdmin() || get(/databases/$(database)/documents/clubs/$(clubId)/members/$(request.auth.uid)).data.role in ['admin', 'owner']) && isValidMember(request.resource.data);
-        allow delete: if isOwner(userUid) || isAdmin() || get(/databases/$(database)/documents/clubs/$(clubId)/members/$(request.auth.uid)).data.role in ['admin', 'owner'];
-      }
-    }
-
-    match /events/{eventId} {
-      allow read: if true;
-      allow create: if isAuthenticated() && (isValidEvent(request.resource.data) || isAdmin());
-      allow update: if (isAdmin() || (isAuthenticated() && get(/databases/$(database)/documents/clubs/$(resource.data.clubId)/members/$(request.auth.uid)).data.role in ['admin', 'owner'])) && isValidEvent(request.resource.data);
-      allow delete: if isAdmin() || (isAuthenticated() && get(/databases/$(database)/documents/clubs/$(resource.data.clubId)/members/$(request.auth.uid)).data.role in ['admin', 'owner']);
-
-      match /rsvps/{userUid} {
-        allow read: if true;
-        allow create: if (isOwner(userUid) || isAdmin()) && isValidRSVP(request.resource.data) && request.resource.data.eventId == eventId;
-        allow update: if (isOwner(userUid) || isAdmin()) && isValidRSVP(request.resource.data);
-        allow delete: if isOwner(userUid) || isAdmin();
-      }
-    }
-
-    // Collection Group Rules
-    match /{path=**}/members/{memberId} {
-      allow read: if isAuthenticated() && (resource.data.userUid == request.auth.uid || isAdmin());
+    match /audit/{id} {
+      allow read: if isAdmin();
+      allow create: if signedIn() && role() in ['admin', 'staff', 'dept_head'] && request.resource.data.actorId == uid();
     }
   }
 }

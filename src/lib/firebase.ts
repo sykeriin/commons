@@ -1,98 +1,42 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
-import { getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, query, where, onSnapshot, serverTimestamp, Timestamp, getDocFromServer } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, signOut, type Auth } from 'firebase/auth';
+import { Capacitor } from '@capacitor/core';
+import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getFunctions, type Functions } from 'firebase/functions';
 import firebaseConfig from '@/firebase-applet-config.json';
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
-export const googleProvider = new GoogleAuthProvider();
+const cfg = firebaseConfig as Record<string, string>;
+const isPlaceholder = (v?: string) => !v || v.startsWith('YOUR_');
 
-// Connection test
-async function testConnection() {
+/** False until a real Firebase web config is placed in firebase-applet-config.json. The app then runs in demo mode only. */
+export const firebaseEnabled = !isPlaceholder(cfg.projectId) && !isPlaceholder(cfg.apiKey) && !isPlaceholder(cfg.appId);
+
+let _auth: Auth | null = null; let _db: Firestore | null = null; let _fns: Functions | null = null;
+if (firebaseEnabled) {
+  const app = initializeApp(cfg);
+  _auth = getAuth(app);
+  _fns = getFunctions(app, cfg.functionsRegion || 'us-central1');
+  _db = isPlaceholder(cfg.firestoreDatabaseId) || cfg.firestoreDatabaseId === '(default)' ? getFirestore(app) : getFirestore(app, cfg.firestoreDatabaseId);
+}
+export const auth = _auth; export const db = _db; export const functions = _fns;
+
+export async function signIn() {
+  if (!_auth) throw new Error('Firebase is not configured');
   try {
-    await getDocFromServer(doc(db, 'test', 'connection'));
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration. The client is offline.");
+    if (Capacitor.isNativePlatform()) {
+      // Popups don't work inside a native WebView: use the platform's Google sign-in, then hand the token to the web SDK.
+      const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication');
+      const res = await FirebaseAuthentication.signInWithGoogle();
+      const cred = GoogleAuthProvider.credential(res.credential?.idToken ?? null, res.credential?.accessToken ?? null);
+      return (await signInWithCredential(_auth, cred)).user;
     }
+    return (await signInWithPopup(_auth, new GoogleAuthProvider())).user;
+  } catch (e: any) {
+    if (e?.code === 'auth/popup-closed-by-user' || e?.code === 'auth/cancelled-popup-request' || /cancel/i.test(e?.message ?? '')) return null;
+    throw e;
   }
 }
-testConnection();
-
-// Types
-export enum OperationType {
-  CREATE = 'create',
-  UPDATE = 'update',
-  DELETE = 'delete',
-  LIST = 'list',
-  GET = 'get',
-  WRITE = 'write',
+export async function logout() {
+  if (Capacitor.isNativePlatform()) { try { const { FirebaseAuthentication } = await import('@capacitor-firebase/authentication'); await FirebaseAuthentication.signOut(); } catch { /* ignore */ } }
+  if (_auth) await signOut(_auth);
 }
-
-export interface FirestoreErrorInfo {
-  error: string;
-  operationType: OperationType;
-  path: string | null;
-  authInfo: {
-    userId: string | undefined;
-    email: string | null | undefined;
-    emailVerified: boolean | undefined;
-    isAnonymous: boolean | undefined;
-    tenantId: string | null | undefined;
-    providerInfo: {
-      providerId: string;
-      displayName: string | null;
-      email: string | null;
-      photoUrl: string | null;
-    }[];
-  }
-}
-
-export function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
-  const errInfo: FirestoreErrorInfo = {
-    error: error instanceof Error ? error.message : String(error),
-    authInfo: {
-      userId: auth.currentUser?.uid,
-      email: auth.currentUser?.email,
-      emailVerified: auth.currentUser?.emailVerified,
-      isAnonymous: auth.currentUser?.isAnonymous,
-      tenantId: auth.currentUser?.tenantId,
-      providerInfo: auth.currentUser?.providerData.map(provider => ({
-        providerId: provider.providerId,
-        displayName: provider.displayName,
-        email: provider.email,
-        photoUrl: provider.photoURL
-      })) || []
-    },
-    operationType,
-    path
-  }
-  console.error('Firestore Error: ', JSON.stringify(errInfo));
-  throw new Error(JSON.stringify(errInfo));
-}
-
-// Auth Helpers
-export const signIn = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    return result.user;
-  } catch (error: any) {
-    if (error.code === 'auth/popup-closed-by-user') {
-      console.log("Sign in popup closed by user");
-      return null;
-    }
-    console.error("Sign in error:", error);
-    throw error;
-  }
-};
-
-export const logout = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error("Sign out error:", error);
-    throw error;
-  }
-};

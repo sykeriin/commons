@@ -2,81 +2,778 @@
   "entities": {
     "User": {
       "title": "User",
-      "description": "A user profile in the campus community.",
+      "description": "A person on campus. `role` can only be changed by an administrator.",
       "type": "object",
       "properties": {
-        "uid": { "type": "string", "description": "The unique identifier for the user." },
-        "displayName": { "type": "string", "description": "The user's full name." },
-        "email": { "type": "string", "format": "email", "description": "The user's email address." },
-        "photoURL": { "type": "string", "format": "uri", "description": "The user's profile picture URL." },
-        "major": { "type": "string", "description": "The user's academic major." },
-        "graduationYear": { "type": "string", "description": "The user's expected graduation year." },
-        "karma": { "type": "number", "description": "The user's community engagement points." },
-        "hasSelectedCommons": { "type": "boolean", "description": "Whether the user has completed the onboarding commons selection." }
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "student",
+            "faculty",
+            "staff",
+            "dept_head",
+            "admin"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "programId": {
+          "type": "string"
+        },
+        "year": {
+          "type": "number"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "office": {
+          "type": "string"
+        },
+        "karma": {
+          "type": "number"
+        }
       },
-      "required": ["uid", "displayName", "email"]
+      "required": [
+        "id",
+        "name",
+        "email",
+        "role"
+      ]
+    },
+    "Department": {
+      "title": "Department",
+      "description": "An academic department.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "headId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "building": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "code"
+      ]
+    },
+    "Course": {
+      "title": "Course",
+      "description": "A catalogue course owned by a department.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "credits": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "code",
+        "title",
+        "departmentId"
+      ]
+    },
+    "Section": {
+      "title": "Section",
+      "description": "A term offering of a course with an instructor and meeting slots.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "courseId": {
+          "type": "string"
+        },
+        "term": {
+          "type": "string"
+        },
+        "instructorId": {
+          "type": "string"
+        },
+        "capacity": {
+          "type": "number"
+        },
+        "slots": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "courseId",
+        "instructorId"
+      ]
+    },
+    "Enrollment": {
+      "title": "Enrollment",
+      "description": "A student's seat or waitlist spot in a section. The grade is stored separately in /grades.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sectionId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "enrolled",
+            "waitlisted",
+            "dropped"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "sectionId",
+        "studentId",
+        "status"
+      ]
+    },
+    "Grade": {
+      "title": "Grade",
+      "description": "Final grade. Readable only by the student, the section's instructor and administrators.",
+      "type": "object",
+      "properties": {
+        "enrollmentId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "sectionId": {
+          "type": "string"
+        },
+        "instructorId": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enrollmentId",
+        "studentId",
+        "instructorId",
+        "grade"
+      ]
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "One student's attendance for one class date. Same read rules as Grade.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sectionId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "present",
+            "absent",
+            "late",
+            "excused"
+          ]
+        },
+        "instructorId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "sectionId",
+        "date",
+        "studentId",
+        "status",
+        "instructorId"
+      ]
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "Coursework posted by the section's instructor.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sectionId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dueAt": {
+          "type": "string"
+        },
+        "points": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "sectionId",
+        "title",
+        "dueAt"
+      ]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "A student's submission; `score` may only be set by the instructor.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "instructorId": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "submittedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "assignmentId",
+        "studentId",
+        "instructorId"
+      ]
     },
     "Club": {
       "title": "Club",
-      "description": "A campus club or organization.",
+      "description": "A student club. New clubs are `pending` until staff approve them.",
       "type": "object",
       "properties": {
-        "id": { "type": "string", "description": "The unique identifier for the club." },
-        "name": { "type": "string", "description": "The name of the club." },
-        "description": { "type": "string", "description": "A brief description of the club's purpose." },
-        "category": { "type": "string", "description": "The club's category (e.g., Tech, Creative)." },
-        "logoURL": { "type": "string", "format": "uri", "description": "The URL of the club's logo." },
-        "ownerUid": { "type": "string", "description": "The UID of the user who created the club." },
-        "memberCount": { "type": "number", "description": "The total number of members in the club." },
-        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the club was created." }
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "presidentId": {
+          "type": "string"
+        },
+        "advisorId": {
+          "type": "string"
+        },
+        "joinPolicy": {
+          "type": "string",
+          "enum": [
+            "open",
+            "request"
+          ]
+        },
+        "approval": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        },
+        "memberCount": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string"
+        }
       },
-      "required": ["id", "name", "description", "category", "ownerUid", "createdAt"]
+      "required": [
+        "id",
+        "name",
+        "presidentId",
+        "approval"
+      ]
+    },
+    "Membership": {
+      "title": "Membership",
+      "description": "Doc id is `{clubId}_{personId}` so rules can look it up.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "clubId": {
+          "type": "string"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "member",
+            "officer",
+            "president",
+            "advisor"
+          ]
+        },
+        "joinedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clubId",
+        "personId",
+        "role"
+      ]
+    },
+    "JoinRequest": {
+      "title": "JoinRequest",
+      "description": "A request to join a request-only club.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "clubId": {
+          "type": "string"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clubId",
+        "personId",
+        "status"
+      ]
     },
     "Event": {
       "title": "Event",
-      "description": "A campus event organized by a club.",
+      "description": "Campus, department or club event. Campus-wide events need staff approval.",
       "type": "object",
       "properties": {
-        "id": { "type": "string", "description": "The unique identifier for the event." },
-        "name": { "type": "string", "description": "The name of the event." },
-        "description": { "type": "string", "description": "A brief description of the event." },
-        "date": { "type": "string", "format": "date", "description": "The date of the event." },
-        "time": { "type": "string", "description": "The time of the event." },
-        "location": { "type": "string", "description": "The location of the event." },
-        "clubId": { "type": "string", "description": "The ID of the club organizing the event." },
-        "attendeeCount": { "type": "number", "description": "The total number of attendees for the event." },
-        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the event was created." }
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "placeId": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "campus",
+            "department",
+            "club"
+          ]
+        },
+        "clubId": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "organizerId": {
+          "type": "string"
+        },
+        "capacity": {
+          "type": "number"
+        },
+        "approval": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        }
       },
-      "required": ["id", "name", "description", "date", "time", "location", "clubId", "createdAt"]
+      "required": [
+        "id",
+        "title",
+        "date",
+        "scope",
+        "organizerId",
+        "approval"
+      ]
     },
-    "Member": {
-      "title": "Member",
-      "description": "A membership record for a user in a club.",
+    "Rsvp": {
+      "title": "Rsvp",
+      "description": "Doc id is `{eventId}_{personId}`.",
       "type": "object",
       "properties": {
-        "clubId": { "type": "string", "description": "The ID of the club." },
-        "userUid": { "type": "string", "description": "The UID of the user." },
-        "role": { "type": "string", "enum": ["member", "admin", "owner"], "description": "The user's role in the club." }
+        "id": {
+          "type": "string"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "going",
+            "waitlist",
+            "maybe"
+          ]
+        },
+        "checkedIn": {
+          "type": "boolean"
+        }
       },
-      "required": ["clubId", "userUid", "role"]
+      "required": [
+        "eventId",
+        "personId",
+        "status",
+        "checkedIn"
+      ]
     },
-    "RSVP": {
-      "title": "RSVP",
-      "description": "An RSVP record for a user for an event.",
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Scoped message: campus (staff), department (head), course (instructor) or club (officers).",
       "type": "object",
       "properties": {
-        "eventId": { "type": "string", "description": "The ID of the event." },
-        "userUid": { "type": "string", "description": "The UID of the user." },
-        "status": { "type": "string", "enum": ["attending", "maybe", "declined"], "description": "The user's RSVP status." }
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "authorId": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "campus",
+            "department",
+            "course",
+            "club"
+          ]
+        },
+        "scopeId": {
+          "type": "string"
+        },
+        "pinned": {
+          "type": "boolean"
+        }
       },
-      "required": ["eventId", "userUid", "status"]
+      "required": [
+        "id",
+        "title",
+        "authorId",
+        "scope"
+      ]
+    },
+    "OfficeHour": {
+      "title": "OfficeHour",
+      "description": "Faculty office-hour slot; students book by adding themselves to `booked`.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "facultyId": {
+          "type": "string"
+        },
+        "day": {
+          "type": "number"
+        },
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "placeId": {
+          "type": "string"
+        },
+        "booked": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "facultyId"
+      ]
+    },
+    "RoleRequest": {
+      "title": "RoleRequest",
+      "description": "A request for a higher role, decided by an administrator.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "requested": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        }
+      },
+      "required": [
+        "personId",
+        "requested",
+        "status"
+      ]
+    },
+    "Notice": {
+      "title": "Notice",
+      "description": "A notification, readable only by its recipient.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "link": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "personId",
+        "title",
+        "read"
+      ]
+    },
+    "AuditEntry": {
+      "title": "AuditEntry",
+      "description": "Append-only log of privileged actions. Admin-readable.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "actorId": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "actorId",
+        "action"
+      ]
+    },
+    "Place": {
+      "title": "Place",
+      "description": "A building room or venue.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "building": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "capacity": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "building"
+      ]
     }
   },
   "firestore": {
-    "/users/{uid}": { "schema": "User", "description": "User profiles." },
-    "/clubs/{clubId}": { "schema": "Club", "description": "Campus clubs." },
-    "/events/{eventId}": { "schema": "Event", "description": "Campus events." },
-    "/clubs/{clubId}/members/{userUid}": { "schema": "Member", "description": "Club memberships." },
-    "/events/{eventId}/rsvps/{userUid}": { "schema": "RSVP", "description": "Event RSVPs." }
+    "/users/{uid}": {
+      "schema": "User"
+    },
+    "/departments/{id}": {
+      "schema": "Department"
+    },
+    "/courses/{id}": {
+      "schema": "Course"
+    },
+    "/sections/{id}": {
+      "schema": "Section"
+    },
+    "/enrollments/{id}": {
+      "schema": "Enrollment"
+    },
+    "/grades/{enrollmentId}": {
+      "schema": "Grade"
+    },
+    "/attendance/{id}": {
+      "schema": "Attendance"
+    },
+    "/assignments/{id}": {
+      "schema": "Assignment"
+    },
+    "/submissions/{id}": {
+      "schema": "Submission"
+    },
+    "/clubs/{id}": {
+      "schema": "Club"
+    },
+    "/memberships/{clubId_personId}": {
+      "schema": "Membership"
+    },
+    "/joinRequests/{id}": {
+      "schema": "JoinRequest"
+    },
+    "/events/{id}": {
+      "schema": "Event"
+    },
+    "/rsvps/{eventId_personId}": {
+      "schema": "Rsvp"
+    },
+    "/announcements/{id}": {
+      "schema": "Announcement"
+    },
+    "/officeHours/{id}": {
+      "schema": "OfficeHour"
+    },
+    "/roleRequests/{id}": {
+      "schema": "RoleRequest"
+    },
+    "/notices/{id}": {
+      "schema": "Notice"
+    },
+    "/audit/{id}": {
+      "schema": "AuditEntry"
+    },
+    "/places/{id}": {
+      "schema": "Place"
+    }
   }
 }
